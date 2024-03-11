@@ -1,5 +1,6 @@
 import Fotter from './components/footer/Fotter';
 import Navigation from './components/navigation/Navigation';
+import Product from './components/product/Product';
 import './index.css'
 import HomePage from './pages/homePage/HomePage';
 
@@ -8,7 +9,8 @@ function App() {
     <div className=''>
       <Navigation />
       <div>
-        <HomePage />
+        {/* <HomePage /> */}
+        <Product />
       </div>
       <div>
         <Fotter />
