@@ -5,6 +5,7 @@ import { Box, Button, Grid, LinearProgress, Rating } from '@mui/material'
 import ProductReviewCard from './ProductReviewCard'
 import { mens_kurta } from '../../data/men_kurta'
 import HomeSectionCard from '../homeSectionCard/HomeSectionCard'
+import { useNavigate } from 'react-router-dom'
 
 const product = {
    name: 'Basic Tee 6-Pack',
@@ -63,7 +64,10 @@ function classNames(...classes) {
 export default function ProductDeatil() {
    const [selectedColor, setSelectedColor] = useState(product.colors[0])
    const [selectedSize, setSelectedSize] = useState(product.sizes[2])
-
+   const navigate = useNavigate()
+   const handleAddToCart = () => {
+      navigate("/cart")
+   }
    return (
       <div className="bg-white lg:px-20">
          <div className="pt-6">
@@ -144,13 +148,13 @@ export default function ProductDeatil() {
 
                      <form className="mt-10">
                         {/* Colors */}
-                     
+
 
                         {/* Sizes */}
                         <div className="mt-10">
                            <div className="flex items-center justify-between">
                               <h3 className="text-sm font-medium text-gray-900">Size</h3>
-                              
+
                            </div>
 
                            <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-4">
@@ -206,7 +210,7 @@ export default function ProductDeatil() {
                            </RadioGroup>
                         </div>
 
-                        <Button variant='contained' sx={{px:"2rem", py:"1rem", bgcolor:"#9155fd", marginTop:3}}>
+                        <Button onClick={handleAddToCart} variant='contained' sx={{ px: "2rem", py: "1rem", bgcolor: "#9155fd", marginTop: 3 }}>
                            Add To Cart
                         </Button>
                      </form>
@@ -252,13 +256,13 @@ export default function ProductDeatil() {
                   <Grid container spacing={7}>
                      <Grid item xs={7}>
                         <div className='space-y-5'>
-                           {[1,1,1].map((item) => <ProductReviewCard />)}
+                           {[1, 1, 1].map((item) => <ProductReviewCard />)}
                         </div>
                      </Grid>
                      <Grid item xs={5}>
                         <h1 className='text-xl font-semibold pb-1'>Product Ratings</h1>
                         <div className='flex items-center space-x-3'>
-                           <Rating name='read-only' value={4.6} precision={0.5} readOnly/>
+                           <Rating name='read-only' value={4.6} precision={0.5} readOnly />
                            <p className='opacity-60'>10102003 Ratings</p>
                         </div>
                         <Box className="mt-5">
@@ -267,7 +271,7 @@ export default function ProductDeatil() {
                                  <p>Excellent</p>
                               </Grid>
                               <Grid item xs={7}>
-                                 <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:4, height:7}} variant='determinate' value={40} color='success'/>
+                                 <LinearProgress sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }} variant='determinate' value={40} color='success' />
                               </Grid>
                            </Grid>
                            <Grid container alignItems="center" gap={2}>
@@ -275,7 +279,7 @@ export default function ProductDeatil() {
                                  <p>Very Good</p>
                               </Grid>
                               <Grid item xs={7}>
-                                 <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:4, height:7}} variant='determinate' value={30} color='secondary'/>
+                                 <LinearProgress sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }} variant='determinate' value={30} color='secondary' />
                               </Grid>
                            </Grid>
                            <Grid container alignItems="center" gap={2}>
@@ -283,7 +287,7 @@ export default function ProductDeatil() {
                                  <p>Good</p>
                               </Grid>
                               <Grid item xs={7}>
-                                 <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:4, height:7}} variant='determinate' value={25} color='primary'/>
+                                 <LinearProgress sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }} variant='determinate' value={25} color='primary' />
                               </Grid>
                            </Grid>
                            <Grid container alignItems="center" gap={2}>
@@ -291,7 +295,7 @@ export default function ProductDeatil() {
                                  <p>Avarage</p>
                               </Grid>
                               <Grid item xs={7}>
-                                 <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:4, height:7}} variant='determinate' value={20} color='warning'/>
+                                 <LinearProgress sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }} variant='determinate' value={20} color='warning' />
                               </Grid>
                            </Grid>
                            <Grid container alignItems="center" gap={2}>
@@ -299,7 +303,7 @@ export default function ProductDeatil() {
                                  <p>Poor</p>
                               </Grid>
                               <Grid item xs={7}>
-                                 <LinearProgress sx={{bgcolor:"#d0d0d0", borderRadius:4, height:7}} variant='determinate' value={1} color='error'/>
+                                 <LinearProgress sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }} variant='determinate' value={1} color='error' />
                               </Grid>
                            </Grid>
                         </Box>
