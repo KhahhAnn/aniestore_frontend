@@ -1,10 +1,13 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { navigation } from './NavigationData'
 import { Avatar, Button, Menu, MenuItem } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import AuthModal from '../../auth/AuthModal'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser, logout } from '../../state/authorization/Action'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -15,7 +18,12 @@ export default function Navigation() {
   const [openAuthModal, setOpenAuthModal] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null)
   const openUserMenu = Boolean(anchorEl)
-  
+  const jwt = localStorage.getItem("jwt")
+  const { auth } = useSelector(store => store)
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+
   const handleUserClick = (e) => {
     setAnchorEl(e.currentTarget);
   }
@@ -33,7 +41,25 @@ export default function Navigation() {
     navigate(`/${category.id}/${section.id}/${item.id}`)
     close();
   }
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getUser(jwt))
+    }
+  }, [jwt, auth.jwt])
 
+  useEffect(() => {
+    if(auth.user) {
+      handleClose();
+    }
+    if(location.pathname === "/login" || location.pathname === "/register") {
+      navigate(-1)
+    }
+  }, [auth.user])
+
+  const handleLogout = () => {
+    dispatch(logout());
+    handleCloseUserMenu();
+  }
 
   return (
     <div className="bg-white">
@@ -194,12 +220,12 @@ export default function Navigation() {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                  <span className="sr-only">Your Company</span>
-                  <img
-                    className="h-8 w-8 mr-2"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt=""
-                  />
+                <span className="sr-only">Your Company</span>
+                <img
+                  className="h-8 w-8 mr-2"
+                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  alt=""
+                />
               </div>
 
               {/* Flyout menus */}
@@ -303,19 +329,19 @@ export default function Navigation() {
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   {
-                    true ? (
+                    auth.user?.firstName ? (
                       <div>
-                        <Avatar 
-                        className='text-white' 
-                        onClick = {handleUserClick} 
-                        aria-controls = {open ? "basic-menu" : undefined} 
-                        aia-haspopup = "true" 
-                        aria-expanded={open ? "true" : undefined}
-                        sx={{
-                          bgcolor: deepPurple[500],
-                          color: "white",
-                          cursor: "pointer"
-                        }}>An</Avatar>
+                        <Avatar
+                          className='text-white'
+                          onClick={handleUserClick}
+                          aria-controls={open ? "basic-menu" : undefined}
+                          aia-haspopup="true"
+                          aria-expanded={open ? "true" : undefined}
+                          sx={{
+                            bgcolor: deepPurple[500],
+                            color: "white",
+                            cursor: "pointer"
+                          }}>{auth.user?.firstName[0].toUpperCase()}</Avatar>
                         <Menu
                           id='basic-menu'
                           anchorEl={anchorEl}
@@ -328,10 +354,10 @@ export default function Navigation() {
                           <MenuItem onClick={handleCloseUserMenu}>
                             Profile
                           </MenuItem>
-                          <MenuItem onClick={() => navigate("/account/order")}> 
+                          <MenuItem onClick={() => navigate("/account/order")}>
                             My Order
                           </MenuItem>
-                          <MenuItem>
+                          <MenuItem onClick={handleLogout}>
                             Logout
                           </MenuItem>
                         </Menu>
@@ -353,7 +379,7 @@ export default function Navigation() {
                     Create account
                   </a> */}
                 </div>
-{/* 
+                {/* 
                 <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="flex items-center text-gray-700 hover:text-gray-800">
                     <img
@@ -390,6 +416,7 @@ export default function Navigation() {
           </div>
         </nav>
       </header>
+      <AuthModal handleClose={handleClose} open={openAuthModal} />
     </div>
   )
 }
