@@ -3,21 +3,22 @@ import React from 'react'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
-const CartItem = () => {
+const CartItem = ({productItem}) => {
+   console.log(productItem.product);
    return (
       <div className='p-5 shadow-lg border rounded-md mb-3'>
          <div className='flex items-center'>
             <div className='w-[5rem] h-[5rem] lg:w-[9rem] lg:h-[9rem]'>
-               <img className='w-full h-full object-cover object-top' src='https://rukminim1.flixcart.com/image/612/612/l5h2xe80/kurta/x/6/n/xl-kast-tile-green-majestic-man-original-imagg4z33hu4kzpv.jpeg?q=70' alt='' />
+               <img className='w-full h-full object-cover object-top' src={productItem.product.imageUrl} alt='' />
             </div>
             <div className='ml-5 space-y-1'>
-               <p className='font-semibold'>Men Slim Mid Rise Black Jeans</p>
-               <p className='opacity-70'>Size: L, White</p>
-               <p className='opacity-70 mt-2'>Seller: KhahhAnn</p>
+               <p className='font-semibold'>{productItem.product.title}</p>
+               <p className='opacity-70'>Size: {productItem.product.size}, {productItem.product.color}</p>
+               <p className='opacity-70 mt-2'>Seller: {productItem.product.brand}</p>
                <div className=" flex space-x-5 items-center text-lg lg:text-xl text-gray-900 pt-6">
-                  <p className="font-semibold">$190</p>
-                  <p className='opacity-50 line-through'>$250</p>
-                  <p className='text-green-600 font-semibold'>%5 Off</p>
+                  <p className="font-semibold">${productItem.product.price}</p>
+                  <p className='opacity-50 line-through'>${productItem.product.discounted}</p>
+                  <p className='text-green-600 font-semibold'>{productItem.product.discountPrecent}% Off</p>
                </div>
             </div>
          </div>

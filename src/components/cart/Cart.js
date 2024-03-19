@@ -1,18 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CartItem from './CartItem'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCart } from '../../state/cart/Action'
 
 const Cart = () => {
    const navigate = useNavigate()
+   const dispatch = useDispatch()
+   const {cartStore} = useSelector(store => store)
    const handleCheckOut = () => {
       navigate("/checkout?step=2")
    }
+   useEffect(() => {
+      dispatch(getCart())
+   }, [])
+   console.log(
+      cartStore.cart.cartItem
+   );
    return (
       <div className='mt-4'>
          <div className='lg:grid grid-cols-3 lg:px-16 relative'>
             <div className='col-span-2'>
-               {[1,1,1,1].map((item) => <CartItem />)}
+               {cartStore.cart &&cartStore.cart?.cartItem && cartStore.cart?.cartItem.map((item) =>  <CartItem productItem={item} />)}
             </div>
             <div className='px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0'>
                <div className='border p-5'>
@@ -21,11 +31,11 @@ const Cart = () => {
                   <div className='space-y-3 font-semibold'>
                      <div className='flex justify-between pt-3 text-black'>
                         <span>Price</span>
-                        <span>$199</span>
+                        <span>${cartStore.cart?.totalPrice}</span>
                      </div>
                      <div className='flex justify-between pt-3'>
                         <span>Discount</span>
-                        <span className='text-green-600 '>-$10</span>
+                        <span className='text-green-600 '>-${cartStore.cart?.discount}</span>
                      </div>
                      <div className='flex justify-between pt-3 '>
                         <span>Delivery Charges</span>
@@ -33,7 +43,7 @@ const Cart = () => {
                      </div>
                      <div className='flex justify-between pt-3 font-bold'>
                         <span>Total Amount</span>
-                        <span className='text-green-600 '>$198</span>
+                        <span className='text-green-600 '>${cartStore.cart?.totalDiscountedPrice}</span>
                      </div>
                   </div>
                   <Button onClick={handleCheckOut} variant='contained' className='w-full' sx={{ px: "2.5rem", py: "0.7rem", bgcolor: "#9155fd", marginTop: 3 }}>
