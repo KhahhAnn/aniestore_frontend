@@ -1,28 +1,30 @@
-import React, { useEffect } from 'react'
-import CartItem from './CartItem'
 import { Button } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { getCart } from '../../state/cart/Action'
+import CartItem from './CartItem'
 
 const Cart = () => {
    const navigate = useNavigate()
    const dispatch = useDispatch()
-   const {cartStore} = useSelector(store => store)
+   const {cartStore} = useSelector(Store => Store)
+   const [sortedCartItems, setSortedCartItems] = useState([]);
+
+   
    const handleCheckOut = () => {
       navigate("/checkout?step=2")
    }
+
    useEffect(() => {
       dispatch(getCart())
-   }, [])
-   console.log(
-      cartStore.cart.cartItem
-   );
+   }, [cartStore.cartItems,  dispatch])
+   
    return (
       <div className='mt-4'>
          <div className='lg:grid grid-cols-3 lg:px-16 relative'>
             <div className='col-span-2'>
-               {cartStore.cart &&cartStore.cart?.cartItem && cartStore.cart?.cartItem.map((item) =>  <CartItem productItem={item} />)}
+               {cartStore.cart &&cartStore.cart?.cartItem && cartStore.cart?.cartItem.map((item, index) =>  <CartItem productItem={item} key={index} />)}
             </div>
             <div className='px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0'>
                <div className='border p-5'>
@@ -35,7 +37,7 @@ const Cart = () => {
                      </div>
                      <div className='flex justify-between pt-3'>
                         <span>Discount</span>
-                        <span className='text-green-600 '>-${cartStore.cart?.discount}</span>
+                        <span className='text-green-600 '>-${cartStore.cart?.totalPrice - cartStore.cart?.totalDiscountedPrice}</span>
                      </div>
                      <div className='flex justify-between pt-3 '>
                         <span>Delivery Charges</span>

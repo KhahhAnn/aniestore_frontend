@@ -79,7 +79,7 @@ export default function Product() {
          minDiscount: discount || 0,
          sort: sortValue || "price_low",
          pageNumber: pageNumber - 1,
-         pageSize: 10,
+         pageSize: 9,
          stock: stock
       }
       dispatch(findProducts(data));
@@ -337,7 +337,7 @@ export default function Product() {
                      </div>
 
                      {/* Product grid */}
-                     <div className="lg:col-span-4 w-full">
+                     <div className="lg:col-span-4 w-[95%]">
                         <div className='flex flex-wrap justify-center bg-white py-5'>
                            {productStore.products && productStore.products.content && productStore.products.content.map((item) => <ProductCard product={item} />)}                           
                            <section className='w-full px=[3.6rem]'>
