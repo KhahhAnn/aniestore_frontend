@@ -33,7 +33,6 @@ export const login = (userData) => async (dispatch) => {
       if (user.jwt) {
          localStorage.setItem("jwt", user.jwt);
       }
-      console.log("user:", user);
       dispatch(loginSuccess(user));
 
    } catch (error) {
@@ -53,7 +52,6 @@ export const getUser = (jwt) => async (dispatch) => {
          }
       })
       const user = response.data;
-      console.log("user:", user);
       dispatch(getUserSuccess(user));
 
    } catch (error) {

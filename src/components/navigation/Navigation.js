@@ -4,7 +4,7 @@ import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@her
 import { navigation } from './NavigationData'
 import { Avatar, Button, Menu, MenuItem } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import AuthModal from '../../auth/AuthModal'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUser, logout } from '../../state/authorization/Action'
@@ -48,10 +48,10 @@ export default function Navigation() {
   }, [jwt, auth.jwt])
 
   useEffect(() => {
-    if(auth.user) {
+    if (auth.user) {
       handleClose();
     }
-    if(location.pathname === "/login" || location.pathname === "/register") {
+    if (location.pathname === "/login" || location.pathname === "/register") {
       navigate(-1)
     }
   }, [auth.user])
@@ -219,14 +219,16 @@ export default function Navigation() {
               </button>
 
               {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
-                <span className="sr-only">Your Company</span>
-                <img
-                  className="h-8 w-8 mr-2"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                  alt=""
-                />
-              </div>
+              <Link to="/">
+                <div className="ml-4 flex lg:ml-0">
+                  <span className="sr-only">Your Company</span>
+                  <img
+                    className="h-8 w-8 mr-2"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    alt=""
+                  />
+                </div>
+              </Link>
 
               {/* Flyout menus */}
               <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch z-10">
@@ -402,14 +404,16 @@ export default function Navigation() {
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <Button className="group -m-2 flex items-center p-2">
-                    <ShoppingBagIcon
-                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
-                    <span className="sr-only">items in cart, view bag</span>
-                  </Button>
+                  <Link to="/cart">
+                    <Button className="group -m-2 flex items-center p-2">
+                      <ShoppingBagIcon
+                        className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                        aria-hidden="true"
+                      />
+                      <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                      <span className="sr-only">items in cart, view bag</span>
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>

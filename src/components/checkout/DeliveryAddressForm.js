@@ -1,8 +1,13 @@
 import { Box, Button, Grid, TextField } from '@mui/material'
 import React from 'react'
 import AdressCard from '../adressCard/AdressCard'
+import { useDispatch } from 'react-redux'
+import { createOrder } from '../../state/order/Action';
+import { useNavigate } from 'react-router-dom';
 
 function DeliveryAddressForm() {
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
    const handleSubmit = (e) => {
       e.preventDefault();
       const data = new FormData(e.currentTarget);
@@ -12,9 +17,11 @@ function DeliveryAddressForm() {
          streetAddress: data.get("address"),
          city: data.get("city"),
          state: data.get("state"),
-         zipCode: data.get("zip"),
-         phoneNumber: data.get("phoneNumber"),
+         zipCode: data.get("zipCode"),
+         mobile: data.get("mobile"),
       }
+      const orderData = {address, navigate};
+      dispatch(createOrder(orderData));
       console.log(address);
    }
    return (
@@ -46,10 +53,10 @@ function DeliveryAddressForm() {
                            <TextField required id='state' name='state' label='State/Province/Region' fullWidth autoComplete='given-name' />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                           <TextField id='zip' name='zip' label='Zip/Postal Code' fullWidth autoComplete='given-name' />
+                           <TextField id='zipCode' name='zipCode' label='Zip/Postal Code' fullWidth autoComplete='given-name' />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                           <TextField required id='phoneNumber' name='phoneNumber' label='Phone Number' fullWidth autoComplete='given-name' />
+                           <TextField required id='mobile' name='mobile' label='Phone Number' fullWidth autoComplete='' />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                            <Button className='w-full' sx={{ mt: 2, bgcolor: "#9155fd", py:2 }} size='large' variant='contained' type='submit'>Delevery Here</Button>
