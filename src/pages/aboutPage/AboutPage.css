@@ -22,9 +22,19 @@
 .conainer-scale {
    overflow: hidden;
    display: block;
+   border-radius: 12px;
 }
 
 .conainer-scale .scale:hover {
-   transform: scale(1.05);
+   transform: scale(1.1);
    transition: transform 0.5s ease-out;
+}
+.conainer-scale:hover .team-icon{
+   display: flex;
+}
+.team-icon {
+   display: none;
+}
+.team-icon:hover {
+   color: white;
 }

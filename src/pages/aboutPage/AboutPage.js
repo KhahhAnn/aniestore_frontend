@@ -2,10 +2,12 @@ import React from 'react'
 import './AboutPage.css'
 import DoneIcon from '@mui/icons-material/Done'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 function AboutPage() {
    return (
-      <div className='mb-60'>
+      <div className=''>
          <div className='mx-auto text-center bg-[#F5F5F5] py-20'>
             <h2 className='font-bold text-[40px] mb-4'>About Us</h2>
             <a href='/' className='text-[#7e7e7e] text-[15px] ml-2 hover:text-[#2ebb77]'>Home</a>
@@ -55,6 +57,38 @@ function AboutPage() {
                </div>
             </div>
          </div>
+
+         <div>
+            <h2 className='font-bold text-[40px] text-center mt-10'>Meet our team!</h2>
+            <div className='flex justify-center gap-10 text-center mt-10'>
+               <div>
+                  <div className='conainer-scale'>
+                     <img className='w-[300px] h-[300px] rounded-lg scale' src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/410502438_1802142066949885_4237457411996902523_n.jpg?stp=cp6_dst-jpg&_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHUYJcsq3FrFOL_maQ7jcdR04iqM2D5Yb3TiKozYPlhvaEQvFjXkxQXYc_y2VQurSSvKdjFLqpmHbRt7TaBkNX1&_nc_ohc=vnxOedpT-u0Ab4Tc2au&_nc_ht=scontent.fhan2-3.fna&oh=00_AfAStzljeqaxEyUgyffgqeBH9-uVBsOJ6XAShaB3XChaYg&oe=662119BE" alt='' />
+                     <div className='absolute z-10 top-[1450px] ml-[90px] flex gap-5 justify-center team-icon'>
+                        <FacebookIcon  className='p-2 rounded-full border-2 border-[#eee] bg-white hover:bg-black hover:border-black color team-icon' style={{ color: "#9b9b9b", fontSize: "45px" }} />
+                        <InstagramIcon className='p-2 rounded-full border-2 border-[#eee] bg-white hover:bg-black hover:border-black team-icon' style={{ color: "#9b9b9b", fontSize: "45px" }} />
+                     </div>
+                  </div>
+                  <h3 className='font-bold text-2xl cursor-pointer hover:text-[#2ebb77]'>Khánh An</h3>
+                  <span className='text-[#7e7e7e]'>Coder</span>
+               </div>
+               <div>
+                  <div className='conainer-scale'>
+                     <img className='w-[300px] h-[300px] rounded-xl scale' src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/432011896_1605372270276571_3152325909812518674_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFL0OXn6Q4rEH0ItdrdM2aG_Q9aIUKqE9b9D1ohQqoT1m1SCorQ_jsVbvRFK_JIQSXteJACqTzAY4usqHmMvvS5&_nc_ohc=iV9tO-YTBxIAb6CO0Sf&_nc_ht=scontent.fhan2-3.fna&oh=00_AfARSLia25bZKC7rohnDCce-QcpBEgCHjqiqtL17saCLNw&oe=6621415E" alt='' />
+                     <div className='absolute z-10 top-[1450px] ml-[90px] flex gap-5 justify-center team-icon'>
+                        <FacebookIcon className='p-2 rounded-full border-2 border-[#eee] bg-white hover:bg-black hover:border-black ' style={{ color: "#9b9b9b", fontSize: "45px" }} />
+                        <InstagramIcon className='p-2 rounded-full border-2 border-[#eee] bg-white hover:bg-black hover:border-black' style={{ color: "#9b9b9b", fontSize: "45px" }} />
+                     </div>
+                  </div>
+                  <h3 className='font-bold cursor-pointer text-2xl hover:text-[#2ebb77]'>Thu Huyền</h3>
+                  <span className='text-[#7e7e7e]'>Coder</span>
+               </div>
+            </div>
+            <div className='text-center px-2 py-2 border-2 border-inherit max-w-40 mx-auto rounded-xl cursor-pointer hover:bg-[#2ebb77] hover:text-white mt-10'>
+               <h3 className='font-bold'>Join Our Team</h3>
+            </div>
+         </div>
+
          <div className='flex justify-items-center justify-between bg-[#64CB9A] mt-20'>
             <div className='my-auto max-w-xl ml-20'>
                <h2 className='text-white text-5xl font-bold mb-6'>Enjoy up your vacations in the best T-shirts</h2>

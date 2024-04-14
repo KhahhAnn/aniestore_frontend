@@ -28,13 +28,13 @@ const Fotter = () => {
                      <h2 className='text-[28px] font-bold'>Information</h2>
                   </div>
                   <div>
-                     <p className='text-[#7E7E7E] font-medium text-base hover:text-[#2ebb77]'> About us</p>
+                     <a href='/about' className='text-[#7E7E7E] font-medium text-base hover:text-[#2ebb77]'> About us</a>
                   </div>
                   <div>
-                     <p className='text-[#7E7E7E] font-medium text-base hover:text-[#2ebb77]'>Contact Us </p>
+                     <a href='/contact-us' className='text-[#7E7E7E] font-medium text-base hover:text-[#2ebb77]'>Contact Us </a>
                   </div>
                   <div>
-                     <p className='text-[#7E7E7E] font-medium text-base hover:text-[#2ebb77]'> FAQs </p>
+                     <a href='/faqs' className='text-[#7E7E7E] font-medium text-base hover:text-[#2ebb77]'> FAQS </a>
                   </div>
                   <div>
                      <p className='text-[#7E7E7E] font-medium text-base hover:text-[#2ebb77]'> Privacy policy </p>
