@@ -11,6 +11,8 @@ import Order from '../components/order/Order'
 import OrderDetail from '../components/order/OrderDetail'
 import AboutPage from '../pages/aboutPage/AboutPage'
 import ContactPage from '../pages/contactPage/ContactPage'
+import BlogPage from '../pages/blogPage/BlogPage'
+import FAQSPage from '../pages/faqsPage/FAQSPage'
 
 const CustomerRouters = () => {
    return (
@@ -24,6 +26,8 @@ const CustomerRouters = () => {
             <Route path='/register' element={<HomePage />}></Route>
             <Route path='/about' element={<AboutPage />}></Route>
             <Route path='/contact-us' element={<ContactPage />}></Route>
+            <Route path='/blog' element={<BlogPage />}></Route>
+            <Route path='/faqs' element={<FAQSPage />}></Route>
             <Route path='/cart' element={<Cart />}></Route>
             <Route path='/:levelOne/:levelTwo/:levelThree' element={<Product />}></Route>
             <Route path='/product/:productId' element={<ProductDeatil />}></Route>
