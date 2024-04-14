@@ -22,8 +22,20 @@ export default function Navigation() {
   const { auth } = useSelector(store => store)
   const dispatch = useDispatch();
   const location = useLocation();
-
-
+  // const [cartCount, setCartCount] = useState(0);
+  // const fetchCartCount = async () => {
+  //   try {
+  //     const response = await fetch('http://localhost:8080/api/cart/count');
+  //     if (!response.ok) {
+  //       throw new Error('Failed to fetch cart count');
+  //     }
+  //     const data = await response.json();
+  //     console.log(data);
+  //     setCartCount(data.count);
+  //   } catch (error) {
+  //     console.error('Error fetching cart count:', error);
+  //   }
+  // };
   const handleUserClick = (e) => {
     setAnchorEl(e.currentTarget);
   }
@@ -221,10 +233,9 @@ export default function Navigation() {
               {/* Logo */}
               <Link to="/">
                 <div className="ml-4 flex lg:ml-0">
-                  <span className="sr-only">Your Company</span>
                   <img
-                    className="h-8 w-8 mr-2"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    className="h-14 w-40 mr-2"
+                    src="https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2018/12/06090514/logo-shop-qu%E1%BA%A7n-%C3%A1o-7.jpg"
                     alt=""
                   />
                 </div>
@@ -319,8 +330,8 @@ export default function Navigation() {
                   {navigation.pages.map((page) => (
                     <a
                       key={page.name}
-                      href={page.href}
-                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                      href={page.id}
+                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800 cursor-pointer"
                     >
                       {page.name}
                     </a>

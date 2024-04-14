@@ -1,0 +1,30 @@
+.delimiter:before {
+   display: inline-block;
+   width: 20px;
+   height: 1px;
+   background-color: #7e7e7e;
+   content: '';
+   position: relative;
+   top: -4px;
+   margin: 0 6px;
+}
+.haru-heading-title span:after {
+   content: '';
+   position: absolute;
+   left: 0;
+   bottom: 5px;
+   width: 100%;
+   height: 15px;
+   background-color: rgba(46, 187, 119, 0.3);
+   background: linear-gradient(101.31deg, #b1f1b3 2.11%, #f3eec2 105.05%);
+   z-index: -1;
+}
+.conainer-scale {
+   overflow: hidden;
+   display: block;
+}
+
+.conainer-scale .scale:hover {
+   transform: scale(1.05);
+   transition: transform 0.5s ease-out;
+}

@@ -6,8 +6,7 @@ function App() {
   return (
     <div className=''>
       <Routes>
-        <Route path='/*' element={<CustomerRouters />}>
-        </Route>
+        <Route path='/*' element={<CustomerRouters />}></Route>
       </Routes>
     </div>
   );

@@ -1,6 +1,6 @@
 export const mens_kurta = [
    {
-      "imageUrl": "https://rukminim1.flixcart.com/image/612/612/l5h2xe80/kurta/x/6/n/xl-kast-tile-green-majestic-man-original-imagg4z33hu4kzpv.jpeg?q=70",
+      "imageUrl": "	https://teespace.store/wp-content/uploads/2023/07/output-onlinepngtools-1-300x429.png",
       "brand": "Majestic Man",
       "title": "Men Printed Pure Cotton Straight Kurta",
       "color": "Green",
@@ -28,7 +28,7 @@ export const mens_kurta = [
       "description": "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
    },
    {
-      "imageUrl": "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/l/f/r/xl-k-spl668-yellow-sg-leman-original-imagznqcrahgq9rf.jpeg?q=70",
+      "imageUrl": "	https://teespace.store/wp-content/uploads/2023/07/output-onlinepngtools-1-300x429.png",
       "brand": "SG LEMAN",
       "title": "Men Embroidered Jacquard Straight Kurta",
       "color": "Yellow",

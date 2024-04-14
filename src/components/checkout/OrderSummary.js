@@ -21,7 +21,7 @@ const OrderSummary = () => {
    return (
       <div>
          <div className='p-5 shadow-lg rounded-s-md border'>
-            <AdressCard address={orderStore.order?.shippingAddress} />
+            <AdressCard address={orderStore.order.shippingAddress} />
          </div>
          <div className='mt-4'>
             <div className='lg:grid grid-cols-3 relative'>

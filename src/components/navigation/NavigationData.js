@@ -1,8 +1,8 @@
 export const navigation = {
    categories: [
       {
-         id: 'women',
-         name: 'Women',
+         id: 'home',
+         name: 'Home',
          featured: [
             {
                name: 'New Arrivals',
@@ -22,16 +22,7 @@ export const navigation = {
                id: 'clothing',
                name: 'Clothing',
                items: [
-                  { name: 'Tops', id: "top", href: `{women/clothing/tops}` },
-                  { name: 'Dresses', id: "women_dress", href: '#' },
-                  { name: 'Women Jeans', id: 'women_jeans' },
-                  { name: 'Lengha Choli', id: 'lengha_choli' },
-                  { name: 'Sweaters', id: 'sweater' },
                   { name: 'T-Shirts', id: 't-shirt' },
-                  { name: 'Jackets', id: 'jacket' },
-                  { name: 'Gouns', id: 'gouns' },
-                  { name: 'Sarees', id: 'saree' },
-                  { name: 'Kurtas', id: 'kurtas' },
                ],
             },
             {
@@ -39,7 +30,6 @@ export const navigation = {
                name: 'Accessories',
                items: [
                   { name: 'Watches', id: 'watch' },
-                  { name: 'Wallets', id: 'wallet' },
                   { name: 'Bags', id: 'bag' },
                   { name: 'Sunglasses', id: 'sunglasse' },
                   { name: 'Hats', id: 'hat' },
@@ -60,8 +50,8 @@ export const navigation = {
          ],
       },
       {
-         id: 'men',
-         name: 'Men',
+         id: 'shop',
+         name: 'Shop',
          featured: [
             {
                name: 'New Arrivals',
@@ -118,7 +108,10 @@ export const navigation = {
       },
    ],
    pages: [
-      { name: 'Company', id: '/' },
-      { name: 'Stores', id: '/' },
+      { name: 'Blog', id: '/blog' },
+      { name: 'About', id: '/about' },
+      { name: 'Contact us', id: '/contact-us' },
+      { name: 'FAQS', id: '/faqs' },
+
    ],
 }
