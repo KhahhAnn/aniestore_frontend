@@ -108,6 +108,7 @@ export const navigation = {
       },
    ],
    pages: [
+      { name: 'Home', id: '/' },
       { name: 'Blog', id: '/blog' },
       { name: 'About', id: '/about' },
       { name: 'Contact us', id: '/contact-us' },

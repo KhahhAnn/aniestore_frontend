@@ -17,13 +17,13 @@ function ContactPage() {
                   <div className='flex justify-between gap-10'>
                      <div className='flex flex-col gap-2'>
                         <h2 className='font-bold text-xl'>Address</h2>
-                        <span>Mobile: <span className='font-bold'>068 26589 996</span></span>
-                        <span>Hotline: <span className='font-bold'>1900 26886</span></span>
-                        <span>90 VanTri BacTuLiem, HaNoi, VietNam</span>
+                        <span className='text-base'>Mobile: <span className='font-bold text-base'>068 26589 996</span></span>
+                        <span className='text-base'>Hotline: <span className='font-bold text-base'>1900 26886</span></span>
+                        <span className='text-base'>90 VanTri BacTuLiem, HaNoi, VietNam</span>
                      </div>
                      <div className='flex flex-col gap-2'>
                         <h2 className='font-bold text-xl'>Email</h2>
-                        <span className='text-slate-600'>contact@khahhann.admin</span>
+                        <span className='text-slate-600 text-base'>contact@khahhann.admin</span>
                      </div>
                   </div>
                </div>

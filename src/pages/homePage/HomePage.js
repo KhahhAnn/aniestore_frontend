@@ -19,9 +19,9 @@ const HomePage = () => {
                <div>
                   <div>
                      <div className='flex flex-col flex-nowrap gap-10'>
-                        <div className='flex flex-row'>
+                        <div className='flex flex-row gap-4'>
                            <h3 style={{ fontSize: "18px", backgroundColor: "rgb(180, 121, 217, 40%)", borderRadius: "20px", padding: "5px", color: "#B479D9", fontWeight: "bold", paddingLeft: "20px", paddingRight: "20px" }}> Rated 4.9 of 5.0</h3>
-                           <Rating style={{ marginTop: "5px" }} value={5} name='half-rating' readOnly precision={0.5} />
+                           <Rating style={{ marginTop: "12px" }} value={4.5} name='half-rating' readOnly precision={0.5} />
                         </div>
                         <div>
                            <h1 className='font-bold text-5xl justify-center content-center mb-4'>

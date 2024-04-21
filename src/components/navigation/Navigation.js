@@ -22,20 +22,6 @@ export default function Navigation() {
   const { auth } = useSelector(store => store)
   const dispatch = useDispatch();
   const location = useLocation();
-  // const [cartCount, setCartCount] = useState(0);
-  // const fetchCartCount = async () => {
-  //   try {
-  //     const response = await fetch('http://localhost:8080/api/cart/count');
-  //     if (!response.ok) {
-  //       throw new Error('Failed to fetch cart count');
-  //     }
-  //     const data = await response.json();
-  //     console.log(data);
-  //     setCartCount(data.count);
-  //   } catch (error) {
-  //     console.error('Error fetching cart count:', error);
-  //   }
-  // };
   const handleUserClick = (e) => {
     setAnchorEl(e.currentTarget);
   }
@@ -62,9 +48,6 @@ export default function Navigation() {
   useEffect(() => {
     if (auth.user) {
       handleClose();
-    }
-    if (location.pathname === "/login" || location.pathname === "/register") {
-      navigate(-1)
     }
   }, [auth.user])
 
@@ -244,7 +227,7 @@ export default function Navigation() {
               {/* Flyout menus */}
               <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch z-10">
                 <div className="flex h-full space-x-8">
-                  {navigation.categories.map((category) => (
+                  {/* {navigation.categories.map((category) => (
                     <Popover key={category.name} className="flex">
                       {({ open, close }) => (
                         <>
@@ -270,9 +253,9 @@ export default function Navigation() {
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                           >
-                            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
+                            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500"> */}
                               {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                              <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
+                              {/* <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
 
                               <div className="relative bg-white">
                                 <div className="mx-auto max-w-7xl px-8">
@@ -325,7 +308,7 @@ export default function Navigation() {
                         </>
                       )}
                     </Popover>
-                  ))}
+                  ))} */}
 
                   {navigation.pages.map((page) => (
                     <a
