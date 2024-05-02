@@ -9,6 +9,11 @@ import PublicIcon from '@mui/icons-material/Public';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import CallIcon from '@mui/icons-material/Call';
 import PaymentIcon from '@mui/icons-material/Payment';
+import { FaShoppingCart } from "react-icons/fa";
+import { MdOutlineLabelImportant } from "react-icons/md";
+import { BsSuitHeartFill } from "react-icons/bs";
+import Badge from './Badge'
+
 
 const HomePage = () => {
    return (
@@ -21,7 +26,7 @@ const HomePage = () => {
                      <div className='flex flex-col flex-nowrap gap-10'>
                         <div className='flex flex-row gap-4'>
                            <h3 style={{ fontSize: "18px", backgroundColor: "rgb(180, 121, 217, 40%)", borderRadius: "20px", padding: "5px", color: "#B479D9", fontWeight: "bold", paddingLeft: "20px", paddingRight: "20px" }}> Rated 4.9 of 5.0</h3>
-                           <Rating style={{ marginTop: "12px" }} value={4.5} name='half-rating' readOnly precision={0.5} />
+                           <Rating style={{ marginTop: "12px", width: "30px" }} value={4.5} name="size-large" size="large" readOnly precision={0.5} />
                         </div>
                         <div>
                            <h1 className='font-bold text-5xl justify-center content-center mb-4'>
@@ -106,18 +111,67 @@ const HomePage = () => {
             {
                [1, 2, 3, 4, 5, 6, 7, 8].map(
                   (i) => (
-                     <div className='mt-10 productCard w-[90%] h-[32rem] cursor-pointer rounded-md p-3 border-4 border-gray-200 bg-slate-100 ml-4'>
-                        <div className='h-[25rem]'>
-                           <img className='w-full h-full object-cover object-left-top rounded-md' src={mens_kurta[i].imageUrl} alt='' />
-                        </div>
-                        <div className='p-3'>
+                     // <div className='mt-10 productCard w-[90%] h-[32rem] cursor-pointer rounded-md p-3 border-4 border-gray-200 bg-slate-100 ml-4'>
+                     //    <div className='h-[25rem]'>
+                     //       <img className='w-full h-full object-cover object-left-top rounded-md' src={mens_kurta[i].imageUrl} alt='' />
+                     //    </div>
+                     //    <div className='p-3'>
+                     //       <div>
+                     //          <p className='font-bold opacity-60 text-center'>{mens_kurta[i].brand}</p>
+                     //       </div>
+                     //       <div className='flex justify-center space-x-2 mt-4'>
+                     //          <p className='font-semibold'>${mens_kurta[i].discountedPrice}</p>
+                     //          <p className='line-through opacity-50'>${mens_kurta[i].price}</p>
+                     //          <p className='text-green-600 font-semibold'>${mens_kurta[i].discountPersent}% sale off</p>
+                     //       </div>
+                     //    </div>
+                     // </div>
+                     <div className="w-full relative group p-3 rounded-xl bg-slate-200 hover:scale-110 duration-500 ">
+                        <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
                            <div>
-                              <p className='font-bold opacity-60 text-center'>{mens_kurta[i].brand}</p>
+                              <img className="w-full h-full rounded-lg" src={mens_kurta[i].imageUrl} alt='' />
                            </div>
-                           <div className='flex justify-center space-x-2 mt-4'>
-                              <p className='font-semibold'>${mens_kurta[i].discountedPrice}</p>
-                              <p className='line-through opacity-50'>${mens_kurta[i].price}</p>
-                              <p className='text-green-600 font-semibold'>${mens_kurta[i].discountPersent}% sale off</p>
+                           <div className="absolute top-6 left-2">
+                              {<Badge text="New" />}
+                           </div>
+                           <div className="w-full h-28 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
+                              <ul className="w-full h-full flex flex-col items-end justify-center gap-2 font-titleFont px-2 border-l border-r">
+                                 <li
+                                    className="text-[#767676] hover:text-black text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-black flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+                                 >
+                                    Add to Cart
+                                    <span>
+                                       <FaShoppingCart />
+                                    </span>
+                                 </li>
+                                 <li
+                                    className="text-[#767676] hover:text-black text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-black flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+                                 >
+                                    View Details
+                                    <span className="text-lg">
+                                       <MdOutlineLabelImportant />
+                                    </span>
+                                 </li>
+                                 <li
+                                    className="text-[#767676] hover:text-black text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-black flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+                                 >
+                                    Add to Wish List
+                                    <span>
+                                       <BsSuitHeartFill />
+                                    </span>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div className="max-w-80 flex flex-col gap-1 px-4">
+                           <div className="flex items-center justify-between font-titleFont">
+                              <h2 className="text-lg text-black font-bold">
+                                 {mens_kurta[i].brand}
+                              </h2>
+                              <p className="text-[#767676] text-[14px]">${mens_kurta[i].discountedPrice}</p>
+                           </div>
+                           <div>
+                              <p className="text-[#767676] text-[14px]">{mens_kurta[i].discountPersent}</p>
                            </div>
                         </div>
                      </div>
@@ -154,7 +208,7 @@ const HomePage = () => {
                <img className='w-[437px] h-[437px] rounded-t-xl' src='https://teespace.store/wp-content/uploads/2023/08/367449243_23857013672470376_7906988583192019118_n-1.jpg' alt='' />
                <div className='flex justify-between mx-8 mt-4'>
                   <p className='font-bold text-xl mt-2'>Custom T-Shirt</p>
-                  <div className='p-2 rounded-full bg-[#f5f5f5] icon-hover'>
+                  <div className='p-3 rounded-full bg-[#f5f5f5] icon-hover h-[50px]'>
                      <ArrowForwardIcon />
                   </div>
                </div>
@@ -163,7 +217,7 @@ const HomePage = () => {
                <img className='w-[437px] h-[437px] rounded-t-xl' src='https://teespace.store/wp-content/uploads/2023/08/Woman-in-beanie-hat-and-hoodie-mockup-2000x1334-1-1.png' alt='' />
                <div className='flex justify-between mx-8 mt-4'>
                   <p className='font-bold text-xl mt-2'>Custom T-Shirt</p>
-                  <div className='p-2 rounded-full bg-[#f5f5f5] icon-hover'>
+                  <div className='p-3 rounded-full bg-[#f5f5f5] icon-hover h-[50px]'>
                      <ArrowForwardIcon />
                   </div>
                </div>
@@ -172,7 +226,7 @@ const HomePage = () => {
                <img className='w-[437px] h-[437px] rounded-t-xl' src='https://teespace.store/wp-content/uploads/2023/08/Smiling-black-man-with-tank-top-mockup-2000x1334-1-1.png' alt='' />
                <div className='flex justify-between mx-8 mt-4'>
                   <p className='font-bold text-xl mt-2'>Custom T-Shirt</p>
-                  <div className='p-2 rounded-full bg-[#f5f5f5] icon-hover'>
+                  <div className='p-3 rounded-full bg-[#f5f5f5] icon-hover h-[50px]'>
                      <ArrowForwardIcon />
                   </div>
                </div>
@@ -181,7 +235,7 @@ const HomePage = () => {
                <img className='w-[437px] h-[437px] rounded-t-xl' src='https://teespace.store/wp-content/uploads/2023/08/b1e86be07423274b27b55561ddc6eee9_t-1.webp' alt='' />
                <div className='flex justify-between mx-8 mt-4'>
                   <p className='font-bold text-xl mt-2'>Custom T-Shirt</p>
-                  <div className='p-2 rounded-full bg-[#f5f5f5] icon-hover'>
+                  <div className='p-3 rounded-full bg-[#f5f5f5] icon-hover h-[50px]'>
                      <ArrowForwardIcon />
                   </div>
                </div>
@@ -190,7 +244,7 @@ const HomePage = () => {
                <img className='w-[437px] h-[437px] rounded-t-xl' src='https://teespace.store/wp-content/uploads/2023/08/7776d01e716d80e3ffbdebbf3db6b198_t.webp' alt='' />
                <div className='flex justify-between mx-8 mt-4'>
                   <p className='font-bold text-xl mt-2'>Custom T-Shirt</p>
-                  <div className='p-2 rounded-full bg-[#f5f5f5] icon-hover'>
+                  <div className='p-3 rounded-full bg-[#f5f5f5] icon-hover h-[50px]'>
                      <ArrowForwardIcon />
                   </div>
                </div>
@@ -199,7 +253,7 @@ const HomePage = () => {
                <img className='w-[437px] h-[437px] rounded-t-xl' src='https://teespace.store/wp-content/uploads/2023/08/0c38c3b13be79b5f8e1f2f1dccf62115_t.webp' alt='' />
                <div className='flex justify-between mx-8 mt-4'>
                   <p className='font-bold text-xl mt-2'>Custom T-Shirt</p>
-                  <div className='p-2 rounded-full bg-[#f5f5f5] icon-hover'>
+                  <div className='p-3 rounded-full bg-[#f5f5f5] icon-hover h-[50px]'>
                      <ArrowForwardIcon />
                   </div>
                </div>
@@ -251,8 +305,8 @@ const HomePage = () => {
             <div className='my-auto max-w-xl ml-20'>
                <h2 className='text-white text-5xl font-bold mb-6'>Enjoy up your vacations in the best T-shirts</h2>
                <p className='text-slate-200 text-[22px] font-medium mb-6'>T-shirts that keep you moving.</p>
-               <button className='px-5 py-3 bg-white rounded-2xl font-bold mr-10 hover:bg-[#2ebb77] hover:text-white'>Shop Now  <ArrowForwardIcon /></button>
-               <button className='px-5 py-3 bg-white rounded-2xl font-bold hover:bg-[#2ebb77] hover:text-white'>Contact Us  <ArrowForwardIcon /></button>
+               <button className='px-5 py-3 bg-white rounded-2xl font-bold mr-10 text-black hover:bg-[#2ebb77] hover:text-white'>Shop Now  <ArrowForwardIcon /></button>
+               <button className='px-5 py-3 bg-white rounded-2xl font-bold text-black hover:bg-[#2ebb77] hover:text-white'>Contact Us  <ArrowForwardIcon /></button>
             </div>
             <div className='mr-20'>
                <img src="https://teespace.store/wp-content/uploads/2023/08/banner-111.png" alt='' />

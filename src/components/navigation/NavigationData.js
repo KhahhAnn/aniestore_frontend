@@ -1,54 +1,6 @@
+
 export const navigation = {
    categories: [
-      {
-         id: 'home',
-         name: 'Home',
-         featured: [
-            {
-               name: 'New Arrivals',
-               href: '/',
-               imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
-               imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
-            },
-            {
-               name: 'Basic Tees',
-               href: '/',
-               imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
-               imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
-            },
-         ],
-         sections: [
-            {
-               id: 'clothing',
-               name: 'Clothing',
-               items: [
-                  { name: 'T-Shirts', id: 't-shirt' },
-               ],
-            },
-            {
-               id: 'accessories',
-               name: 'Accessories',
-               items: [
-                  { name: 'Watches', id: 'watch' },
-                  { name: 'Bags', id: 'bag' },
-                  { name: 'Sunglasses', id: 'sunglasse' },
-                  { name: 'Hats', id: 'hat' },
-                  { name: 'Belts', id: 'belt' },
-               ],
-            },
-            {
-               id: 'brands',
-               name: 'Brands',
-               items: [
-                  { name: 'Full Nelson', id: '#' },
-                  { name: 'My Way', id: '#' },
-                  { name: 'Re-Arranged', id: '#' },
-                  { name: 'Counterfeit', id: '#' },
-                  { name: 'Significant Other', id: '#' },
-               ],
-            },
-         ],
-      },
       {
          id: 'shop',
          name: 'Shop',
@@ -108,11 +60,20 @@ export const navigation = {
       },
    ],
    pages: [
-      { name: 'Home', id: '/' },
-      { name: 'Blog', id: '/blog' },
-      { name: 'About', id: '/about' },
-      { name: 'Contact us', id: '/contact-us' },
-      { name: 'FAQS', id: '/faqs' },
-
+      { key: 'Home', childrens: null, href: '/' },
+      {
+         key: 'Shop',
+         href: null,
+         childrens: [
+            { label: 'Mens Kurtas', href: '/shop/clothing/mens_kurta' },     
+            { label: 'Shirt', href: '/shop/clothing/shirt' }, 
+            { label: 'Men Jeans', href: '/shop/clothing/men_jeans' },
+            { label: 'T-Shirts', href: '/shop/clothing/t-shirt' },
+         ]
+      },
+      { key: 'Blog', childrens: null, href: '/blog' },
+      { key: 'About', childrens: null, href: '/about' },
+      { key: 'Contact us', childrens: null, href: '/contact-us' },
+      { key: 'FAQS', childrens: null, href: '/faqs' },
    ],
-}
+}  

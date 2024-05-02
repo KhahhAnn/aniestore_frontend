@@ -17,8 +17,8 @@ import FAQSPage from '../pages/faqsPage/FAQSPage'
 const CustomerRouters = () => {
    return (
       <div>
-         <div>
-            <Navigation />
+         <div className='fixed w-full top-0 z-40'>
+            <Navigation  />
          </div>
          <Routes>
             <Route path='/' element={<HomePage />}></Route>

@@ -252,13 +252,13 @@ export default function Product() {
                            <h1 className='text-lg opacity-50 font-bold'>Filters</h1>
                            <FilterListIcon />
                         </div>
-                        <form className="hidden lg:block">
+                        <form className="hidden lg:block -ml-10">
                            {filters.map((section) => (
                               <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6">
                                  {({ open }) => (
                                     <>
-                                       <h3 className="-my-3 flow-root">
-                                          <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
+                                       <h3 className="my-3 flow-root w-[13rem]">
+                                          <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500  w-[13rem]">
                                              <span className="font-medium text-gray-900">{section.name}</span>
                                              <span className="ml-6 flex items-center">
                                                 {open ? (
@@ -270,7 +270,7 @@ export default function Product() {
                                           </Disclosure.Button>
                                        </h3>
                                        <Disclosure.Panel className="pt-6">
-                                          <div className="space-y-4">
+                                          <div className="space-y-4 w-[13rem]">
                                              {section.option.map((option, optionIdx) => (
                                                 <div key={option.value} className="flex items-center">
                                                    <input
@@ -300,9 +300,9 @@ export default function Product() {
                               <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6">
                                  {({ open }) => (
                                     <>
-                                       <h3 className="-my-3 flow-root">
+                                       <h3 className="my-3 flow-root w-[13rem]">
                                           <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
-                                             <FormLabel sx={{ color: "black" }} className='text-gray-900' id="demo-radio-buttons-group-label">{section.name}</FormLabel>
+                                             <span className="font-medium text-gray-900">{section.name}</span>
                                              <span className="ml-6 flex items-center">
                                                 {open ? (
                                                    <MinusIcon className="h-5 w-5" aria-hidden="true" />
@@ -313,7 +313,7 @@ export default function Product() {
                                           </Disclosure.Button>
                                        </h3>
                                        <Disclosure.Panel className="pt-6">
-                                          <div className="space-y-4">
+                                          <div className="space-y-4 w-[13rem]">
                                              <FormControl>
                                                 <RadioGroup
                                                    aria-labelledby="demo-radio-buttons-group-label"
@@ -338,10 +338,12 @@ export default function Product() {
 
                      {/* Product grid */}
                      <div className="lg:col-span-4 w-[95%]">
-                        <div className='flex flex-wrap justify-center bg-white py-5'>
-                           {productStore.products && productStore.products.content && productStore.products.content.map((item) => <ProductCard product={item} />)}                           
-                           <section className='w-full px=[3.6rem]'>
-                              <div className='px-4 py-5 flex justify-center'>
+                        <div >
+                           <div className='grid grid-cols-3 gap-10 bg-white py-5'>
+                              {productStore.products && productStore.products.content && productStore.products.content.map((item) => <ProductCard product={item} />)}
+                           </div>
+                           <section className='w-full ml-[22rem] mt-10'>
+                              <div className=''>
                                  <Pagination count={productStore.products.totalPages} color="secondary" onChange={handlePaginationchange} />
                               </div>
                            </section>

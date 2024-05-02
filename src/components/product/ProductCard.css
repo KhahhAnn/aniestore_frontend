@@ -1,10 +1,92 @@
-.productCard .textPart {
+/* .productCard .textPart {
    transition: transform .3s ease-out;
 }
-.productCard:hover{
+
+.productCard:hover {
    transform: scale(1.1);
    transition: transform .5s ease-out;
-}     
+}
+
 .productCard:hover {
    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
+
+.card {
+   width: 30%;
+   border-radius: 15px;
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+   -ms-flex-direction: column;
+   flex-direction: column;
+   position: relative;
+   -webkit-transform: scale(0.8);
+   transform: scale(0.8);
+   -webkit-transition: all .3s ease-in-out;
+   transition: all .3s ease-in-out;
+   margin-bottom: 50px;
+}
+
+.card .card_img {
+   margin-top: -5vw;
+}
+
+.card .card_img img {
+   width: 200px;
+}
+
+.card .card_header {
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+   -ms-flex-direction: column;
+   flex-direction: column;
+   color: #fff;
+   margin: 25px 0;
+}
+
+.card .card_header h2 {
+   font-size: 18px;
+}
+
+.card .card_header p {
+   font-size: 14px;
+   text-align: center;
+   color: rgba(255, 255, 255, 0.3);
+   margin: 8px 0;
+}
+
+.card .card_header .price {
+   font-size: 25px;
+   color: #fe8033;
+}
+
+.card .card_header .price span {
+   font-size: 15px;
+   display: inline-block;
+   vertical-align: top;
+}
+
+.card:hover {
+   background-color: #2b3039;
+   -webkit-transform: scale(1.1);
+   transform: scale(1.1);
+   cursor: pointer;
+}
+
+.card:hover .btn {
+   background-color: #fe8033;
+   color: #fff;
+}
+
+.btn {
+   width: 130px;
+   height: 35px;
+   font-size: 14px;
+   border-radius: 35px;
+   background-color: #2d343e;
+   color: rgba(255, 255, 255, 0.5);
+   cursor: pointer;
+   position: relative;
+   -webkit-transition: background-color .3s ease;
+   transition: background-color .3s ease;
+   overflow: hidden;
+} */

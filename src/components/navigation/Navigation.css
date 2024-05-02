@@ -1,0 +1,15 @@
+.shop-dropdown::before {
+   content: "";
+   height: 2rem;
+   width: 5rem;
+   position: absolute;
+   left: 18.5rem;
+   transform: translateY(100%);
+   background-color: transparent;
+}
+.shop-list {
+   display: none;
+}
+.shop-dropdown:hover .shop-list {
+   display: flex;
+}

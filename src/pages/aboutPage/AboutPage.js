@@ -93,8 +93,8 @@ function AboutPage() {
             <div className='my-auto max-w-xl ml-20'>
                <h2 className='text-white text-5xl font-bold mb-6'>Enjoy up your vacations in the best T-shirts</h2>
                <p className='text-slate-200 text-[22px] font-medium mb-6'>T-shirts that keep you moving.</p>
-               <button className='px-5 py-3 bg-white rounded-2xl font-bold mr-10 hover:bg-[#2ebb77] hover:text-white'>Shop Now  <ArrowForwardIcon /></button>
-               <button className='px-5 py-3 bg-white rounded-2xl font-bold hover:bg-[#2ebb77] hover:text-white'>Contact Us  <ArrowForwardIcon /></button>
+               <button className='px-5 py-3 bg-white rounded-2xl text-black font-bold mr-10 hover:bg-[#2ebb77] hover:text-white'>Shop Now  <ArrowForwardIcon /></button>
+               <button className='px-5 py-3 bg-white rounded-2xl text-black font-bold hover:bg-[#2ebb77] hover:text-white'>Contact Us  <ArrowForwardIcon /></button>
             </div>
             <div className='mr-20'>
                <img src="https://teespace.store/wp-content/uploads/2023/08/banner-111.png" alt='' />
