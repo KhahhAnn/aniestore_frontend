@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TextField } from '@mui/material'
+import { Box, Button, Grid, MenuItem, TextField } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import AdressCard from '../adressCard/AdressCard'
 import { useDispatch } from 'react-redux'
@@ -9,6 +9,10 @@ import axios from 'axios';
 function DeliveryAddressForm() {
    const dispatch = useDispatch();
    const navigate = useNavigate();
+   const [provinces, setProvinces] = useState([]);
+   const [districts, setDistricts] = useState([]);
+   const [selectedProvince, setSelectedProvince] = useState('');
+   const [selectedDistrict, setSelectedDistrict] = useState('');
    const [addressList, setAddressList] = useState([]);
    const handleSubmit = (e) => {
       e.preventDefault();
@@ -46,8 +50,38 @@ function DeliveryAddressForm() {
          console.error('Error fetching color:', error);
       }
    };
+   const fetchProvinces = async () => {
+      try {
+         const response = await axios.get('https://vapi.vnappmob.com/api/province/');
+         setProvinces(response.data.results);
+      } catch (error) {
+         console.error('Error fetching provinces:', error);
+      }
+   };
+
+   const fetchDistricts = async (provinceId) => {
+      try {
+         const response = await axios.get(`https://vapi.vnappmob.com/api/province/district/${provinceId}`);
+         setDistricts(response.data.results);
+      } catch (error) {
+         console.error('Error fetching districts:', error);
+      }
+   };
+
+   const handleProvinceChange = async (event) => {
+      const provinceId = event.target.value;
+      setSelectedProvince(provinceId);
+      setSelectedDistrict('');
+      await fetchDistricts(provinceId);
+   };
+
+   const handleDistrictChange = (event) => {
+      const districtId = event.target.value;
+      setSelectedDistrict(districtId);
+   };
    useEffect(() => {
       fetchData();
+      fetchProvinces();
    }, []);
    return (
       <div className='mt-20'>
@@ -78,10 +112,34 @@ function DeliveryAddressForm() {
                            <TextField required id='address' name='address' label='Address' fullWidth autoComplete='given-name' multiline rows={6} />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                           <TextField required id='city' name='city' label='City' fullWidth autoComplete='given-name' />
+                           <TextField
+                              select
+                              label="Select Province"
+                              value={selectedProvince}
+                              onChange={handleProvinceChange}
+                              fullWidth
+                           >
+                              {provinces.map((province) => (
+                                 <MenuItem key={province.province_id} value={province.province_id}>
+                                    {province.province_name}
+                                 </MenuItem>
+                              ))}
+                           </TextField>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                           <TextField required id='state' name='state' label='State/Province/Region' fullWidth autoComplete='given-name' />
+                           <TextField
+                              select
+                              label="Select District"
+                              value={selectedDistrict}
+                              onChange={handleDistrictChange}
+                              fullWidth
+                           >
+                              {districts.map((district) => (
+                                 <MenuItem key={district.district_id} value={district.district_id}>
+                                    {district.district_name}
+                                 </MenuItem>
+                              ))}
+                           </TextField>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                            <TextField id='zipCode' name='zipCode' label='Zip/Postal Code' fullWidth autoComplete='given-name' />
