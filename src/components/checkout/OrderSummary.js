@@ -4,19 +4,30 @@ import { Button } from '@mui/material'
 import CartItem from '../cart/CartItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrderById } from '../../state/order/Action'
-import { useLocation } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const OrderSummary = () => {
    const dispatch = useDispatch();
    const location = useLocation();
+   const navigate = useNavigate();
    const searchParam = new URLSearchParams(location.search);
    const orderId = searchParam.get("order_id");
    const { orderStore } = useSelector(store => store);
-   const [listOrder, setListOrder] = useState([]);
    useEffect(() => {
       dispatch(getOrderById(orderId));
    }, [orderId]);
    console.log(orderStore.order);
+   const toPaymenntGateway = async () => {
+      try {
+         const total = orderStore.order.totalDiscountedPrice - orderStore.order.discount;
+         const response = await axios.get(`http://localhost:8080/api/payment/create_payment/${total}`);
+         window.location.href = response.data.url;
+         console.log(response.data.url);
+      } catch (error) {
+         console.error('Error fetching color:', error);
+      }
+   };
 
    return (
       <div>
@@ -50,7 +61,7 @@ const OrderSummary = () => {
                            <span className='text-green-600 '>${orderStore.order?.totalDiscountedPrice - orderStore.order?.discount} </span>
                         </div>
                      </div>
-                     <Button variant='contained' className='w-full' sx={{ px: "2.5rem", py: "0.7rem", bgcolor: "#9155fd", marginTop: 3 }}>
+                     <Button onClick={() => toPaymenntGateway()} variant='contained' className='w-full' sx={{ px: "2.5rem", py: "0.7rem", bgcolor: "#9155fd", marginTop: 3 }}>
                         Checkout
                      </Button>
                   </div>

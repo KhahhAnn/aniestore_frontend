@@ -21,7 +21,7 @@ const Cart = () => {
    }, [cartStore.cartItems,  dispatch])
    
    return (
-      <div className='mt-4'>
+      <div className='mt-16'>
          <div className='lg:grid grid-cols-3 lg:px-16 relative'>
             <div className='col-span-2'>
                {cartStore.cart &&cartStore.cart?.cartItem && cartStore.cart?.cartItem.map((item, index) =>  <CartItem productItem={item} key={index} />)}
