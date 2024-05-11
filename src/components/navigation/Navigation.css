@@ -13,3 +13,8 @@
 .shop-dropdown:hover .shop-list {
    display: flex;
 }
+
+.cart:hover .quantity-items {
+   background-color: #F47979;
+   color: white;
+}
