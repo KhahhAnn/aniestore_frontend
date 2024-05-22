@@ -44,7 +44,7 @@ export default function Navigation() {
       getCountItems();
       handleClose();
     }
-  }, [auth.user])
+  }, [auth.user], countItems)
 
   const handleLogout = () => {
     dispatch(logout());
@@ -183,7 +183,7 @@ export default function Navigation() {
                 </div>
 
                 <div className="border-t border-gray-200 px-4 py-6">
-                  <a href="#" className="-m-2 flex items-center p-2">
+                  <a href="/" className="-m-2 flex items-center p-2">
                     <img
                       src="https://tailwindui.com/img/flags/flag-canada.svg"
                       alt=""
@@ -279,7 +279,7 @@ export default function Navigation() {
                             "aria-labelledby": "basic-button"
                           }}
                         >
-                          <MenuItem onClick={handleCloseUserMenu}>
+                          <MenuItem  onClick={() => navigate("/profile")}>
                             Profile
                           </MenuItem>
                           <MenuItem onClick={() => navigate("/account/order")}>

@@ -31,6 +31,37 @@ export const filters = [
          { value: "L", label: "L" },
       ],
    },
+   {
+      id: "price",
+      name: "Price",
+      option: [
+         { value: "159-399", label: "$159 To $399" },
+         { value: "399-999", label: "$399 To $999" },
+         { value: "999-1500", label: "$999 To $1500" },
+      ]
+   },
+   {
+      id: "discount",
+      name: "Discount Range",
+      option: [
+         { value: "10", label: "10% And Above" },
+         { value: "20", label: "20% And Above" },
+         { value: "30", label: "30% And Above" },
+         { value: "40", label: "40% And Above" },
+         { value: "50", label: "50% And Above" },
+         { value: "60", label: "60% And Above" },
+         { value: "70", label: "70% And Above" },
+         { value: "80", label: "80% And Above" },
+      ]
+   },
+   {
+      id: "availability",
+      name: "Availability",
+      option: [
+         { value: "in_stock", label: "In Stock" },
+         { value: "out_stock", label: "Out Stock" },
+      ]
+   }
 ]
 
 export const singleFilter = [

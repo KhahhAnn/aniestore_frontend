@@ -1,47 +1,78 @@
-import { Grid } from '@mui/material'
+import { Grid } from '@mui/material';
 import AdjustIcon from '@mui/icons-material/Adjust';
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const OrderCard = () => {
    const navigate = useNavigate();
-   return (
-      <div onClick={() => navigate(`/account/order/${5}`)} className='p-5 shadow-md shadow-black hover:shadow-2xl border'>
-         <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
-            <Grid item xs={6}>
-               <div className='flex cursor-pointer'>
-                  <img className='w-[5rem] h-[5rem] object-cover object-top' src='https://rukminim1.flixcart.com/image/612/612/l5h2xe80/kurta/x/6/n/xl-kast-tile-green-majestic-man-original-imagg4z33hu4kzpv.jpeg?q=70' alt='' />
-                  <div className='ml-5 space-y-2'>
-                     <p className='mb-2'>Men Slim Mid Rise Black Jeans</p>
-                     <p className='opacity-50 text-xs font-semibold'>Size: M</p>
-                     <p className='opacity-50 text-xs font-semibold'>Color: Black</p>
-                  </div>
-               </div>
-            </Grid>
-            <Grid item xs={2}>
-               <p>$250</p>
-            </Grid>
-            <Grid item xs={4}>
-               {
-                  true &&
-                  <div>
-                     <p>
-                        <AdjustIcon sx={{ width: "15px", height: "15px" }} className='text-green-600 mr-2 text-sm' />
-                        <span>Delivered On March 03</span>
-                     </p>
-                     <p className='text-xs'>Your Item Has Been Delivered</p>
-                  </div>
-               }
-               {
-                  false &&
-                  <p>
-                     <span>Expected Delivered On March 03</span>
-                  </p>
-               }
-            </Grid>
-         </Grid>
-      </div>
-   )
-}
+   const [orders, setOrders] = useState([]);
+   const token = localStorage.getItem('jwt');
 
-export default OrderCard
+   const fetchData = async () => {
+      try {
+         const response = await axios.get(`http://localhost:8080/api/orders/user`, {
+            headers: {
+               Authorization: `Bearer ${token}`
+            }
+         });
+         setOrders(response.data);
+      } catch (error) {
+         console.error('Error fetching reviews:', error);
+      }
+   };
+
+   useEffect(() => {
+      fetchData();
+   }, []);
+
+   console.log(orders[0]);
+   return (
+      <div>
+         {orders.map((order) =>
+            order.orderItems.map((item, index) => (
+               <div
+                  key={index}
+                  onClick={() => navigate(`/account/order/${order.id}`)}
+                  className='px-5 py-3 shadow-md shadow-black hover:shadow-2xl border mb-5'
+               >
+                  <Grid container spacing={2} sx={{ justifyContent: 'space-between' }}>
+                     <Grid item xs={6}>
+                        <div className='flex cursor-pointer'>
+                           <img
+                              className='w-[5rem] h-[5rem] object-cover object-top'
+                              src={item.product.imageUrl}
+                              alt={item.product.title}
+                           />
+                           <div className='ml-5 space-y-2'>
+                              <p className='mb-2'>{item.product.title}</p>
+                              <p className='opacity-50 text-xs font-semibold'>Size: {item.size}</p>
+                              <p className='opacity-50 text-xs font-semibold'>Color: {item.product.color}</p>
+                           </div>
+                        </div>
+                     </Grid>
+                     <Grid item xs={2}>
+                        <p>${item.price}</p>
+                     </Grid>
+                     <Grid item xs={4}>
+                        <div>
+                           <p>
+                              <AdjustIcon
+                                 sx={{ width: '15px', height: '15px' }}
+                                 className='text-green-600 mr-2 text-sm'
+                              />
+                              <span>Delivered On {order.deliveryDate}</span>
+                           </p>
+                           <p className='text-xs'>Your Item Has Been Delivered</p>
+                           <p className='text-lg font-bold text-[#2ebb77] '>{order.orderStatus}</p>
+                        </div>
+                     </Grid>
+                  </Grid>
+               </div>
+            ))
+         )}
+      </div>
+   );
+};
+
+export default OrderCard;

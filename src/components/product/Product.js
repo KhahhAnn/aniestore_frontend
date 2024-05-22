@@ -2,12 +2,12 @@ import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import FilterListIcon from '@mui/icons-material/FilterList'
-import { FormControl, FormControlLabel, FormLabel, Pagination, Radio, RadioGroup } from '@mui/material'
+import { Pagination } from '@mui/material'
 import { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { findProducts } from '../../state/product/Action'
-import { filters, singleFilter } from './FilterData'
+import { filters } from './FilterData'
 import ProductCard from './ProductCard'
 
 const sortOptions = [
@@ -50,13 +50,6 @@ export default function Product() {
       if (filterValue.length > 0) {
          searchParamms.set(sectionId, filterValue.join(","));
       }
-      const query = searchParamms.toString();
-      navigate({ search: `?${query}` })
-   }
-
-   const hanldeRadioFilterChange = (e, sectionId) => {
-      const searchParamms = new URLSearchParams(location.search)
-      searchParamms.set(sectionId, e.target.value)
       const query = searchParamms.toString();
       navigate({ search: `?${query}` })
    }
@@ -258,7 +251,7 @@ export default function Product() {
                                  {({ open }) => (
                                     <>
                                        <h3 className="my-3 flow-root w-[13rem]">
-                                          <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500  w-[13rem]">
+                                          <Disclosure.Button className="flex items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500  w-[13rem]">
                                              <span className="font-medium text-gray-900">{section.name}</span>
                                              <span className="ml-6 flex items-center">
                                                 {open ? (
@@ -293,43 +286,6 @@ export default function Product() {
                                           </div>
                                        </Disclosure.Panel>
                                     </>
-                                 )}
-                              </Disclosure>
-                           ))}
-                           {singleFilter.map((section) => (
-                              <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6">
-                                 {({ open }) => (
-                                    <>
-                                       <h3 className="my-3 flow-root w-[13rem]">
-                                          <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
-                                             <span className="font-medium text-gray-900">{section.name}</span>
-                                             <span className="ml-6 flex items-center">
-                                                {open ? (
-                                                   <MinusIcon className="h-5 w-5" aria-hidden="true" />
-                                                ) : (
-                                                   <PlusIcon className="h-5 w-5" aria-hidden="true" />
-                                                )}
-                                             </span>
-                                          </Disclosure.Button>
-                                       </h3>
-                                       <Disclosure.Panel className="pt-6">
-                                          <div className="space-y-4 w-[13rem]">
-                                             <FormControl>
-                                                <RadioGroup
-                                                   aria-labelledby="demo-radio-buttons-group-label"
-                                                   defaultValue="female"
-                                                   name="radio-buttons-group"
-                                                >
-                                                   {section.option.map((option, optionIdx) => (
-
-                                                      <FormControlLabel onChange={(e) => hanldeRadioFilterChange(e, section.id)} value={option.value} name='option' control={<Radio />} label={option.label} />
-                                                   ))}
-                                                </RadioGroup>
-                                             </FormControl>
-                                          </div>
-                                       </Disclosure.Panel>
-                                    </>
-
                                  )}
                               </Disclosure>
                            ))}

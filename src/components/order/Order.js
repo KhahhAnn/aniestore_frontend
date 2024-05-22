@@ -10,7 +10,7 @@ const orderStatus = [
 
 const Order = () => {
    return (
-      <div className='px-5 mt-16'>
+      <div className='px-5 mt-28'>
          <Grid container sx={{ justifyContent: "space-between" }}>
             <Grid item xs={2.5}>
                <div className='h-auto shadow-lg bg-white p-5 sticky top-5'>
@@ -20,7 +20,7 @@ const Order = () => {
                      {
                         orderStatus.map((option) =>
                         (
-                           <div className='flex items-center'>
+                           <div className='flex items-center mb-5'>
                               <input className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500' type='checkbox' defaultValue={option.value} />
                               <label className='ml-3 text-sm text-gray-600' htmlFor={option.value}>
                                  {option.label}
@@ -33,9 +33,7 @@ const Order = () => {
             </Grid>
             <Grid item xs={9}>
                <div className='space-y-5'>
-                  {
-                     [1, 1, 1, 1, 1, 1].map((item) => <OrderCard />)
-                  }
+                  <OrderCard />
                </div>
             </Grid>
          </Grid>

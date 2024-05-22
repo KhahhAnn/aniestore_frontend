@@ -1,14 +1,11 @@
-import { useEffect, useState } from 'react'
-import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
 import { Box, Button, Grid, LinearProgress, Rating } from '@mui/material'
-import ProductReviewCard from './ProductReviewCard'
-import { mens_kurta } from '../../data/men_kurta'
-import HomeSectionCard from '../homeSectionCard/HomeSectionCard'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { findProductById } from '../../state/product/Action'
+import { useNavigate, useParams } from 'react-router-dom'
 import { addItemToCart } from '../../state/cart/Action'
+import { findProductById } from '../../state/product/Action'
+import ProductReviewCard from './ProductReviewCard'
 
 const product = {
    name: 'Basic Tee 6-Pack',
@@ -58,7 +55,6 @@ const product = {
    details:
       'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
 }
-const reviews = { href: '#', average: 4, totalCount: 117 }
 
 function classNames(...classes) {
    return classes.filter(Boolean).join(' ')
@@ -69,16 +65,16 @@ export default function ProductDeatil() {
    const navigate = useNavigate();
    const dispatch = useDispatch();
    const params = useParams();
-   const {productStore} = useSelector(Store => Store)
+   const { productStore } = useSelector(Store => Store)
    const handleAddToCart = () => {
-      const data = {productId: params.productId, size:selectedSize.name}
+      const data = { productId: params.productId, size: selectedSize.name }
       console.log("data: ", data);
       dispatch(addItemToCart(data))
       navigate("/cart")
    }
 
    useEffect(() => {
-      const data = {productId: params.productId}
+      const data = { productId: params.productId }
       dispatch(findProductById(data));
    }, [params.productId])
    return (
@@ -149,27 +145,12 @@ export default function ProductDeatil() {
                         <p className='opacity-50 line-through'>${productStore.product?.price}</p>
                         <p className='text-green-600 font-semibold'>{productStore.product?.discountPercent}% Off</p>
                      </div>
-
-                     {/* Reviews */}
-                     <div className="mt-6">
-                        <div className='flex items-center space-x-3'>
-                           <Rating name="read-only" value={3.5} readOnly />
-                           <p className='opacity-50 text-sm'>101003 Rating</p>
-                           <p className='ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500'>2003 Reviews</p>
-                        </div>
-                     </div>
-
-                     <form className="mt-10">
-                        {/* Colors */}
-
-
+                     <div className="m-0">
                         {/* Sizes */}
                         <div className="mt-10">
                            <div className="flex items-center justify-between">
                               <h3 className="text-sm font-medium text-gray-900">Size</h3>
-
                            </div>
-
                            <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-4">
                               <RadioGroup.Label className="sr-only">Choose a size</RadioGroup.Label>
                               <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
@@ -222,11 +203,10 @@ export default function ProductDeatil() {
                               </div>
                            </RadioGroup>
                         </div>
-
                         <Button onClick={handleAddToCart} variant='contained' sx={{ px: "2rem", py: "1rem", bgcolor: "#9155fd", marginTop: 3 }}>
                            Add To Cart
                         </Button>
-                     </form>
+                     </div>
                   </div>
 
                   <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
@@ -241,7 +221,6 @@ export default function ProductDeatil() {
 
                      <div className="mt-10">
                         <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
-
                         <div className="mt-4">
                            <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
                               {product.highlights.map((highlight) => (
@@ -269,7 +248,7 @@ export default function ProductDeatil() {
                   <Grid container spacing={7}>
                      <Grid item xs={7}>
                         <div className='space-y-5'>
-                           {[1, 1, 1].map((item) => <ProductReviewCard />)}
+                           <ProductReviewCard productId={params.productId} />
                         </div>
                      </Grid>
                      <Grid item xs={5}>
@@ -322,14 +301,6 @@ export default function ProductDeatil() {
                         </Box>
                      </Grid>
                   </Grid>
-               </div>
-            </section>
-            <section className='pt-10'>
-               <h1 className='font-bold py-5 text-xl'>Similer Product</h1>
-               <div className='flex flex-wrap space-y-5'>
-                  {
-                     mens_kurta.map((item) => <HomeSectionCard product={item} />)
-                  }
                </div>
             </section>
          </div>
