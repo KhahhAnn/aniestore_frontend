@@ -33,7 +33,6 @@ const OrderCard = () => {
             order.orderItems.map((item, index) => (
                <div
                   key={index}
-                  onClick={() => navigate(`/account/order/${order.id}`)}
                   className='px-5 py-3 shadow-md shadow-black hover:shadow-2xl border mb-5'
                >
                   <Grid container spacing={2} sx={{ justifyContent: 'space-between' }}>

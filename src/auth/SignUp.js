@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./SingIn.css"
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -6,12 +6,13 @@ import GoogleIcon from '@mui/icons-material/Google';
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, register } from "../state/authorization/Action";
 function SignUp() {
-   const [state, setState] = React.useState({
+   const [state, setState] = useState({
       firstName: "",
       lastName: "",
       email: "",
       password: ""
    });
+   const [showSuccess, setShowSuccess] = useState(false);
    const handleChange = evt => {
       const value = evt.target.value;
       setState({
@@ -24,18 +25,19 @@ function SignUp() {
    const jwt = localStorage.getItem("jwt")
 
    useEffect(() => {
+      if (showSuccess) {
+         const timer = setTimeout(() => {
+            setShowSuccess(false);
+         }, 2000);
+         return () => clearTimeout(timer);
+      }
       if (jwt) {
          dispatch(getUser(jwt))
       }
-   }, [jwt, auth.jwt])
+   }, [jwt, auth.jwt, showSuccess])
 
    const handleSubmit = async (event) => {
       event.preventDefault();
-      const { name, email, password } = state;
-      alert(
-         `You are sign up with name: ${name} email: ${email} and password: ${password}`
-      );
-
       for (const key in state) {
          setState({
             ...state,
@@ -49,6 +51,7 @@ function SignUp() {
             email: state.email,
             password: state.password,
          }
+         console.log(userData);
          dispatch(register(userData));
          console.log(userData);
       }
@@ -57,6 +60,12 @@ function SignUp() {
 
    return (
       <div className="form-container sign-up-container">
+         {showSuccess && (
+            <div className="success-message">
+               <h1>Đăng kí thành công!</h1>
+               <p>Vui lòng vào email để kích hoạt tài khoản của bạn.</p>
+            </div>
+         )}
          <form onSubmit={handleSubmit}>
             <h1>Create Account</h1>
             <div className="social-container">

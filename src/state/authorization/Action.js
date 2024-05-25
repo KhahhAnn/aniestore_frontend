@@ -1,6 +1,6 @@
 import axios from "axios"
 import { API_BASE_URL } from "../../config/ApiConfig"
-import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType"
+import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, UPDATE_USER_FAILURE, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS } from "./ActionType"
 
 const registerRequest = () => ({ type: REGISTER_REQUEST });
 const registerSuccess = (user) => ({ type: REGISTER_SUCCESS, payload: user });
@@ -9,7 +9,7 @@ const registerFailure = (error) => ({ type: REGISTER_FAILURE, payload: error });
 export const register = (userData) => async (dispatch) => {
    dispatch(registerRequest());
    try {
-      const response = await axios.post(`${API_BASE_URL}/auth/signup`, userData)
+      const response = await axios.post(`${API_BASE_URL}/auth/register`, userData)
       const user = response.data;
       if (user.jwt) {
          localStorage.setItem("jwt", user.jwt);
@@ -56,6 +56,34 @@ export const getUser = (jwt) => async (dispatch) => {
 
    } catch (error) {
       dispatch(getUserFailure(error.message));
+   }
+}
+
+const updateRequest = () => ({ type: UPDATE_USER_REQUEST });
+const updateSuccess = (user) => ({ type: UPDATE_USER_SUCCESS, payload: user });
+const updateFailure = (error) => ({ type: UPDATE_USER_FAILURE, payload: error });
+export const update = (userData, jwt, img) => async (dispatch) => {
+   dispatch(updateRequest());
+   try {
+      const userRequest = {
+         user: userData,
+         img: img
+      };
+      const response = await axios.put(`${API_BASE_URL}/api/users/update`, userRequest, {
+         headers: {
+            "Authorization": `Bearer ${jwt}`,
+            "Content-Type": "application/json"
+         }
+      })
+      const user = response.data;
+      if (user.jwt) {
+         localStorage.setItem("jwt", user.jwt);
+      }
+      console.log("user:", user);
+      dispatch(updateSuccess(user));
+
+   } catch (error) {
+      dispatch(updateFailure(error.message));
    }
 }
 

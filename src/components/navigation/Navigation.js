@@ -52,16 +52,18 @@ export default function Navigation() {
   }
 
   const getCountItems = async () => {
-    try {
-      const token = localStorage.getItem("jwt");
-      const response = await axios.get('http://localhost:8080/api/cart/count', {
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      });
-      setCountItems(response.data);
-    } catch (error) {
-      console.error('Error fetching color:', error);
+    const token = localStorage.getItem("jwt");
+    if (token != null) {
+      try {
+        const response = await axios.get('http://localhost:8080/api/cart/count', {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+        setCountItems(response.data);
+      } catch (error) {
+        console.error('Error fetching color:', error);
+      }
     }
   };
 
@@ -259,6 +261,7 @@ export default function Navigation() {
                   {
                     auth.user?.firstName ? (
                       <div>
+                        
                         <Avatar
                           className='text-white'
                           onClick={handleUserClick}
@@ -269,7 +272,7 @@ export default function Navigation() {
                             bgcolor: deepPurple[500],
                             color: "white",
                             cursor: "pointer"
-                          }}>{auth.user?.firstName[0].toUpperCase()}</Avatar>
+                          }}><img src={auth.user?.imageSrc} alt='' /></Avatar>
                         <Menu
                           id='basic-menu'
                           anchorEl={anchorEl}
@@ -279,7 +282,7 @@ export default function Navigation() {
                             "aria-labelledby": "basic-button"
                           }}
                         >
-                          <MenuItem  onClick={() => navigate("/profile")}>
+                          <MenuItem onClick={() => navigate("/profile")}>
                             Profile
                           </MenuItem>
                           <MenuItem onClick={() => navigate("/account/order")}>
@@ -299,15 +302,7 @@ export default function Navigation() {
                       </Button>
                     )
                   }
-                </div>
-                {/* Search */}
-                <div className="flex lg:ml-6">
-                  <p className="p-2 text-gray-400 hover:text-gray-500 cursor-pointer">
-                    <span className="sr-only">Search</span>
-                    <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
-                  </p>
-                </div>
-
+                </div>              
                 {/* Cart */}
                 <div className="flow-root lg:ml-6">
                   <Link to="/cart">

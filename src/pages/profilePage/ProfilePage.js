@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Button, ConfigProvider, Input, Space } from 'antd';
-import "./ProfilePage.css"
 import { Grid, MenuItem, TextField } from '@mui/material';
-import { TinyColor } from '@ctrl/tinycolor';
+import { Input } from 'antd';
 import axios from 'axios';
-const { TextArea } = Input;
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import "./ProfilePage.css";
+import { update } from '../../state/authorization/Action';
 
+const { TextArea } = Input;
 
 function ProfilePage() {
    const { auth } = useSelector(store => store);
@@ -17,11 +17,26 @@ function ProfilePage() {
    const [selectedProvince, setSelectedProvince] = useState('');
    const [selectedDistrict, setSelectedDistrict] = useState('');
    const [selectedWard, setSelectedWard] = useState('');
-   const { firstName, lastName, email, mobile } = auth.user;
+   const [selectedFile, setSelectedFile] = useState(null); // State để lưu trữ tệp ảnh
+   const { firstName, lastName, email, mobile, imageSrc } = auth.user;
+   const [previewUrl, setPreviewUrl] = useState(imageSrc); // State để lưu trữ URL của ảnh preview
+   console.log(auth.user);
+   const token = localStorage.getItem('jwt');
+   const dispatch = useDispatch();
+   const [state, setState] = useState({
+      firstName: auth.user.firstName || "",
+      lastName: auth.user.lastName || "",
+      email: auth.user.email || "",
+      image: previewUrl 
+   });
 
-
-   console.log(auth.user.addressList[0]);
-
+   const handleChange = evt => {
+      const value = evt.target.value;
+      setState({
+         ...state,
+         [evt.target.name]: value
+      });
+   };
    const fetchProvinces = async () => {
       try {
          const response = await axios.get('https://vapi.vnappmob.com/api/province/');
@@ -30,8 +45,6 @@ function ProfilePage() {
          console.error('Error fetching provinces:', error);
       }
    };
-
-
 
    const fetchDistricts = async (provinceId) => {
       try {
@@ -48,7 +61,7 @@ function ProfilePage() {
          setWards(response.data.results);
          console.log(response);
       } catch (error) {
-         console.error('Error fetching provinces:', error);
+         console.error('Error fetching wards:', error);
       }
    };
 
@@ -65,13 +78,44 @@ function ProfilePage() {
       setSelectedWard('');
       await fetchWard(districtId);
    };
+
    const handleWarChange = (event) => {
       const warId = event.target.value;
       setSelectedWard(warId);
    };
+
+   const handleFileChange = (event) => {
+      const file = event.target.files[0];
+      setSelectedFile(file);
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+         const url = reader.result;
+         setPreviewUrl(url);
+         setState(prevState => ({
+            ...prevState,
+            img: url
+         }));
+      };
+      reader.readAsDataURL(file);
+   };
+
+   const handleUpdateUser = (event) => {
+      event.preventDefault();
+      console.log(token);
+      const userData = {
+         firstName: state.firstName,
+         lastName: state.lastName,
+         email: state.email,
+      }
+      dispatch(update(userData, token, state.img))
+      console.log(userData);
+   }
+
    useEffect(() => {
       fetchProvinces();
    }, []);
+
    return (
       <div>
          <div className='mx-auto text-center bg-[#F5F5F5] py-20'>
@@ -96,25 +140,25 @@ function ProfilePage() {
                {activeTab === 'general' && (
                   <>
                      <div className='flex flex-row gap-5'>
-                        <img className='w-[80px] h-auto object-cover' src='https://bootdey.com/img/Content/avatar/avatar1.png' alt='#' />
+                        <img className='w-[100px] h-[100px] object-cover rounded-full' name='img' src={previewUrl} alt='#' />
                         <div className='flex flex-col my-auto'>
-                           <Button className='text-[#007bff] border-[1px] border-[#007bff]'>Upload new photo</Button>
+                           <input type="file" onChange={handleFileChange} name='image' />
                         </div>
                      </div>
                      <div className='flex flex-col gap-4 mt-5'>
                         <div>
                            <label>First name: </label>
-                           <Input defaultValue={firstName} />
+                           <Input defaultValue={firstName} name='firstName' onChange={handleChange} />
                         </div>
                         <div>
                            <label>Last name: </label>
-                           <Input defaultValue={lastName} />
+                           <Input defaultValue={lastName} name='lastName' onChange={handleChange} />
                         </div>
                         <div>
                            <label>Email: </label>
-                           <Input defaultValue={email} />
+                           <Input defaultValue={email} name='email' onChange={handleChange} />
                         </div>
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[20%]">
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[20%]" onClick={handleUpdateUser}>
                            Save
                         </button>
                      </div>
@@ -134,7 +178,7 @@ function ProfilePage() {
                         <label>Repeat new password: </label>
                         <Input />
                      </div>
-                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[30%]">
+                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[30%]">
                         Save password
                      </button>
                   </div>
@@ -174,7 +218,7 @@ function ProfilePage() {
                      <Grid item xs={12} sm={6}>
                         <TextField
                            select
-                           label="Select War"
+                           label="Select Ward"
                            value={selectedWard}
                            onChange={handleWarChange}
                            fullWidth
@@ -187,15 +231,15 @@ function ProfilePage() {
                         </TextField>
                      </Grid>
                      <div>
-                        <label>State: </label>
+                        <label>Address: </label>
                         <TextArea defaultValue={auth.user.addressList[0].streetAddress} rows={4} />
                      </div>
                      <div>
                         <label>Phone: </label>
                         <Input defaultValue={mobile} />
                      </div>
-                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[40%]">
-                        Add new infor
+                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[40%]">
+                        Add new info
                      </button>
                   </div>
                )}
