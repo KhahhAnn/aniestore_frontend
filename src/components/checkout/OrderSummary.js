@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getOrderById } from '../../state/order/Action'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { Skeleton } from 'antd'
 
 const OrderSummary = () => {
    const dispatch = useDispatch();
@@ -14,8 +15,10 @@ const OrderSummary = () => {
    const searchParam = new URLSearchParams(location.search);
    const orderId = searchParam.get("order_id");
    const { orderStore } = useSelector(store => store);
+   const [isLoading, setIsLoading] = useState(true);
    useEffect(() => {
       dispatch(getOrderById(orderId));
+      setIsLoading(false);
    }, [orderId]);
    console.log(orderStore.order);
    const toPaymenntGateway = async () => {
@@ -23,11 +26,15 @@ const OrderSummary = () => {
          const total = orderStore.order.totalDiscountedPrice - orderStore.order.discount;
          const response = await axios.get(`http://localhost:8080/api/payment/create_payment/${total}`);
          window.location.href = response.data.url;
+         setIsLoading(false);
          console.log(response.data.url);
       } catch (error) {
          console.error('Error fetching color:', error);
       }
    };
+   if (isLoading) {
+      return <Skeleton active />;
+   }
 
    return (
       <div>

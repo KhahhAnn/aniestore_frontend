@@ -1,5 +1,5 @@
 import { Grid, MenuItem, TextField } from '@mui/material';
-import { Input } from 'antd';
+import { Alert, Input, Skeleton, Space } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ const { TextArea } = Input;
 
 function ProfilePage() {
    const { auth } = useSelector(store => store);
+
    const [activeTab, setActiveTab] = useState('general');
    const [provinces, setProvinces] = useState([]);
    const [districts, setDistricts] = useState([]);
@@ -17,17 +18,23 @@ function ProfilePage() {
    const [selectedProvince, setSelectedProvince] = useState('');
    const [selectedDistrict, setSelectedDistrict] = useState('');
    const [selectedWard, setSelectedWard] = useState('');
-   const [selectedFile, setSelectedFile] = useState(null); // State để lưu trữ tệp ảnh
-   const { firstName, lastName, email, mobile, imageSrc } = auth.user;
-   const [previewUrl, setPreviewUrl] = useState(imageSrc); // State để lưu trữ URL của ảnh preview
-   console.log(auth.user);
+   const [selectedFile, setSelectedFile] = useState(null);
+   const [previewUrl, setPreviewUrl] = useState(null);
+   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+   const [isLoading, setIsLoading] = useState(true);
+   const [message, setMessage] = useState("");
+   const [password, setPassword] = useState({
+      currentPassword: "",
+      password: "",
+      repeatPassword: ""
+   })
    const token = localStorage.getItem('jwt');
    const dispatch = useDispatch();
    const [state, setState] = useState({
-      firstName: auth.user.firstName || "",
-      lastName: auth.user.lastName || "",
-      email: auth.user.email || "",
-      image: previewUrl 
+      firstName: auth.user?.firstName || "",
+      lastName: auth.user?.lastName || "",
+      email: auth.user?.email || "",
+      image: previewUrl,
    });
 
    const handleChange = evt => {
@@ -36,6 +43,10 @@ function ProfilePage() {
          ...state,
          [evt.target.name]: value
       });
+      setPassword({
+         ...password,
+         [evt.target.name]: value
+      })
    };
    const fetchProvinces = async () => {
       try {
@@ -102,20 +113,68 @@ function ProfilePage() {
 
    const handleUpdateUser = (event) => {
       event.preventDefault();
-      console.log(token);
-      const userData = {
-         firstName: state.firstName,
-         lastName: state.lastName,
-         email: state.email,
+      try {
+         console.log(token);
+         const userData = {
+            firstName: state.firstName,
+            lastName: state.lastName,
+            email: state.email,
+         }
+         dispatch(update(userData, token, state.img))
+         setIsLoading(false);
+         console.log(userData);
+         setShowSuccessMessage(true);
+         setTimeout(() => {
+            setShowSuccessMessage(false);
+            setMessage("Lưu thông tin thành công!")
+         }, 2000);
+      } catch (e) {
+         setMessage("Lưu thông tin thất bại!")
       }
-      dispatch(update(userData, token, state.img))
-      console.log(userData);
+   }
+
+   const handleChangePassword = async () => {
+      console.log(password.password);
+      if (password.password === password.repeatPassword) {
+         const changePasswordRequest = {
+            currentPassword: password.currentPassword,
+            password: password.password,
+         };
+         try {
+            const response = await axios.put('http://localhost:8080/api/users/change-password', changePasswordRequest, {
+               headers: {
+                  "Authorization": `Bearer ${token}`,
+                  "Content-Type": "application/json"
+               }
+            });
+            console.log(response);
+            setIsLoading(false);
+            setShowSuccessMessage(true);
+            if(response.data === "") {
+               setMessage("Đổi mật khẩu thất bại!")
+            }
+            setTimeout(() => {
+               setShowSuccessMessage(false);
+               setMessage("Đổi mật khẩu thành công!")
+            }, 2000);
+         } catch (error) {
+            console.error('Error fetching color:', error);
+         }
+      }
    }
 
    useEffect(() => {
       fetchProvinces();
+      setIsLoading(false);
    }, []);
 
+   if (!auth.user || !auth.user.imageSrc) {
+      return <Skeleton active />;
+   }
+
+   if (isLoading) {
+      return <Skeleton active />;
+   }
    return (
       <div>
          <div className='mx-auto text-center bg-[#F5F5F5] py-20'>
@@ -123,6 +182,18 @@ function ProfilePage() {
             <a href='/' className='text-[#7e7e7e] text-[15px] ml-2 hover:text-[#2ebb77]'>Home</a>
             <span className="delimiter"></span>
             <span className='mr-2'>Account</span>
+         </div>
+         <div className='w-[300px] absolute right-3 mt-16'>
+            {showSuccessMessage && (
+               <Space
+                  direction="vertical"
+                  style={{
+                     width: '100%',
+                  }}
+               >
+                  <Alert message={message} type="success" showIcon />
+               </Space>
+            )}
          </div>
          <div className='mx-auto max-w-[70%] p-5 border-[1px] border-[rgba(0, 0, 0, .125)] mt-20 grid justify-between' style={{ gridTemplateColumns: "30% 65%" }}>
             <div className='flex flex-col gap-5'>
@@ -140,7 +211,7 @@ function ProfilePage() {
                {activeTab === 'general' && (
                   <>
                      <div className='flex flex-row gap-5'>
-                        <img className='w-[100px] h-[100px] object-cover rounded-full' name='img' src={previewUrl} alt='#' />
+                        <img className='w-[100px] h-[100px] object-cover rounded-full' name='img' src={previewUrl === null ? auth.user?.imageSrc : previewUrl} alt='#' />
                         <div className='flex flex-col my-auto'>
                            <input type="file" onChange={handleFileChange} name='image' />
                         </div>
@@ -148,15 +219,15 @@ function ProfilePage() {
                      <div className='flex flex-col gap-4 mt-5'>
                         <div>
                            <label>First name: </label>
-                           <Input defaultValue={firstName} name='firstName' onChange={handleChange} />
+                           <Input defaultValue={auth.user?.firstName} name='firstName' onChange={handleChange} />
                         </div>
                         <div>
                            <label>Last name: </label>
-                           <Input defaultValue={lastName} name='lastName' onChange={handleChange} />
+                           <Input defaultValue={auth.user?.lastName} name='lastName' onChange={handleChange} />
                         </div>
                         <div>
                            <label>Email: </label>
-                           <Input defaultValue={email} name='email' onChange={handleChange} />
+                           <Input defaultValue={auth.user?.email} name='email' onChange={handleChange} />
                         </div>
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[20%]" onClick={handleUpdateUser}>
                            Save
@@ -168,17 +239,17 @@ function ProfilePage() {
                   <div className='flex flex-col gap-4 mt-5'>
                      <div>
                         <label>Current password: </label>
-                        <Input />
+                        <Input type='password' name='currentPassword' onChange={handleChange} />
                      </div>
                      <div>
                         <label>New password: </label>
-                        <Input />
+                        <Input type='password' name='password' onChange={handleChange} />
                      </div>
                      <div>
                         <label>Repeat new password: </label>
-                        <Input />
+                        <Input type='password' name='repeatPassword' onChange={handleChange} />
                      </div>
-                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[30%]">
+                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[30%]" onClick={handleChangePassword}>
                         Save password
                      </button>
                   </div>
@@ -236,7 +307,7 @@ function ProfilePage() {
                      </div>
                      <div>
                         <label>Phone: </label>
-                        <Input defaultValue={mobile} />
+                        <Input defaultValue={auth.user?.mobile} />
                      </div>
                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[40%]">
                         Add new info

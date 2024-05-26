@@ -1,9 +1,10 @@
 import { Button, IconButton } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useDispatch } from 'react-redux';
 import { removeCartItem, updateCartItem } from '../../state/cart/Action';
+import { Skeleton } from 'antd';
 
 const CartItem = ({productItem}) => {
    const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const CartItem = ({productItem}) => {
       console.log("goi lai updateCartItem");
    }
    const handleRemoveCartItem = () => {
-      dispatch(removeCartItem(productItem.id))
+      dispatch(removeCartItem(productItem.id));
    }
    return (
       <div className='p-5 shadow-lg border rounded-md mb-3'>

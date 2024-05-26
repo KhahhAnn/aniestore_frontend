@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { createOrder, createOrderByAddress } from '../../state/order/Action';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Skeleton } from 'antd';
 
 function DeliveryAddressForm() {
    const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function DeliveryAddressForm() {
    const [selectedProvince, setSelectedProvince] = useState('');
    const [selectedDistrict, setSelectedDistrict] = useState('');
    const [addressList, setAddressList] = useState([]);
+   const [isLoading, setIsLoading] = useState(true);
    const handleSubmit = (e) => {
       e.preventDefault();
       const data = new FormData(e.currentTarget);
@@ -28,6 +30,7 @@ function DeliveryAddressForm() {
       }
       const orderData = { address, navigate };
       dispatch(createOrder(orderData));
+      setIsLoading(false);
       console.log(address);
    }
 
@@ -45,6 +48,7 @@ function DeliveryAddressForm() {
             }
          });
          setAddressList(response.data);
+         setIsLoading(false);
          console.log(response);
       } catch (error) {
          console.error('Error fetching color:', error);
@@ -82,7 +86,13 @@ function DeliveryAddressForm() {
    useEffect(() => {
       fetchData();
       fetchProvinces();
+      setIsLoading(false);
    }, []);
+
+   if (isLoading) {
+      return <Skeleton active />;
+   }
+
    return (
       <div className=''>
          <Grid container spacing={4}>

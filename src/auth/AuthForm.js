@@ -15,7 +15,6 @@ const AuthForm = () => {
       "container " + (type === "signUp" ? "right-panel-active" : "");
    return (
       <div className="App">
-         <h2>Sign in/up Form</h2>
          <div className={containerClass} id="container">
             <SignUp />
             <SignIn />
