@@ -62,7 +62,6 @@ function classNames(...classes) {
 
 export default function ProductDeatil() {
    const [selectedSize, setSelectedSize] = useState("")
-   const navigate = useNavigate();
    const dispatch = useDispatch();
    const params = useParams();
    const { productStore } = useSelector(Store => Store)
@@ -70,7 +69,7 @@ export default function ProductDeatil() {
       const data = { productId: params.productId, size: selectedSize.name }
       console.log("data: ", data);
       dispatch(addItemToCart(data))
-      navigate("/cart")
+      window.location.href = "/cart"; 
    }
 
    useEffect(() => {

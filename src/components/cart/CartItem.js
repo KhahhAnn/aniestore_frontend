@@ -1,22 +1,28 @@
-import { Button, IconButton } from '@mui/material'
-import React, { useState } from 'react'
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { Button, IconButton } from '@mui/material';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeCartItem, updateCartItem } from '../../state/cart/Action';
-import { Skeleton } from 'antd';
+import { removeCartItem, updateCartItem, updateCartTotal } from '../../state/cart/Action';
 
-const CartItem = ({productItem}) => {
+const CartItem = ({ productItem }) => {
    const dispatch = useDispatch();
-   const handleUpdateCartItem = (num) => {
+
+   const handleUpdateCartItem = async (num) => {
       const updatedQuantity = productItem.quantity + num;
       const data = { cartItemId: productItem.id, data: { quantity: updatedQuantity } };
+      console.log(data.cartItemId);
       dispatch(updateCartItem(data));
       console.log("goi lai updateCartItem");
-   }
-   const handleRemoveCartItem = () => {
-      dispatch(removeCartItem(productItem.id));
-   }
+      window.location.href = "/cart"; 
+   };
+
+   const handleRemoveCartItem = async () => {
+      await dispatch(removeCartItem(productItem.id));
+      dispatch(updateCartTotal());
+      window.location.href = "/cart"; 
+   };
+
    return (
       <div className='p-5 shadow-lg border rounded-md mb-3'>
          <div className='flex items-center'>
@@ -36,20 +42,20 @@ const CartItem = ({productItem}) => {
          </div>
          <div className='lg:flex items-center lg:space-x-10 pt-4'>
             <div className='flex items-center space-x-2'>
-               <IconButton onClick={() => handleUpdateCartItem(-1)} disabled={productItem.quantity<=1}>
+               <IconButton onClick={() => handleUpdateCartItem(-1)} disabled={productItem.quantity <= 1}>
                   <RemoveCircleOutlineIcon />
                </IconButton>
                <span className='py-1 px-7 border rounded-sm'>{productItem.quantity}</span>
-               <IconButton sx={{color:"#9155fd"}} onClick={() => handleUpdateCartItem(1)}>
+               <IconButton sx={{ color: "#9155fd" }} onClick={() => handleUpdateCartItem(1)}>
                   <AddCircleOutlineIcon />
                </IconButton>
             </div>
             <div>
-               <Button onClick={handleRemoveCartItem} sx={{color:"#9155fd"}}>remove</Button>
+               <Button onClick={handleRemoveCartItem} sx={{ color: "#9155fd" }}>remove</Button>
             </div>
          </div>
       </div>
-   )
-}
+   );
+};
 
-export default CartItem
+export default CartItem;

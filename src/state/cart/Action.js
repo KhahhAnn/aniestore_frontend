@@ -1,5 +1,5 @@
 import { api } from "../../config/ApiConfig"
-import { ADD_ITEM_TO_CART_FAILURE, ADD_ITEM_TO_CART_REQUEST, ADD_ITEM_TO_CART_SUCCESS, GET_TO_CART_FAILURE, GET_TO_CART_REQUEST, GET_TO_CART_SUCCESS, REMOVE_CART_ITEM_FAILURE, REMOVE_CART_ITEM_REQUEST, REMOVE_CART_ITEM_SUCCESS, UPDATE_CART_ITEM_FAILURE, UPDATE_CART_ITEM_REQUEST, UPDATE_CART_ITEM_SUCCESS } from "./ActionType"
+import { ADD_ITEM_TO_CART_FAILURE, ADD_ITEM_TO_CART_REQUEST, ADD_ITEM_TO_CART_SUCCESS, GET_TO_CART_FAILURE, GET_TO_CART_REQUEST, GET_TO_CART_SUCCESS, REMOVE_CART_ITEM_FAILURE, REMOVE_CART_ITEM_REQUEST, REMOVE_CART_ITEM_SUCCESS, UPDATE_CART_ITEM_FAILURE, UPDATE_CART_ITEM_REQUEST, UPDATE_CART_ITEM_SUCCESS, UPDATE_CART_TOTAL_FAILURE, UPDATE_CART_TOTAL_REQUEST, UPDATE_CART_TOTAL_SUCCESS } from "./ActionType"
 
 export const getCart = (page, pageSize) => async (dispatch) => {
    dispatch({type: GET_TO_CART_REQUEST})
@@ -42,5 +42,16 @@ export const updateCartItem = (reqData) => async (dispatch) => {
       console.log("update complete");
    } catch(error) {
       dispatch({type: UPDATE_CART_ITEM_FAILURE, payload: error.message});
+   }
+}
+
+export const updateCartTotal = () => async (dispatch) => {
+   dispatch({type: UPDATE_CART_TOTAL_REQUEST})
+   try {
+      const {data} = await api.get('/api/cart/update-cart-total', )
+      dispatch({type: UPDATE_CART_TOTAL_SUCCESS, payload: data});
+      console.log("update complete");
+   } catch(error) {
+      dispatch({type: UPDATE_CART_TOTAL_FAILURE, payload: error.message});
    }
 }
