@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Grid, Button } from '@mui/material';
 import AdjustIcon from '@mui/icons-material/Adjust';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -46,7 +46,8 @@ const OrderCard = () => {
                            <div className='ml-5 space-y-2'>
                               <p className='mb-2'>{item.product.title}</p>
                               <p className='opacity-50 text-xs font-semibold'>Size: {item.size}</p>
-                              <p className='opacity-50 text-xs font-semibold'>Color: {item.product.color}</p>
+                              <p className='opacity-50 text-xs font-semibold'>Màu sắc: {item.product.color}</p>
+                              <p className='opacity-50 text-xs font-semibold'>Số lượng: <span className='text-[#2ebb77] font-bold'>{item.product.quantity}</span></p>
                            </div>
                         </div>
                      </Grid>
@@ -60,11 +61,23 @@ const OrderCard = () => {
                                  sx={{ width: '15px', height: '15px' }}
                                  className='text-green-600 mr-2 text-sm'
                               />
-                              <span>Delivered On {order.deliveryDate}</span>
+                              <span>Đơn đặt vào ngày {order.deliveryDate}</span>
                            </p>
                            <p className='text-xs'>Your Item Has Been Delivered</p>
                            <p className='text-lg font-bold text-[#2ebb77] '>{order.orderStatus}</p>
                         </div>
+                        <Button
+                           variant="contained"
+                           color="primary"
+                           disabled={order.orderStatus !== "ĐÃ GIAO"}
+                           onClick={() => {
+                              if (order.orderStatus === "ĐÃ GIAO") {
+                                 alert("Button clicked!");
+                              }
+                           }}
+                        >
+                           Check Status
+                        </Button>
                      </Grid>
                   </Grid>
                </div>

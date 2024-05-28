@@ -1,5 +1,5 @@
 import { Avatar, Box, Grid, Rating } from '@mui/material';
-import { Input, message, Button } from 'antd';
+import { Input, message, } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -42,15 +42,14 @@ const ProductReviewCard = ({ productId }) => {
             `http://localhost:8080/api/reviews/create`,
             { review: reviewText, productId, start: value },
          );
-         message.success('Review added successfully');
+         message.success('Đánh giá sản phẩm thành công');
          window.location.reload();
       } catch (error) {
          console.error('Error submitting review:', error);
-         message.error('Failed to add review');
+         message.error('Đánh giá sản phẩm thất bại');
       }
    };
    
-
    return (
       <div>
          {reviews.map((review) => (
@@ -82,7 +81,9 @@ const ProductReviewCard = ({ productId }) => {
             <div className='mb-5'>
                <div className='flex items-center gap-5'>
                   <Avatar className='text-white' aria-haspopup="true">
-                     <img className='object-cover' src={auth.user?.imageSrc} alt='User' />
+                     {
+                        auth.user?.imageSrc == null ? "User" : <img className='object-cover' src={auth.user?.imageSrc} alt='User' />
+                     }
                   </Avatar>
                   <Flex gap="middle" vertical>
                      <Rate

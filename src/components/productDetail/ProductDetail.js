@@ -2,10 +2,11 @@ import { RadioGroup } from '@headlessui/react'
 import { Box, Button, Grid, LinearProgress, Rating } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { addItemToCart } from '../../state/cart/Action'
 import { findProductById } from '../../state/product/Action'
 import ProductReviewCard from './ProductReviewCard'
+import { message } from 'antd'
 
 const product = {
    name: 'Basic Tee 6-Pack',
@@ -66,16 +67,34 @@ export default function ProductDeatil() {
    const params = useParams();
    const { productStore } = useSelector(Store => Store)
    const handleAddToCart = () => {
-      const data = { productId: params.productId, size: selectedSize.name }
-      console.log("data: ", data);
-      dispatch(addItemToCart(data))
-      window.location.href = "/cart"; 
+      const token = localStorage.getItem('jwt');
+      if (!token) {
+         message.error("Vui lòng đăng nhập để thêm sản phẩm");
+         return;
+      }
+      try {
+         const data = { productId: params.productId, size: selectedSize.name }
+         console.log("data: ", data);
+         dispatch(addItemToCart(data))         
+         window.location.reload();
+         localStorage.setItem('addToCartMessage', "Thêm sản phẩm thành công");
+      } catch(error) {
+         message.error("Thêm sản phẩm thất bại");
+      }
    }
 
    useEffect(() => {
       const data = { productId: params.productId }
       dispatch(findProductById(data));
    }, [params.productId])
+
+   useEffect(() => {
+      const storedMessage = localStorage.getItem('addToCartMessage');
+      if (storedMessage) {
+         message.success(storedMessage);
+         localStorage.removeItem('addToCartMessage');
+      }
+   }, []);
    return (
       <div className="bg-white lg:px-20">
          <div className="pt-6">

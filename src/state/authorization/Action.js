@@ -115,6 +115,5 @@ export const changePassword = (jwt, password) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
    dispatch({ type: LOGOUT, payload: null });
-   window.location.href = "/"; 
    localStorage.clear();
 }

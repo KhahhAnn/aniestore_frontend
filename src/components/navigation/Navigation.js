@@ -10,6 +10,7 @@ import AuthModal from '../../auth/AuthModal';
 import { getUser, logout } from '../../state/authorization/Action';
 import './Navigation.css';
 import { navigation } from './NavigationData';
+import { message } from 'antd';
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
@@ -56,9 +57,18 @@ export default function Navigation() {
 
   const handleLogout = () => {
     dispatch(logout());
+    setCountItems(0);
     handleCloseUserMenu();
   };
 
+  const moveToCart = () => {
+    const token = localStorage.getItem('jwt');
+    if (!token) {
+      message.error("Vui lòng đăng nhập để mua sản phẩm");
+      return;
+    }
+    navigate("/cart")
+  }
   const getCountItems = async () => {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -253,7 +263,7 @@ export default function Navigation() {
                 </div>
                 {/* Cart */}
                 <div className="flow-root lg:ml-6">
-                  <Link to="/cart">
+                  <Link onClick={moveToCart}>
                     <Button className="group -m-2 flex items-center p-2">
                       <ShoppingBagIcon
                         className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"

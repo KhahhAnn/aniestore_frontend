@@ -4,6 +4,8 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useDispatch } from "react-redux";
 import { login } from "../state/authorization/Action";
+import { message } from 'antd';
+
 function SignIn() {
    const [state, setState] = React.useState({
       email: "",
@@ -20,12 +22,17 @@ function SignIn() {
 
    const handleSubmit = (event) => {
       event.preventDefault();
-      const userData = {
-         email: state.email,
-         password: state.password,
+      try{
+         const userData = {
+            email: state.email,
+            password: state.password,
+         }
+         dispatch(login(userData))
+         message.success('Đăng nhập thành công');
+         console.log(userData);
+      } catch(error) {
+         message.error('Đăng nhập thất bại');
       }
-      dispatch(login(userData))
-      console.log(userData);
    }
 
    return (

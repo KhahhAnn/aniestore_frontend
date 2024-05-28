@@ -185,7 +185,7 @@ const HomePage = () => {
                <h3 className='uppercase text-[#B479D9] font-bold text-sm'>special offer</h3>
                <h1 className='font-bold text-[40px]'>Extra Sale 30% off</h1>
                <p className='text-[#7E7E7E] font-medium text-lg max-w-96 leading-8 mt-8'>Bucket toy with a contrast colored handle. Perfect for playing on the beach.</p>
-               <TimerCountdown targetDate="2024-05-31T00:00:00" />
+               <TimerCountdown targetDate="2024-06-01T00:00:00" />
                <button className='text-white font-bold text-base mt-10' style={{ backgroundColor: "#2EBB77", padding: "10px", borderRadius: "10px" }}>Get only $29.00<ArrowForwardIcon /> </button>
             </div>
             <div>

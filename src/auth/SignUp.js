@@ -5,6 +5,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, register } from "../state/authorization/Action";
+import { message } from "antd";
 function SignUp() {
    const [state, setState] = useState({
       firstName: "",
@@ -45,15 +46,20 @@ function SignUp() {
          });
       }
       if (!auth.user) {
-         const userData = {
-            firstName: state.firstName,
-            lastName: state.lastName,
-            email: state.email,
-            password: state.password,
+         try {
+            const userData = {
+               firstName: state.firstName,
+               lastName: state.lastName,
+               email: state.email,
+               password: state.password,
+            }
+            console.log(userData);
+            dispatch(register(userData));
+            message.error('Đăng ký thành công vui lòng kiểm tra email để kích hoạt tài khoản');
+            console.log(userData);
+         } catch(error) {
+            message.error('Đăng ký thất bại vui lòng kiểm tra thông tin đăng kí');
          }
-         console.log(userData);
-         dispatch(register(userData));
-         console.log(userData);
       }
    }
 
