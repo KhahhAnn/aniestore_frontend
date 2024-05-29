@@ -1,25 +1,25 @@
 export const color = [
-   "white",
-   "Black",
-   "Red",
+   "Trắng",
+   "Đen",
+   "Đỏ",
    "Marun",
    "Being",
-   "Pink",
-   "Green",
-   "Yellow"
+   "Hồng",
+   "Xanh lá",
+   "Vàng"
 ];
 export const filters = [
    {
       id: "color",
       name: "Color",
       option: [
-         { value: "white", label: "White" },
-         { value: "beige", label: "Beige" },
-         { value: "blue", label: "Blue" },
-         { value: "brown", label: "Brown" },
-         { value: "green", label: "Green" },
-         { value: "purple", label: "Purple" },
-         { value: "yellow", label: "Yellow" },
+         { value: "white", label: "Trắng" },
+         { value: "beige", label: "Be" },
+         { value: "blue", label: "Xanh" },
+         { value: "brown", label: "Xám" },
+         { value: "green", label: "Xanh lá" },
+         { value: "purple", label: "Tím" },
+         { value: "yellow", label: "Vàng" },
       ],
    },
    {
@@ -35,31 +35,31 @@ export const filters = [
       id: "price",
       name: "Price",
       option: [
-         { value: "159-399", label: "$159 To $399" },
-         { value: "399-999", label: "$399 To $999" },
-         { value: "999-1500", label: "$999 To $1500" },
+         { value: "159-399", label: "159.000 To 399.000" },
+         { value: "399-999", label: "399.000 To 999.000" },
+         { value: "999-1500", label: "999.000 To 1.500.000" },
       ]
    },
    {
       id: "discount",
       name: "Discount Range",
       option: [
-         { value: "10", label: "10% And Above" },
-         { value: "20", label: "20% And Above" },
-         { value: "30", label: "30% And Above" },
-         { value: "40", label: "40% And Above" },
-         { value: "50", label: "50% And Above" },
-         { value: "60", label: "60% And Above" },
-         { value: "70", label: "70% And Above" },
-         { value: "80", label: "80% And Above" },
+         { value: "10", label: "10% trở lên" },
+         { value: "20", label: "20% trở lên" },
+         { value: "30", label: "30% trở lên" },
+         { value: "40", label: "40% trở lên" },
+         { value: "50", label: "50% trở lên" },
+         { value: "60", label: "60% trở lên" },
+         { value: "70", label: "70% trở lên" },
+         { value: "80", label: "80% trở lên" },
       ]
    },
    {
       id: "availability",
       name: "Availability",
       option: [
-         { value: "in_stock", label: "In Stock" },
-         { value: "out_stock", label: "Out Stock" },
+         { value: "in_stock", label: "Còn hàng" },
+         { value: "out_stock", label: "Hết hàng" },
       ]
    }
 ]
@@ -69,31 +69,31 @@ export const singleFilter = [
       id: "price",
       name: "Price",
       option: [
-         { value: "159-399", label: "$159 To $399" },
-         { value: "399-999", label: "$399 To $999" },
-         { value: "999-1500", label: "$999 To $1500" },
+         { value: "159-399", label: "159.000 To 399.000" },
+         { value: "399-999", label: "399.000 To 999.000" },
+         { value: "999-1500", label: "999.000 To 1.500.000" },
       ]
    },
    {
       id: "discount",
       name: "Discount Range",
       option: [
-         { value: "10", label: "10% And Above" },
-         { value: "20", label: "20% And Above" },
-         { value: "30", label: "30% And Above" },
-         { value: "40", label: "40% And Above" },
-         { value: "50", label: "50% And Above" },
-         { value: "60", label: "60% And Above" },
-         { value: "70", label: "70% And Above" },
-         { value: "80", label: "80% And Above" },
+         { value: "10", label: "10% trở lên" },
+         { value: "20", label: "20% trở lên" },
+         { value: "30", label: "30% trở lên" },
+         { value: "40", label: "40% trở lên" },
+         { value: "50", label: "50% trở lên" },
+         { value: "60", label: "60% trở lên" },
+         { value: "70", label: "70% trở lên" },
+         { value: "80", label: "80% trở lên" },
       ]
    },
    {
       id: "availability",
       name: "Availability",
       option: [
-         { value: "in_stock", label: "In Stock" },
-         { value: "out_stock", label: "Out Stock" },
+         { value: "in_stock", label: "Còn hàng" },
+         { value: "out_stock", label: "Hết hàng" },
       ]
    }
 ]

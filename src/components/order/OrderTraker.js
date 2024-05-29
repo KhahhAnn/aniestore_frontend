@@ -2,11 +2,11 @@ import { Step, StepLabel, Stepper } from '@mui/material'
 import React from 'react'
 
 const steps = [
-   "Placed",
-   "Order Confirmed",
-   "Shipped",
-   "Out For Delivery",
-   "Delivery"
+   "Đã đặt",
+   "Đã xác nhận đặt hàng",
+   "Đã vận chuyển",
+   "Đã giao hàng",
+   "Vận chuyển"
 ]
 
 const OrderTraker = ({ activeStep }) => {

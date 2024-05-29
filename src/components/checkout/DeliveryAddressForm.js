@@ -102,7 +102,7 @@ function DeliveryAddressForm() {
                      addressList.map((item) => (
                         <>
                            <AdressCard address={item} />
-                           <Button onClick={() => navigateWithAddress(item)} size='large' variant='contained'>Delivery Here</Button>
+                           <Button onClick={() => navigateWithAddress(item)} size='large' variant='contained'>Vận chuyển ở đây</Button>
                         </>
                      ))
                   }

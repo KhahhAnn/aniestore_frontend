@@ -55,28 +55,28 @@ console.log(cartStore);
             </div>
             <div className='px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0'>
                <div className='border p-5'>
-                  <p className='uppercase font-bold opacity-60 pb-4'>Price details</p>
+                  <p className='uppercase font-bold opacity-60 pb-4'>Chi tiết giá</p>
                   <hr />
                   <div className='space-y-3 font-semibold'>
                      <div className='flex justify-between pt-3 text-black'>
-                        <span>Price</span>
+                        <span>Giá</span>
                         <span>${cartStore.cart.cart.totalPrice == null ? 0 : cartStore.cart.cart.totalPrice}</span>
                      </div>
                      <div className='flex justify-between pt-3'>
-                        <span>Discount</span>
+                        <span>Giảm giá</span>
                         <span className='text-green-600'>-${cartStore.cart.cart.totalPrice == null ? 0 : (cartStore.cart.cart.totalPrice - cartStore.cart.cart.totalDiscountedPrice)}</span>
                      </div>
                      <div className='flex justify-between pt-3 '>
-                        <span>Delivery Charges</span>
-                        <span className='text-green-600'>Free</span>
+                        <span>Địa chỉ giao hàng</span>
+                        <span className='text-green-600'>Miễn phí</span>
                      </div>
                      <div className='flex justify-between pt-3 font-bold'>
-                        <span>Total Amount</span>
+                        <span>Tổng số lượng</span>
                         <span className='text-green-600'>${cartStore.cart.cart.totalDiscountedPrice == null ? 0 : cartStore.cart.cart.totalDiscountedPrice}</span>
                      </div>
                   </div>
                   <Button onClick={handleCheckOut} variant='contained' className='w-full' sx={{ px: "2.5rem", py: "0.7rem", bgcolor: "#9155fd", marginTop: 3 }}>
-                     Checkout
+                     Thanh toán
                   </Button>
                </div>
             </div>
