@@ -62,13 +62,13 @@ export default function Navigation() {
   };
 
   const moveToCart = () => {
-    const token = localStorage.getItem('jwt');
-    if (!token) {
-      message.error("Vui lòng đăng nhập để mua sản phẩm");
+    if (jwt == null) {
+      message.error("Vui lòng đăng nhập để mua hàng");
       return;
     }
     navigate("/cart")
   }
+
   const getCountItems = async () => {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -263,8 +263,8 @@ export default function Navigation() {
                 </div>
                 {/* Cart */}
                 <div className="flow-root lg:ml-6">
-                  <Link onClick={moveToCart}>
-                    <Button className="group -m-2 flex items-center p-2">
+                  <div>
+                    <Button onClick={moveToCart} className="group -m-2 flex items-center p-2">
                       <ShoppingBagIcon
                         className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                         aria-hidden="true"
@@ -272,7 +272,7 @@ export default function Navigation() {
                       <span className="ml-2 text-xs font-medium text-red-500 group-hover:bg-red-500 group-hover:text-white px-[4px] rounded-full border-[1px] border-red-500 absolute right-3 -top-1">{countItems}</span>
                       <span className="sr-only">items in cart, view bag</span>
                     </Button>
-                  </Link>
+                  </div>
                 </div>
               </div>
             </div>
