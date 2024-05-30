@@ -111,21 +111,6 @@ const HomePage = () => {
             {
                [1, 2, 3, 4, 5, 6, 7, 8].map(
                   (i) => (
-                     // <div className='mt-10 productCard w-[90%] h-[32rem] cursor-pointer rounded-md p-3 border-4 border-gray-200 bg-slate-100 ml-4'>
-                     //    <div className='h-[25rem]'>
-                     //       <img className='w-full h-full object-cover object-left-top rounded-md' src={mens_kurta[i].imageUrl} alt='' />
-                     //    </div>
-                     //    <div className='p-3'>
-                     //       <div>
-                     //          <p className='font-bold opacity-60 text-center'>{mens_kurta[i].brand}</p>
-                     //       </div>
-                     //       <div className='flex justify-center space-x-2 mt-4'>
-                     //          <p className='font-semibold'>${mens_kurta[i].discountedPrice}</p>
-                     //          <p className='line-through opacity-50'>${mens_kurta[i].price}</p>
-                     //          <p className='text-green-600 font-semibold'>${mens_kurta[i].discountPersent}% sale off</p>
-                     //       </div>
-                     //    </div>
-                     // </div>
                      <div className="w-full relative group p-3 rounded-xl bg-slate-200 hover:scale-110 duration-500 ">
                         <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
                            <div>

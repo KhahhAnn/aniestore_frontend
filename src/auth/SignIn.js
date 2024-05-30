@@ -11,27 +11,28 @@ function SignIn() {
       email: "",
       password: ""
    });
-   const handleChange = evt => {
+
+   const handleChange = (evt) => {
       const value = evt.target.value;
       setState({
          ...state,
          [evt.target.name]: value
       });
    };
+
    const dispatch = useDispatch();
 
-   const handleSubmit = (event) => {
+   const handleSubmit = async (event) => {
       event.preventDefault();
-      try{
-         const userData = {
-            email: state.email,
-            password: state.password,
-         }
-         dispatch(login(userData))
+      const userData = {
+         email: state.email,
+         password: state.password,
+      }
+      const result = await dispatch(login(userData));
+      if (result.success) {
          message.success('Đăng nhập thành công');
-         console.log(userData);
-      } catch(error) {
-         message.error('Đăng nhập thất bại');
+      } else {
+         message.error(result.message || 'Đăng nhập thất bại');
       }
    }
 

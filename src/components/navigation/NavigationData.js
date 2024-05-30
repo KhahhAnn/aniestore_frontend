@@ -66,9 +66,9 @@ export const navigation = {
          href: null,
          childrens: [
             { label: 'Mens Kurtas', href: '/shop/clothing/mens_kurta' },     
-            { label: 'Shirt', href: '/shop/clothing/shirt' }, 
-            { label: 'Men Jeans', href: '/shop/clothing/men_jeans' },
-            { label: 'T-Shirts', href: '/shop/clothing/t-shirt' },
+            { label: 'Áo', href: '/shop/clothing/ao' }, 
+            { label: 'Quần', href: '/shop/clothing/quan' },
+            { label: 'Thời trang trẻ', href: '/shop/clothing/thoi_trang_tre'},
          ]
       },
       { key: 'Blog', childrens: null, href: '/blog' },
