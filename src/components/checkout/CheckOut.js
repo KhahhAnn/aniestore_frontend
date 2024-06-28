@@ -52,7 +52,7 @@ export default function CheckOut() {
                         onClick={handleBack}
                         sx={{ mr: 1 }}
                      >
-                        Back
+                        Trở về
                      </Button>
                   </Box>
                   <div className='mt-10'>

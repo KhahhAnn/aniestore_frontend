@@ -81,7 +81,7 @@ const OrderCard = () => {
                               />
                               <span>Đơn đặt vào ngày {order.deliveryDate}</span>
                            </p>
-                           <p className='text-xs'>Your Item Has Been Delivered</p>
+                           <p className='text-xs'>Sản phẩm của bạn đã được giao</p>
                            <p className='text-lg font-bold text-[#2ebb77] '>{order.orderStatus}</p>
                         </div>
                         <Button

@@ -178,10 +178,10 @@ function ProfilePage() {
    return (
       <div>
          <div className='mx-auto text-center bg-[#F5F5F5] py-20'>
-            <h2 className='font-bold text-[40px] mb-4'>Account</h2>
+            <h2 className='font-bold text-[40px] mb-4'>Tài khoản</h2>
             <a href='/' className='text-[#7e7e7e] text-[15px] ml-2 hover:text-[#2ebb77]'>Home</a>
             <span className="delimiter"></span>
-            <span className='mr-2'>Account</span>
+            <span className='mr-2'>Tài khoản</span>
          </div>
          <div className='w-[300px] absolute right-3 mt-16'>
             {showSuccessMessage && (
@@ -198,13 +198,13 @@ function ProfilePage() {
          <div className='mx-auto max-w-[70%] p-5 border-[1px] border-[rgba(0, 0, 0, .125)] mt-20 grid justify-between' style={{ gridTemplateColumns: "30% 65%" }}>
             <div className='flex flex-col gap-5'>
                <div className={`hover:bg-slate-100 rounded-md ${activeTab === 'general' && 'bg-slate-100'}`} onClick={() => setActiveTab('general')}>
-                  <p className={`pl-2 text-[#495057] ${activeTab === 'general' && 'font-bold text-black'}`}>General</p>
+                  <p className={`pl-2 text-[#495057] ${activeTab === 'general' && 'font-bold text-black'}`}>Giới tính</p>
                </div>
                <div className={`hover:bg-slate-100 rounded-md ${activeTab === 'password' && 'bg-slate-100'}`} onClick={() => setActiveTab('password')}>
-                  <p className={`pl-2 text-[#495057] ${activeTab === 'password' && 'font-bold text-black'}`}>Change password</p>
+                  <p className={`pl-2 text-[#495057] ${activeTab === 'password' && 'font-bold text-black'}`}>Đổi mật khẩu</p>
                </div>
                <div className={`hover:bg-slate-100 rounded-md ${activeTab === 'infor' && 'bg-slate-100'}`} onClick={() => setActiveTab('infor')}>
-                  <p className={`pl-2 text-[#495057] ${activeTab === 'infor' && 'font-bold text-black'}`}>Infor</p>
+                  <p className={`pl-2 text-[#495057] ${activeTab === 'infor' && 'font-bold text-black'}`}>Thông tin</p>
                </div>
             </div>
             <div className='flex flex-col'>
@@ -218,11 +218,11 @@ function ProfilePage() {
                      </div>
                      <div className='flex flex-col gap-4 mt-5'>
                         <div>
-                           <label>First name: </label>
+                           <label>Tên: </label>
                            <Input defaultValue={auth.user?.firstName} name='firstName' onChange={handleChange} />
                         </div>
                         <div>
-                           <label>Last name: </label>
+                           <label>Họ tên: </label>
                            <Input defaultValue={auth.user?.lastName} name='lastName' onChange={handleChange} />
                         </div>
                         <div>
@@ -230,7 +230,7 @@ function ProfilePage() {
                            <Input defaultValue={auth.user?.email} name='email' onChange={handleChange} />
                         </div>
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[20%]" onClick={handleUpdateUser}>
-                           Save
+                           Lưu
                         </button>
                      </div>
                   </>
@@ -238,19 +238,19 @@ function ProfilePage() {
                {activeTab === 'password' && (
                   <div className='flex flex-col gap-4 mt-5'>
                      <div>
-                        <label>Current password: </label>
+                        <label>Mật khẩu ban đầu: </label>
                         <Input type='password' name='currentPassword' onChange={handleChange} />
                      </div>
                      <div>
-                        <label>New password: </label>
+                        <label>Mật khẩu mới: </label>
                         <Input type='password' name='password' onChange={handleChange} />
                      </div>
                      <div>
-                        <label>Repeat new password: </label>
+                        <label>Nhập lại mật khẩu mới: </label>
                         <Input type='password' name='repeatPassword' onChange={handleChange} />
                      </div>
                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[30%]" onClick={handleChangePassword}>
-                        Save password
+                        Lưu
                      </button>
                   </div>
                )}
@@ -302,15 +302,15 @@ function ProfilePage() {
                         </TextField>
                      </Grid>
                      <div>
-                        <label>Address: </label>
+                        <label>Địa chỉ: </label>
                         <TextArea defaultValue={auth.user.addressList[0].streetAddress} rows={4} />
                      </div>
                      <div>
-                        <label>Phone: </label>
+                        <label>Số điện thoại: </label>
                         <Input defaultValue={auth.user?.mobile} />
                      </div>
                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[40%]">
-                        Add new info
+                        Thêm mới thông tin
                      </button>
                   </div>
                )}

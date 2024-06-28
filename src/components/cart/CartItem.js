@@ -55,7 +55,7 @@ const CartItem = ({ productItem }) => {
                </IconButton>
             </div>
             <div>
-               <Button onClick={handleRemoveCartItem} sx={{ color: "#9155fd" }}>remove</Button>
+               <Button onClick={handleRemoveCartItem} sx={{ color: "#9155fd" }}>Xóa</Button>
             </div>
          </div>
       </div>

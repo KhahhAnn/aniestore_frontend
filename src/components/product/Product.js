@@ -113,7 +113,7 @@ export default function Product() {
                                  className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
                                  onClick={() => setMobileFiltersOpen(false)}
                               >
-                                 <span className="sr-only">Close menu</span>
+                                 <span className="sr-only">Đóng</span>
                                  <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                               </button>
                            </div>
@@ -171,7 +171,7 @@ export default function Product() {
 
             <main className="mx-auto px-4 sm:px-6 lg:px-20">
                <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
-                  <h1 className="text-4xl font-bold tracking-tight text-gray-900">Product</h1>
+                  <h1 className="text-4xl font-bold tracking-tight text-gray-900">Sản phẩm</h1>
 
                   <div className="flex items-center">
                      <Menu as="div" className="relative inline-block text-left">
@@ -234,7 +234,7 @@ export default function Product() {
 
                <section aria-labelledby="products-heading" className="pb-24 pt-6">
                   <h2 id="products-heading" className="sr-only">
-                     Products
+                     Sản phẩm
                   </h2>
 
                   <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">

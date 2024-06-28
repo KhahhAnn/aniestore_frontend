@@ -16,7 +16,7 @@ const Order = () => {
                <div className='h-auto shadow-lg bg-white p-5 sticky top-5'>
                   <h1 className='font-bold text-lg'>Filter</h1>
                   <div className='space-y-4 mt-10'>
-                     <h1 className='font-semibold'>ORDER STATUS</h1>
+                     <h1 className='font-semibold'>Đặt hàng</h1>
                      {
                         orderStatus.map((option) =>
                         (
