@@ -55,7 +55,7 @@ function SignUp() {
             }
             console.log(userData);
             dispatch(register(userData));
-            message.error('Đăng ký thành công vui lòng kiểm tra email để kích hoạt tài khoản');
+            message.success('Đăng ký thành công vui lòng kiểm tra email để kích hoạt tài khoản');
             console.log(userData);
          } catch(error) {
             message.error('Đăng ký thất bại vui lòng kiểm tra thông tin đăng kí');

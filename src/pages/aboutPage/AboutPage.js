@@ -68,7 +68,7 @@ function AboutPage() {
             <div className='flex justify-center gap-10 text-center mt-10'>
                <div>
                   <div className='conainer-scale'>
-                     <img className='w-[300px] h-[300px] rounded-lg scale' src="https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-6/426230929_1835411273622964_2380431362587779863_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeF3DqJ2e0CBp1x4HyYBrRhScf62szMFRtVx_razMwVG1WhAntSE0gVsadIuTiFOlXO4HBUNJknz91_9Mvvr4Z5j&_nc_ohc=EzRaSfKuTN4Q7kNvgHYzPuD&_nc_ht=scontent.fhan15-1.fna&oh=00_AYCtO5yxE8XsFukFBUu7f2qsvMbD9-k_zbxLEr0nCtEj5w&oe=665BCDC8" alt='' />
+                     <img className='w-[300px] h-[300px] rounded-lg scale' src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/410502438_1802142066949885_4237457411996902523_n.jpg?stp=cp6_dst-jpg&_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHUYJcsq3FrFOL_maQ7jcdR04iqM2D5Yb3TiKozYPlhvaEQvFjXkxQXYc_y2VQurSSvKdjFLqpmHbRt7TaBkNX1&_nc_ohc=vnxOedpT-u0Ab4Tc2au&_nc_ht=scontent.fhan2-3.fna&oh=00_AfAStzljeqaxEyUgyffgqeBH9-uVBsOJ6XAShaB3XChaYg&oe=662119BE" alt='' />
                      <div className='absolute z-10 top-[1430px] ml-[90px] flex gap-5 justify-center team-icon'>
                         <FacebookIcon  className='p-2 rounded-full border-2 border-[#eee] bg-white hover:bg-black hover:border-black color team-icon' style={{ color: "#9b9b9b", fontSize: "45px" }} />
                         <InstagramIcon className='p-2 rounded-full border-2 border-[#eee] bg-white hover:bg-black hover:border-black team-icon' style={{ color: "#9b9b9b", fontSize: "45px" }} />
@@ -79,7 +79,7 @@ function AboutPage() {
                </div>
                <div>
                   <div className='conainer-scale'>
-                     <img className='w-[300px] h-[300px] rounded-xl scale' src="https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-6/438969791_1625201104960354_5355543574708253934_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFCKg3ceROTVZk0B3K7aIuvEBW4_7PMMcQQFbj_s8wxxALLtBpkS1Vse35ikKNMiScox8fVBqexYB80LgA1jx17&_nc_ohc=kNGJcewqF3YQ7kNvgFZS8_P&_nc_ht=scontent.fhan15-1.fna&oh=00_AYC4H1R-d4nSXMScHZDBFbwI_mTN9WbxlmH8arA-dOSsFA&oe=665CE4D5" alt='' />
+                     <img className='w-[300px] h-[300px] rounded-xl scale' src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/432011896_1605372270276571_3152325909812518674_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFL0OXn6Q4rEH0ItdrdM2aG_Q9aIUKqE9b9D1ohQqoT1m1SCorQ_jsVbvRFK_JIQSXteJACqTzAY4usqHmMvvS5&_nc_ohc=iV9tO-YTBxIAb6CO0Sf&_nc_ht=scontent.fhan2-3.fna&oh=00_AfARSLia25bZKC7rohnDCce-QcpBEgCHjqiqtL17saCLNw&oe=6621415E" alt='' />
                      <div className='absolute z-10 top-[1430px] ml-[90px] flex gap-5 justify-center team-icon'>
                         <FacebookIcon className='p-2 rounded-full border-2 border-[#eee] bg-white hover:bg-black hover:border-black ' style={{ color: "#9b9b9b", fontSize: "45px" }} />
                         <InstagramIcon className='p-2 rounded-full border-2 border-[#eee] bg-white hover:bg-black hover:border-black' style={{ color: "#9b9b9b", fontSize: "45px" }} />

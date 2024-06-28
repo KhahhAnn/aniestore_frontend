@@ -60,9 +60,8 @@ export default function Product() {
       const query = searchParamms.toString();
       navigate({ search: `${query}` });
    }
-
    useEffect(() => {
-      const [minPrice, maxPrice] = priceValue === null ? [0, 10000] : priceValue.split("-").map(Number);
+      const [minPrice, maxPrice] = priceValue === null ? [0, 100000000] : priceValue.split("-").map(Number);
       const data = {
          category: param.levelThree,
          colors: colorValue || [],

@@ -8,6 +8,9 @@ import { BsSuitHeartFill } from 'react-icons/bs';
 
 function ProductCard({ product }) {
    const navigate = useNavigate();
+   const formatCurrency = (value) => {
+      return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+   }
    return (
       <div onClick={() => navigate(`/product/${product.id}`)} className="w-full relative group p-3 rounded-xl bg-slate-200 hover:scale-110 duration-500">
          <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
@@ -51,7 +54,7 @@ function ProductCard({ product }) {
                <h2 className="text-lg text-black font-bold">
                   {product.brand}
                </h2>
-               <p className="text-[#767676] text-[14px]">${product.discountedPrice}</p>
+               <p className="text-[#767676] text-[14px]">{formatCurrency(product.price)}</p>
             </div>
             <div>
                <p className="text-[#767676] text-[14px]">{product.discountPersent}</p>

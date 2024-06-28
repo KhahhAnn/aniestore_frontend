@@ -23,6 +23,10 @@ const CartItem = ({ productItem }) => {
       window.location.href = "/cart"; 
    };
 
+   const formatCurrency = (value) => {
+      return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+   }
+
    return (
       <div className='p-5 shadow-lg border rounded-md mb-3'>
          <div className='flex items-center'>
@@ -34,9 +38,9 @@ const CartItem = ({ productItem }) => {
                <p className='opacity-70'>Size: {productItem.size}, {productItem.product.color}</p>
                <p className='opacity-70 mt-2'>Seller: {productItem.product.brand}</p>
                <div className=" flex space-x-5 items-center text-lg lg:text-xl text-gray-900 pt-6">
-                  <p className="font-semibold">${productItem.product.discountedPrice}</p>
-                  <p className='opacity-50 line-through'>${productItem.product.price}</p>
-                  <p className='text-green-600 font-semibold'>{productItem.product.discountPrecent}% Off</p>
+                  <p className="font-semibold">${formatCurrency(productItem.product.discountedPrice)}</p>
+                  <p className='opacity-50 line-through'>${formatCurrency(productItem.product.price)}</p>
+                  <p className='text-green-600 font-semibold'>{productItem.product.discountPrecent = '0' ? '0' : formatCurrency(productItem.product.discountPrecent)}% Off</p>
                </div>
             </div>
          </div>

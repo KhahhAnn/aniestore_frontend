@@ -3,6 +3,7 @@ import AdjustIcon from '@mui/icons-material/Adjust';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { message } from 'antd';
 
 const OrderCard = () => {
    const navigate = useNavigate();
@@ -17,16 +18,31 @@ const OrderCard = () => {
             }
          });
          setOrders(response.data);
+         console.log(response.data);
       } catch (error) {
          console.error('Error fetching reviews:', error);
+      }
+   };
+
+   const handleRecive = async (id) => {
+      try {
+         const response = await axios.get(`http://localhost:8080/api/orders/${id}`, {
+            headers: {
+               Authorization: `Bearer ${token}`
+            }
+         });
+         fetchData();
+         message.success("Cập nhận trạng thái thành công");
+      } catch (error) {
+         console.error('Error fetching reviews:', error);
+         message.success("Cập nhận trạng thái thất bại");
       }
    };
 
    useEffect(() => {
       fetchData();
    }, []);
-
-   console.log(orders[0]);
+   console.log(orders);
    return (
       <div>
          {orders.map((order) =>
@@ -69,10 +85,10 @@ const OrderCard = () => {
                         <Button
                            variant="contained"
                            color="primary"
-                           disabled={order.orderStatus !== "ĐÃ GIAO"}
+                           disabled={order.orderStatus !== "Đã giao"}
                            onClick={() => {
-                              if (order.orderStatus === "ĐÃ GIAO") {
-                                 alert("Button clicked!");
+                              if (order.orderStatus === "Đã giao") {
+                                 handleRecive(order.id)
                               }
                            }}
                         >

@@ -34,6 +34,10 @@ console.log(cartStore);
    if (isLoading || !cartStore.cart) {
       return <Skeleton active />;
    }
+
+   const formatCurrency = (value) => {
+      return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+   }
    return (
       <div className='mt-16'>
          <div className='lg:grid grid-cols-3 lg:px-16 relative'>
@@ -59,20 +63,20 @@ console.log(cartStore);
                   <hr />
                   <div className='space-y-3 font-semibold'>
                      <div className='flex justify-between pt-3 text-black'>
-                        <span>Giá</span>
-                        <span>${cartStore.cart.cart.totalPrice == null ? 0 : cartStore.cart.cart.totalPrice}</span>
+                        <span>Price</span>
+                        <span>{formatCurrency(cartStore.cart.cart.totalPrice == null ? 0 : cartStore.cart.cart.totalPrice)}</span>
                      </div>
                      <div className='flex justify-between pt-3'>
-                        <span>Giảm giá</span>
-                        <span className='text-green-600'>-${cartStore.cart.cart.totalPrice == null ? 0 : (cartStore.cart.cart.totalPrice - cartStore.cart.cart.totalDiscountedPrice)}</span>
+                        <span>Discount</span>
+                        <span className='text-green-600'>-{formatCurrency(cartStore.cart.cart.totalPrice == null ? 0 : (cartStore.cart.cart.totalPrice - cartStore.cart.cart.totalDiscountedPrice))}</span>
                      </div>
                      <div className='flex justify-between pt-3 '>
                         <span>Địa chỉ giao hàng</span>
                         <span className='text-green-600'>Miễn phí</span>
                      </div>
                      <div className='flex justify-between pt-3 font-bold'>
-                        <span>Tổng số lượng</span>
-                        <span className='text-green-600'>${cartStore.cart.cart.totalDiscountedPrice == null ? 0 : cartStore.cart.cart.totalDiscountedPrice}</span>
+                        <span>Total Amount</span>
+                        <span className='text-green-600'>{formatCurrency(cartStore.cart.cart.totalDiscountedPrice == null ? 0 : cartStore.cart.cart.totalDiscountedPrice)}</span>
                      </div>
                   </div>
                   <Button onClick={handleCheckOut} variant='contained' className='w-full' sx={{ px: "2.5rem", py: "0.7rem", bgcolor: "#9155fd", marginTop: 3 }}>
