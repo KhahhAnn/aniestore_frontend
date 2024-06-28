@@ -18,19 +18,22 @@ const OrderCard = () => {
             }
          });
          setOrders(response.data);
-         console.log(response.data);
       } catch (error) {
          console.error('Error fetching reviews:', error);
       }
    };
-
+   const formatCurrency = (value) => {
+      return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+   }
    const handleRecive = async (id) => {
       try {
-         const response = await axios.get(`http://localhost:8080/api/orders/${id}`, {
+         console.log(id);
+         const response = await axios.put(`http://localhost:8080/api/orders/${id}`, {
             headers: {
                Authorization: `Bearer ${token}`
             }
          });
+         console.log(response.data);
          fetchData();
          message.success("Cập nhận trạng thái thành công");
       } catch (error) {
@@ -42,7 +45,6 @@ const OrderCard = () => {
    useEffect(() => {
       fetchData();
    }, []);
-   console.log(orders);
    return (
       <div>
          {orders.map((order) =>
@@ -63,12 +65,12 @@ const OrderCard = () => {
                               <p className='mb-2'>{item.product.title}</p>
                               <p className='opacity-50 text-xs font-semibold'>Size: {item.size}</p>
                               <p className='opacity-50 text-xs font-semibold'>Màu sắc: {item.product.color}</p>
-                              <p className='opacity-50 text-xs font-semibold'>Số lượng: <span className='text-[#2ebb77] font-bold'>{item.product.quantity}</span></p>
+                              <p className='opacity-50 text-xs font-semibold'>Số lượng: <span className='text-[#2ebb77] font-bold'>{item.quantity}</span></p>
                            </div>
                         </div>
                      </Grid>
                      <Grid item xs={2}>
-                        <p>${item.price}</p>
+                        <p>{formatCurrency(item.price)}</p>
                      </Grid>
                      <Grid item xs={4}>
                         <div>
@@ -92,7 +94,7 @@ const OrderCard = () => {
                               }
                            }}
                         >
-                           Check Status
+                           Xác nhận đã nhận đơn
                         </Button>
                      </Grid>
                   </Grid>

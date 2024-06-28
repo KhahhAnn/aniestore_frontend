@@ -55,12 +55,14 @@ const product = {
    ],
    details:
       'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
-}
+}  
 
 function classNames(...classes) {
    return classes.filter(Boolean).join(' ')
 }
-
+const formatCurrency = (value) => {
+   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+}
 export default function ProductDeatil() {
    const [selectedSize, setSelectedSize] = useState("")
    const dispatch = useDispatch();
@@ -159,9 +161,9 @@ export default function ProductDeatil() {
                   <div className="mt-4 lg:row-span-3 lg:mt-0">
                      <h2 className="sr-only">Product information</h2>
                      <div className=" flex space-x-5 items-center text-lg lg:text-xl text-gray-900">
-                        <p className="font-semibold">${productStore.product?.discountedPrice}</p>
-                        <p className='opacity-50 line-through'>${productStore.product?.price}</p>
-                        <p className='text-green-600 font-semibold'>{productStore.product?.discountPercent}% Off</p>
+                        <p className="font-semibold">{formatCurrency(productStore.product?.discountedPrice)}</p>
+                        <p className='opacity-50 line-through'>{formatCurrency(productStore.product?.price)}</p>
+                        <p className='text-green-600 font-semibold'>{formatCurrency(productStore.product.totalDiscountedPrice == null ? 0 : productStore.product.totalDiscountedPrice)}% Off</p>
                      </div>
                      <div className="m-0">
                         {/* Sizes */}

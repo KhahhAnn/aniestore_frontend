@@ -38,6 +38,8 @@ console.log(cartStore);
    const formatCurrency = (value) => {
       return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
    }
+
+   console.log(cartStore.cart.cart);
    return (
       <div className='mt-16'>
          <div className='lg:grid grid-cols-3 lg:px-16 relative'>
@@ -59,23 +61,23 @@ console.log(cartStore);
             </div>
             <div className='px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0'>
                <div className='border p-5'>
-                  <p className='uppercase font-bold opacity-60 pb-4'>Price details</p>
+                  <p className='uppercase font-bold opacity-60 pb-4'>Hóa đơn</p>
                   <hr />
                   <div className='space-y-3 font-semibold'>
                      <div className='flex justify-between pt-3 text-black'>
-                        <span>Price</span>
+                        <span>Giá gốc</span>
                         <span>{formatCurrency(cartStore.cart.cart.totalPrice == null ? 0 : cartStore.cart.cart.totalPrice)}</span>
                      </div>
                      <div className='flex justify-between pt-3'>
-                        <span>Discount</span>
+                        <span>Giảm giá</span>
                         <span className='text-green-600'>-{formatCurrency(cartStore.cart.cart.totalPrice == null ? 0 : (cartStore.cart.cart.totalPrice - cartStore.cart.cart.totalDiscountedPrice))}</span>
                      </div>
                      <div className='flex justify-between pt-3 '>
-                        <span>Delivery Charges</span>
+                        <span>Phí vận chuyển</span>
                         <span className='text-green-600'>Free</span>
                      </div>
                      <div className='flex justify-between pt-3 font-bold'>
-                        <span>Total Amount</span>
+                        <span>Tổng tiền</span>
                         <span className='text-green-600'>{formatCurrency(cartStore.cart.cart.totalDiscountedPrice == null ? 0 : cartStore.cart.cart.totalDiscountedPrice)}</span>
                      </div>
                   </div>
