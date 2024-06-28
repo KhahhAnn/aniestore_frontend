@@ -108,7 +108,7 @@ const HomePage = () => {
          </div>
          <div className='grid grid-cols-4 gap-20'>
             {
-               [1, 2, 3, 4, 5, 6, 7, 8].map(
+               [1, 2, 3, 4].map(
                   (i) => (
                      // <div className='mt-10 productCard w-[90%] h-[32rem] cursor-pointer rounded-md p-3 border-4 border-gray-200 bg-slate-100 ml-4'>
                      //    <div className='h-[25rem]'>

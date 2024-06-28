@@ -65,7 +65,6 @@ function AboutPage() {
          </div>
 
          <div>
-            <h2 className='font-bold text-[40px] text-center mt-10'>Meet our team!</h2>
             <div className='flex justify-center gap-10 text-center mt-10'>
                <div>
                   <div className='conainer-scale'>
