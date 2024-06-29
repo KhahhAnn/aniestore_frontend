@@ -65,7 +65,7 @@ export const navigation = {
          key: 'Shop',
          href: null,
          childrens: [
-            { label: 'Mens Kurtas', href: '/shop/clothing/mens_kurta' },     
+            { label: 'Trang phục Ấn Độ', href: '/shop/clothing/trang_phuc_an_do' },     
             { label: 'Áo', href: '/shop/clothing/ao' }, 
             { label: 'Quần', href: '/shop/clothing/quan' },
             { label: 'Thời trang trẻ', href: '/shop/clothing/thoi_trang_tre'},

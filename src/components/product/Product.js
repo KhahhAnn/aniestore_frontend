@@ -9,6 +9,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { findProducts } from '../../state/product/Action'
 import { filters } from './FilterData'
 import ProductCard from './ProductCard'
+import { Skeleton } from 'antd'
 
 const sortOptions = [
    { name: 'Price: Low to High', href: '#', current: false },
@@ -22,7 +23,8 @@ export default function Product() {
    const location = useLocation();
    const navigate = useNavigate();
    const param = useParams();
-   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+   const [isLoading, setIsLoading] = useState(true);
 
    const decodedQueryString = decodeURIComponent(location.search);
    const searchParamms = new URLSearchParams(decodedQueryString);
@@ -75,10 +77,12 @@ export default function Product() {
          stock: stock
       }
       dispatch(findProducts(data));
+      setIsLoading(false);
    }, [param.levelThree, colorValue, sizeValue, priceValue, discount, sortValue, pageNumber, stock])
 
    return (
-      <div className="bg-white">
+      isLoading ? <Skeleton /> :
+      (<div className="bg-white">
          <div>
             {/* Mobile filter dialog */}
             <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -171,13 +175,13 @@ export default function Product() {
 
             <main className="mx-auto px-4 sm:px-6 lg:px-20">
                <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
-                  <h1 className="text-4xl font-bold tracking-tight text-gray-900">Product</h1>
+                  <h1 className="text-4xl font-bold tracking-tight text-gray-900">Sản phẩm</h1>
 
                   <div className="flex items-center">
                      <Menu as="div" className="relative inline-block text-left">
                         <div>
                            <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                              Sort
+                              Sắp xếp
                               <ChevronDownIcon
                                  className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                                  aria-hidden="true"
@@ -226,7 +230,7 @@ export default function Product() {
                         className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
                         onClick={() => setMobileFiltersOpen(true)}
                      >
-                        <span className="sr-only">Filters</span>
+                        <span className="sr-only">Lọc</span>
                         <FunnelIcon className="h-5 w-5" aria-hidden="true" />
                      </button>
                   </div>
@@ -234,14 +238,14 @@ export default function Product() {
 
                <section aria-labelledby="products-heading" className="pb-24 pt-6">
                   <h2 id="products-heading" className="sr-only">
-                     Products
+                     Sản phẩm
                   </h2>
 
                   <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
                      {/* Filters */}
                      <div>
                         <div className='py-10 flex justify-between items-center'>
-                           <h1 className='text-lg opacity-50 font-bold'>Filters</h1>
+                           <h1 className='text-lg opacity-50 font-bold'>Lọc</h1>
                            <FilterListIcon />
                         </div>
                         <form className="hidden lg:block -ml-10">
@@ -308,6 +312,6 @@ export default function Product() {
                </section>
             </main>
          </div>
-      </div>
+      </div>)
    )
 }

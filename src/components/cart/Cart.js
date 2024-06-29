@@ -16,7 +16,7 @@ const Cart = () => {
    const handleCheckOut = () => {
       navigate("/checkout?step=2");
    }
-console.log(cartStore);
+   console.log(cartStore);
    const handlePageChange = (page) => {
       setCurrentPage(page);
       console.log(`Đã chuyển đến trang ${page}`);
@@ -46,41 +46,41 @@ console.log(cartStore);
                   <CartItem productItem={item} key={index} reloadCart={() => dispatch(getCart(currentPage - 1, 3))} />
                ))}
                {
-                  cartStore.cart.cartItems.content.length === 0 ? <>Không có sản phẩm nào!</> : 
-                  (<div className="pagination-container text-center">
-                     <Pagination
-                        current={currentPage}
-                        total={cartStore.cart.cartItems.totalElements}
-                        pageSize={cartStore.cart.cartItems.size}
-                        onChange={handlePageChange}
-                     />
-                  </div>)
+                  cartStore.cart.cartItems.content.length === 0 ? <>Không có sản phẩm nào!</> :
+                     (<div className="pagination-container text-center">
+                        <Pagination
+                           current={currentPage}
+                           total={cartStore.cart.cartItems.totalElements}
+                           pageSize={cartStore.cart.cartItems.size}
+                           onChange={handlePageChange}
+                        />
+                     </div>)
                }
             </div>
             <div className='px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0'>
                <div className='border p-5'>
-                  <p className='uppercase font-bold opacity-60 pb-4'>Price details</p>
+                  <p className='uppercase font-bold opacity-60 pb-4'>Hóa đơn</p>
                   <hr />
                   <div className='space-y-3 font-semibold'>
                      <div className='flex justify-between pt-3 text-black'>
-                        <span>Price</span>
+                        <span>Giá tiền</span>
                         <span>{formatCurrency(cartStore.cart.cart.totalPrice == null ? 0 : cartStore.cart.cart.totalPrice)}</span>
                      </div>
                      <div className='flex justify-between pt-3'>
-                        <span>Discount</span>
+                        <span>Giảm giá</span>
                         <span className='text-green-600'>-{formatCurrency(cartStore.cart.cart.totalPrice == null ? 0 : (cartStore.cart.cart.totalPrice - cartStore.cart.cart.totalDiscountedPrice))}</span>
                      </div>
                      <div className='flex justify-between pt-3 '>
-                        <span>Delivery Charges</span>
+                        <span>Phí vận chuyển</span>
                         <span className='text-green-600'>Free</span>
                      </div>
                      <div className='flex justify-between pt-3 font-bold'>
-                        <span>Total Amount</span>
+                        <span>Tổng tiền</span>
                         <span className='text-green-600'>{formatCurrency(cartStore.cart.cart.totalDiscountedPrice == null ? 0 : cartStore.cart.cart.totalDiscountedPrice)}</span>
                      </div>
                   </div>
                   <Button onClick={handleCheckOut} variant='contained' className='w-full' sx={{ px: "2.5rem", py: "0.7rem", bgcolor: "#9155fd", marginTop: 3 }}>
-                     Checkout
+                     Thanh toán
                   </Button>
                </div>
             </div>

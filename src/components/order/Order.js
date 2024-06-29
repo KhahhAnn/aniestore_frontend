@@ -2,8 +2,8 @@ import { Grid } from '@mui/material'
 import React from 'react'
 import OrderCard from './OrderCard'
 const orderStatus = [
-   { label: "On The Way", value: "on_the_way" },
-   { label: "Delivered", value: "delivered" },
+   { label: "Nhận hàng thành công", value: "on_the_way" },
+   { label: "Đã xác nhận đơn", value: "delivered" },
    { label: "Cancelled", value: "cancelled" },
    { label: "Returned", value: "returned" },
 ]
@@ -14,9 +14,9 @@ const Order = () => {
          <Grid container sx={{ justifyContent: "space-between" }}>
             <Grid item xs={2.5}>
                <div className='h-auto shadow-lg bg-white p-5 sticky top-5'>
-                  <h1 className='font-bold text-lg'>Filter</h1>
+                  <h1 className='font-bold text-lg'>Lọc</h1>
                   <div className='space-y-4 mt-10'>
-                     <h1 className='font-semibold'>ORDER STATUS</h1>
+                     <h1 className='font-semibold'>Trạng thái đơn hàng</h1>
                      {
                         orderStatus.map((option) =>
                         (

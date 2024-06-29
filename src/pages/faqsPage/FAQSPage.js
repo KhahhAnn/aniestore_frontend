@@ -5,24 +5,24 @@ import MessageIcon from '@mui/icons-material/Message';
 const FAQSPage = () => {
    const data = [
       {
-         content: "How does product customization work?",
-         des1: " To make a T-shirt design, your first need to install specific graphic design software.Once you’ve done that, start your creation and make sure that your final design is at least 220 PPI so it won’t be pixelated when printed…",
-         des2: "To design your own T-shirt, you can upload your design to the front of your tee and add custom elements like text.For some of our T-shirts, reverse side printing is also available."
+         content: "Đặt hàng như thế nào?",
+         des1: " Hãy đăng nhập và thêm sản phẩm mà bạn yêu thích vào giỏ hàng, sau đó thực hiện đặt hàng nhé ",
+         des2: " Bạn cũng có thể mua trực tiếp trong sản phẩm bằng cách lựa chọn mua ngay. Hãy làm theo các yêu cầu mà bên cửa hàng yêu cầu và xác nhận đặt hàng"
       },
       {
-         content: "What products can I customize?",
-         des1: " To make a T-shirt design, your first need to install specific graphic design software.Once you’ve done that, start your creation and make sure that your final design is at least 220 PPI so it won’t be pixelated when printed…",
-         des2: "To design your own T-shirt, you can upload your design to the front of your tee and add custom elements like text.For some of our T-shirts, reverse side printing is also available."
+         content: "Da ngăm nên mặc tone màu gì?",
+         des1: " Hãy đăng nhập và thêm sản phẩm mà bạn yêu thích vào giỏ hàng, sau đó thực hiện đặt hàng nhé ",
+         des2: " Bạn cũng có thể mua trực tiếp trong sản phẩm bằng cách lựa chọn mua ngay. Hãy làm theo các yêu cầu mà bên cửa hàng yêu cầu và xác nhận đặt hàng"
       },
       {
-         content: "How are your T-shirts printed?",
-         des1: " To make a T-shirt design, your first need to install specific graphic design software.Once you’ve done that, start your creation and make sure that your final design is at least 220 PPI so it won’t be pixelated when printed…",
-         des2: "To design your own T-shirt, you can upload your design to the front of your tee and add custom elements like text.For some of our T-shirts, reverse side printing is also available."
+         content: "Những chương trình khuyến mãi cố định?",
+         des1: " Hãy đăng nhập và thêm sản phẩm mà bạn yêu thích vào giỏ hàng, sau đó thực hiện đặt hàng nhé ",
+         des2: " Bạn cũng có thể mua trực tiếp trong sản phẩm bằng cách lựa chọn mua ngay. Hãy làm theo các yêu cầu mà bên cửa hàng yêu cầu và xác nhận đặt hàng"
       },
       {
-         content: "What is the best T-shirt material?",
-         des1: " To make a T-shirt design, your first need to install specific graphic design software.Once you’ve done that, start your creation and make sure that your final design is at least 220 PPI so it won’t be pixelated when printed…",
-         des2: "To design your own T-shirt, you can upload your design to the front of your tee and add custom elements like text.For some of our T-shirts, reverse side printing is also available."
+         content: "Thanh toán như thế nào?",
+         des1: " Hãy đăng nhập và thêm sản phẩm mà bạn yêu thích vào giỏ hàng, sau đó thực hiện đặt hàng nhé ",
+         des2: " Bạn cũng có thể mua trực tiếp trong sản phẩm bằng cách lựa chọn mua ngay. Hãy làm theo các yêu cầu mà bên cửa hàng yêu cầu và xác nhận đặt hàng"
       }
    ]
    const [activeItems, setActiveItems] = useState({
@@ -61,8 +61,7 @@ const FAQSPage = () => {
          </div>
          <div>
             <div className='text-center my-10'>
-               <h2 className='font-bold text-4xl mb-6'>Frequently asked questions</h2>
-               <p className='text-[#7e7e7e] text-xl'>Let us show you how your product come to life.</p>
+               <h2 className='font-bold text-4xl mb-6'>Các câu hỏi thường hay gặp</h2>
             </div>
          </div>
          <div>
@@ -86,12 +85,12 @@ const FAQSPage = () => {
 
          <div className='flex justify-around mt-10'>
             <div className='flex flex-col gap-6'>
-               <h3 className='bg-[#EEE5F3] text-[#b479d9] font-bold text-center text-xl rounded-[20px] pl-5 pr-5 max-w-[30%]'>Support</h3>
-               <h3 className='font-bold text-4xl max-w-[400px]'>Frequently asked questions</h3>
+               <h3 className='bg-[#EEE5F3] text-[#b479d9] font-bold text-center text-xl rounded-[20px] pl-5 pr-5 max-w-[30%]'>Hỗ trợ</h3>
+               <h3 className='font-bold text-4xl max-w-[400px]'>Các câu hỏi thường gặp</h3>
                <span className='text-[#7e7e7e] font-medium text-base max-w-[500px]'>
-                  You’ve got the idea, we’ve got the tools—design your custom clothing with our free design assets:
+                  Nếu bạn có bất cứ câu hỏi nào cần chúng tôi hỗ trợ, đừng ngần ngại mà liên lạc với chúng tôi.
                </span>
-               <h6 className='uppercase font-bold text-sm'><MessageIcon style={{color:"#2ebb77", fontSize:"24px"}}/> Any questions </h6>
+               <h6 className='uppercase font-bold text-sm'><MessageIcon style={{color:"#2ebb77", fontSize:"24px"}}/> Bất cứ câu hỏi nào </h6>
                <p className='font-bold text-2xl'>khanhan@admin.com</p>
             </div>
             <div className='max-w-[700px]'>

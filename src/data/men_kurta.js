@@ -1,6 +1,6 @@
 export const mens_kurta = [
    {
-      "imageUrl": "	https://teespace.store/wp-content/uploads/2023/07/output-onlinepngtools-1-300x429.png",
+      "imageUrl": "https://zunezx.com/upload/image/data/SU-KIEN/msg5586366172-79631-9e5.jpg",
       "brand": "Majestic Man",
       "title": "Men Printed Pure Cotton Straight Kurta",
       "color": "Green",
@@ -28,7 +28,7 @@ export const mens_kurta = [
       "description": "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
    },
    {
-      "imageUrl": "	https://teespace.store/wp-content/uploads/2023/07/output-onlinepngtools-1-300x429.png",
+      "imageUrl": "https://zunezx.com/upload/image/data/SU-KIEN/photo1714237464-f56.jpeg",
       "brand": "SG LEMAN",
       "title": "Men Embroidered Jacquard Straight Kurta",
       "color": "Yellow",
@@ -56,7 +56,7 @@ export const mens_kurta = [
       "description": "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
    },
    {
-      "imageUrl": "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/g/6/k/m-sksh-dt1105-pcbl-fubar-original-imafux247zhqym2z-bb.jpeg?q=70",
+      "imageUrl": "https://zunezx.com/upload/image/data/SU-KIEN/Thiet-ke-chua-co-ten-6-ca7.png",
       "brand": "FUBAR",
       "title": "Men Printed Cotton Blend Straight Kurta",
       "color": "Blue",
@@ -84,7 +84,7 @@ export const mens_kurta = [
       "description": "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
    },
    {
-      "imageUrl": "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/i/v/x/xxl-br-ad-kt-105-adwyn-peter-original-imagj4zyd2q7t6cg.jpeg?q=70",
+      "imageUrl": "https://zunezx.com/upload/image/data/san-pham/bottoms/pants/redline-pant/E38A9D8A-487F-46A8-B5D2-E2E912F0C0A8-5aa.jpeg",
       "brand": "ALY JOHN",
       "title": "Men Solid Pure Cotton Straight Kurta",
       "color": "White",

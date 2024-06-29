@@ -13,13 +13,13 @@ function ContactPage() {
          <div className='mt-20'>
             <div className='flex justify-around gap-20'>
                <div>
-                  <h2 className='font-bold text-[40px] mb-10'>Keep in touch with us</h2>
+                  <h2 className='font-bold text-[40px] mb-10'>Hãy liên hệ với chúng tôi</h2>
                   <div className='flex justify-between gap-10'>
                      <div className='flex flex-col gap-2'>
-                        <h2 className='font-bold text-xl'>Address</h2>
-                        <span className='text-base'>Mobile: <span className='font-bold text-base'>068 26589 996</span></span>
+                        <h2 className='font-bold text-xl'>Địa chỉ</h2>
+                        <span className='text-base'>Số điện thoại: <span className='font-bold text-base'>068 26589 996</span></span>
                         <span className='text-base'>Hotline: <span className='font-bold text-base'>1900 26886</span></span>
-                        <span className='text-base'>90 VanTri BacTuLiem, HaNoi, VietNam</span>
+                        <span className='text-base'>90 Văn Trí, quận Bắc Từ Liêm, thành phố Hà Nội</span>
                      </div>
                      <div className='flex flex-col gap-2'>
                         <h2 className='font-bold text-xl'>Email</h2>
@@ -28,15 +28,15 @@ function ContactPage() {
                   </div>
                </div>
                <div>
-                  <h2 className='font-bold text-[40px] mb-10'>Send a message</h2>
+                  <h2 className='font-bold text-[40px] mb-10'>Gửi tin nhắn cho chúng tôi: </h2>
                   <div className='flex flex-col justify-between gap-10'>
                      <div className='flex gap-4'>
-                        <TextField id="outlined-basic" label="First Name" variant="outlined" />
-                        <TextField id="outlined-basic" label="Last Name" variant="outlined" />
+                        <TextField id="outlined-basic" label="Tên" variant="outlined" />
+                        <TextField id="outlined-basic" label="Họ tên" variant="outlined" />
                      </div>
-                     <TextField id="outlined-basic" label="Subject" variant="outlined" />
-                     <TextField id="outlined-basic" label="Message" variant="outlined" rows={6} />
-                     <button className='text-white font-bold text-base py-4 bg-[#2EBB77] rounded-xl hover:bg-[#29a76a]'>Submit</button>
+                     <TextField id="outlined-basic" label="Vấn đề" variant="outlined" />
+                     <TextField id="outlined-basic" label="Tin nhắn" variant="outlined" rows={6} />
+                     <button className='text-white font-bold text-base py-4 bg-[#2EBB77] rounded-xl hover:bg-[#29a76a]'>Gửi</button>
                   </div>
                </div>
             </div>

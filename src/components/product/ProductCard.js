@@ -25,7 +25,7 @@ function ProductCard({ product }) {
                   <li
                      className="text-[#767676] hover:text-black text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-black flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
                   >
-                     Add to Cart
+                     Thêm và giỏ hàng
                      <span>
                         <FaShoppingCart />
                      </span>
@@ -33,7 +33,7 @@ function ProductCard({ product }) {
                   <li
                      className="text-[#767676] hover:text-black text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-black flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
                   >
-                     View Details
+                     Chi tiết sản phẩm
                      <span className="text-lg">
                         <MdOutlineLabelImportant />
                      </span>
@@ -41,7 +41,7 @@ function ProductCard({ product }) {
                   <li
                      className="text-[#767676] hover:text-black text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-black flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
                   >
-                     Add to Wish List
+                     Thêm vào danh sách yêu thích
                      <span>
                         <BsSuitHeartFill />
                      </span>

@@ -38,8 +38,8 @@ const CartItem = ({ productItem }) => {
                <p className='opacity-70'>Size: {productItem.size}, {productItem.product.color}</p>
                <p className='opacity-70 mt-2'>Seller: {productItem.product.brand}</p>
                <div className=" flex space-x-5 items-center text-lg lg:text-xl text-gray-900 pt-6">
-                  <p className="font-semibold">${formatCurrency(productItem.product.discountedPrice)}</p>
-                  <p className='opacity-50 line-through'>${formatCurrency(productItem.product.price)}</p>
+                  <p className="font-semibold">{formatCurrency(productItem.product.discountedPrice)}</p>
+                  <p className='opacity-50 line-through'>{formatCurrency(productItem.product.price)}</p>
                   <p className='text-green-600 font-semibold'>{productItem.product.discountPrecent = '0' ? '0' : formatCurrency(productItem.product.discountPrecent)}% Off</p>
                </div>
             </div>

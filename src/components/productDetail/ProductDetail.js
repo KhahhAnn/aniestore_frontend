@@ -95,6 +95,9 @@ export default function ProductDeatil() {
          localStorage.removeItem('addToCartMessage');
       }
    }, []);
+   const formatCurrency = (value) => {
+      return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+   }
    return (
       <div className="bg-white lg:px-20">
          <div className="pt-6">
@@ -159,8 +162,8 @@ export default function ProductDeatil() {
                   <div className="mt-4 lg:row-span-3 lg:mt-0">
                      <h2 className="sr-only">Product information</h2>
                      <div className=" flex space-x-5 items-center text-lg lg:text-xl text-gray-900">
-                        <p className="font-semibold">${productStore.product?.discountedPrice}</p>
-                        <p className='opacity-50 line-through'>${productStore.product?.price}</p>
+                        <p className="font-semibold">{formatCurrency(productStore.product?.discountedPrice)}</p>
+                        <p className='opacity-50 line-through'>{formatCurrency(productStore.product?.price)}</p>
                         <p className='text-green-600 font-semibold'>{productStore.product?.discountPercent}% Off</p>
                      </div>
                      <div className="m-0">
@@ -170,7 +173,7 @@ export default function ProductDeatil() {
                               <h3 className="text-sm font-medium text-gray-900">Size</h3>
                            </div>
                            <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-4">
-                              <RadioGroup.Label className="sr-only">Choose a size</RadioGroup.Label>
+                              <RadioGroup.Label className="sr-only">Chọn size</RadioGroup.Label>
                               <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
                                  {product.sizes.map((size) => (
                                     <RadioGroup.Option
@@ -222,7 +225,7 @@ export default function ProductDeatil() {
                            </RadioGroup>
                         </div>
                         <Button onClick={handleAddToCart} variant='contained' sx={{ px: "2rem", py: "1rem", bgcolor: "#9155fd", marginTop: 3 }}>
-                           Add To Cart
+                           Thêm vào giỏ hàng
                         </Button>
                      </div>
                   </div>
@@ -230,7 +233,7 @@ export default function ProductDeatil() {
                   <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
                      {/* Description and details */}
                      <div>
-                        <h3 className="sr-only">Description</h3>
+                        <h3 className="sr-only">Mô tả</h3>
 
                         <div className="space-y-6">
                            <p className="text-base text-gray-900">{product.description}</p>
@@ -261,7 +264,7 @@ export default function ProductDeatil() {
                </div>
             </section>
             <section>
-               <h1 className='font-semibold text-lg pb-4'>Recent Review & Reating</h1>
+               <h1 className='font-semibold text-lg pb-4'>Review và đánh giá sản phẩm</h1>
                <div className='border p-5'>
                   <Grid container spacing={7}>
                      <Grid item xs={7}>
@@ -270,15 +273,15 @@ export default function ProductDeatil() {
                         </div>
                      </Grid>
                      <Grid item xs={5}>
-                        <h1 className='text-xl font-semibold pb-1'>Product Ratings</h1>
+                        <h1 className='text-xl font-semibold pb-1'>Đánh giá sản phẩm</h1>
                         <div className='flex items-center space-x-3'>
                            <Rating name='read-only' value={4.6} precision={0.5} readOnly />
-                           <p className='opacity-60'>10102003 Ratings</p>
+                           <p className='opacity-60'>5 đánh giá</p>
                         </div>
                         <Box className="mt-5">
                            <Grid container alignItems="center" gap={2}>
                               <Grid item xs={2}>
-                                 <p>Excellent</p>
+                                 <p>Tuyệt vời</p>
                               </Grid>
                               <Grid item xs={7}>
                                  <LinearProgress sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }} variant='determinate' value={40} color='success' />
@@ -286,7 +289,7 @@ export default function ProductDeatil() {
                            </Grid>
                            <Grid container alignItems="center" gap={2}>
                               <Grid item xs={2}>
-                                 <p>Very Good</p>
+                                 <p>Rất tốt</p>
                               </Grid>
                               <Grid item xs={7}>
                                  <LinearProgress sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }} variant='determinate' value={30} color='secondary' />
@@ -294,7 +297,7 @@ export default function ProductDeatil() {
                            </Grid>
                            <Grid container alignItems="center" gap={2}>
                               <Grid item xs={2}>
-                                 <p>Good</p>
+                                 <p>Tốt</p>
                               </Grid>
                               <Grid item xs={7}>
                                  <LinearProgress sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }} variant='determinate' value={25} color='primary' />
@@ -302,7 +305,7 @@ export default function ProductDeatil() {
                            </Grid>
                            <Grid container alignItems="center" gap={2}>
                               <Grid item xs={2}>
-                                 <p>Avarage</p>
+                                 <p>Trung bình</p>
                               </Grid>
                               <Grid item xs={7}>
                                  <LinearProgress sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }} variant='determinate' value={20} color='warning' />
@@ -310,7 +313,7 @@ export default function ProductDeatil() {
                            </Grid>
                            <Grid container alignItems="center" gap={2}>
                               <Grid item xs={2}>
-                                 <p>Poor</p>
+                                 <p>Chưa tốt</p>
                               </Grid>
                               <Grid item xs={7}>
                                  <LinearProgress sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }} variant='determinate' value={1} color='error' />
