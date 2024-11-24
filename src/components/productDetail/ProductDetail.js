@@ -48,13 +48,13 @@ const product = {
    description:
       'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
    highlights: [
-      'Hand cut and sewn locally',
-      'Dyed with our proprietary colors',
-      'Pre-washed & pre-shrunk',
-      'Ultra-soft 100% cotton',
+      'Cắt và may thủ công tại địa phương',
+      'Nhuộm bằng màu sắc độc quyền của chúng tôi',
+      'Được giặt và co trước',
+      'Vải cotton 100% siêu mềm mại',
    ],
    details:
-      'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
+      'Bộ 6 chiếc bao gồm hai áo phông màu đen, hai áo phông màu trắng và hai áo phông màu xám nhạt. Đăng ký dịch vụ thuê bao của chúng tôi và là người đầu tiên sở hữu những màu sắc mới thú vị, như phiên bản giới hạn "Xám Than" sắp ra mắt.',
 }
 
 function classNames(...classes) {
@@ -67,21 +67,30 @@ export default function ProductDeatil() {
    const params = useParams();
    const { productStore } = useSelector(Store => Store)
    const handleAddToCart = () => {
+      // Kiểm tra xem người dùng đã chọn size chưa
+      if (!selectedSize || !selectedSize.name) {
+         message.error("Vui lòng chọn size trước khi thêm vào giỏ hàng");
+         return;
+      }
+   
+      // Kiểm tra xem người dùng đã đăng nhập chưa
       const token = localStorage.getItem('jwt');
       if (!token) {
          message.error("Vui lòng đăng nhập để thêm sản phẩm");
          return;
       }
+   
       try {
-         const data = { productId: params.productId, size: selectedSize.name }
+         const data = { productId: params.productId, size: selectedSize.name };
          console.log("data: ", data);
-         dispatch(addItemToCart(data))         
-         window.location.reload();
+         dispatch(addItemToCart(data));
+         window.location.reload();  // Nếu bạn muốn reload lại trang sau khi thêm vào giỏ hàng
          localStorage.setItem('addToCartMessage', "Thêm sản phẩm thành công");
-      } catch(error) {
+      } catch (error) {
          message.error("Thêm sản phẩm thất bại");
       }
    }
+   
 
    useEffect(() => {
       const data = { productId: params.productId }
@@ -98,6 +107,9 @@ export default function ProductDeatil() {
    const formatCurrency = (value) => {
       return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
    }
+
+   console.log(productStore);
+   
    return (
       <div className="bg-white lg:px-20">
          <div className="pt-6">
@@ -139,36 +151,22 @@ export default function ProductDeatil() {
                         className="h-full w-full object-cover object-center"
                      />
                   </div>
-                  <div className="flex flex-wrap space-x-5 justify-center">
-                     {
-                        product.images.map((image) => <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
-                           <img
-                              src={image.src}
-                              alt={image.alt}
-                              className="h-full w-full object-cover object-center"
-                           />
-                        </div>
-                        )
-                     }
-                  </div>
                </div>
                <div className="lg:col-span-1 maxt-auto max-w-2xl px-4 pb-6 sm:px-6 lg:max-w-7xl lg:px-8 lg:pb-24">
                   <div className="lg:col-span-2">
-                     <h1 className="text-lg lg:text-xl font-semibold text-gray-900">{productStore.product?.brand}</h1>
-                     <h1 className='text-lg lg:text-xl text-gray-900 opacity-60 pt-1'>{productStore.product?.title}</h1>
+                     <h1 className='text-lg lg:text-xl text-black pt-1'>{productStore.product?.title}</h1>
+                     <p className="text-base italic lg:text-xl font-semibold text-gray-600">{productStore.product?.brand}</p>
                   </div>
 
                   {/* Options */}
                   <div className="mt-4 lg:row-span-3 lg:mt-0">
                      <h2 className="sr-only">Product information</h2>
                      <div className=" flex space-x-5 items-center text-lg lg:text-xl text-gray-900">
-                        <p className="font-semibold">{formatCurrency(productStore.product?.discountedPrice)}</p>
-                        <p className='opacity-50 line-through'>{formatCurrency(productStore.product?.price)}</p>
-                        <p className='text-green-600 font-semibold'>{productStore.product?.discountPercent}% Off</p>
+                        <p className="font-semibold">{formatCurrency(productStore.product?.price)}</p>
                      </div>
                      <div className="m-0">
                         {/* Sizes */}
-                        <div className="mt-10">
+                        <div className="mt-4">
                            <div className="flex items-center justify-between">
                               <h3 className="text-sm font-medium text-gray-900">Size</h3>
                            </div>
@@ -197,7 +195,7 @@ export default function ProductDeatil() {
                                                 <span
                                                    className={classNames(
                                                       active ? 'border' : 'border-2',
-                                                      checked ? 'border-indigo-500' : 'border-transparent',
+                                                      checked ? 'border-[#2ebb77]' : 'border-transparent',
                                                       'pointer-events-none absolute -inset-px rounded-md'
                                                    )}
                                                    aria-hidden="true"
@@ -224,7 +222,7 @@ export default function ProductDeatil() {
                               </div>
                            </RadioGroup>
                         </div>
-                        <Button onClick={handleAddToCart} variant='contained' sx={{ px: "2rem", py: "1rem", bgcolor: "#9155fd", marginTop: 3 }}>
+                        <Button onClick={handleAddToCart} variant='contained' sx={{ px: "1rem", py: "1rem", bgcolor: "#2ebb77", marginTop: 3, borderRadius: "12px" }} disabled={!selectedSize || !selectedSize.name} >
                            Thêm vào giỏ hàng
                         </Button>
                      </div>
@@ -236,12 +234,12 @@ export default function ProductDeatil() {
                         <h3 className="sr-only">Mô tả</h3>
 
                         <div className="space-y-6">
-                           <p className="text-base text-gray-900">{product.description}</p>
+                           <p className="text-base text-gray-900">{productStore?.product?.description}</p>
                         </div>
                      </div>
 
                      <div className="mt-10">
-                        <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
+                        <h3 className="text-sm font-medium text-gray-900">Đáng chú ý</h3>
                         <div className="mt-4">
                            <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
                               {product.highlights.map((highlight) => (
@@ -254,7 +252,7 @@ export default function ProductDeatil() {
                      </div>
 
                      <div className="mt-10">
-                        <h2 className="text-sm font-medium text-gray-900">Details</h2>
+                        <h2 className="text-sm font-medium text-gray-900">Chi tiết</h2>
 
                         <div className="mt-4 space-y-6">
                            <p className="text-sm text-gray-600">{product.details}</p>

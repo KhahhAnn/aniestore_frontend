@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 import DeliveryAddressForm from './DeliveryAddressForm';
 import OrderSummary from './OrderSummary';
 
-const steps = ['Login', 'Delevery Address', 'Order Summary', "Payment"];
+const steps = ['Đăng nhập', 'Địa chỉ giao hàng', 'Xác nhận', "Thanh toán"];
 
 export default function CheckOut() {
    const location = useLocation()

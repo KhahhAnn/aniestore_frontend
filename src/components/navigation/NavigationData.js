@@ -60,20 +60,20 @@ export const navigation = {
       },
    ],
    pages: [
-      { key: 'Home', childrens: null, href: '/' },
+      { key: 'Trang chủ', childrens: null, href: '/home' },
       {
-         key: 'Shop',
-         href: null,
+         key: 'Cửa hảng',
+         href: "/shop",
          childrens: [
-            { label: 'Trang phục Ấn Độ', href: '/shop/clothing/trang_phuc_an_do' },     
-            { label: 'Áo', href: '/shop/clothing/ao' }, 
+            { label: 'Áo', href: '/shop/clothing/ao' },     
             { label: 'Quần', href: '/shop/clothing/quan' },
+            { label: 'Váy', href: '/shop/clothing/vay' }, 
             { label: 'Thời trang trẻ', href: '/shop/clothing/thoi_trang_tre'},
          ]
       },
       { key: 'Blog', childrens: null, href: '/blog' },
-      { key: 'About', childrens: null, href: '/about' },
-      { key: 'Contact us', childrens: null, href: '/contact-us' },
+      { key: 'Giới thiệu', childrens: null, href: '/about' },
+      { key: 'Liên hệ', childrens: null, href: '/contact-us' },
       { key: 'FAQS', childrens: null, href: '/faqs' },
    ],
 }  

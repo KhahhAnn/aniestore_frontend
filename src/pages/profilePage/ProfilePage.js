@@ -37,6 +37,10 @@ function ProfilePage() {
       image: previewUrl,
    });
 
+
+   console.log("auth: ", auth);
+
+
    const handleChange = evt => {
       const value = evt.target.value;
       setState({
@@ -150,7 +154,7 @@ function ProfilePage() {
             console.log(response);
             setIsLoading(false);
             setShowSuccessMessage(true);
-            if(response.data === "") {
+            if (response.data === "") {
                setMessage("Đổi mật khẩu thất bại!")
             }
             setTimeout(() => {
@@ -198,13 +202,13 @@ function ProfilePage() {
          <div className='mx-auto max-w-[70%] p-5 border-[1px] border-[rgba(0, 0, 0, .125)] mt-20 grid justify-between' style={{ gridTemplateColumns: "30% 65%" }}>
             <div className='flex flex-col gap-5'>
                <div className={`hover:bg-slate-100 rounded-md ${activeTab === 'general' && 'bg-slate-100'}`} onClick={() => setActiveTab('general')}>
-                  <p className={`pl-2 text-[#495057] ${activeTab === 'general' && 'font-bold text-black'}`}>General</p>
+                  <p className={`pl-2 text-[#495057] ${activeTab === 'general' && 'font-bold text-black'}`}>Thông tin chung</p>
                </div>
                <div className={`hover:bg-slate-100 rounded-md ${activeTab === 'password' && 'bg-slate-100'}`} onClick={() => setActiveTab('password')}>
-                  <p className={`pl-2 text-[#495057] ${activeTab === 'password' && 'font-bold text-black'}`}>Change password</p>
+                  <p className={`pl-2 text-[#495057] ${activeTab === 'password' && 'font-bold text-black'}`}>Mật khẩu</p>
                </div>
                <div className={`hover:bg-slate-100 rounded-md ${activeTab === 'infor' && 'bg-slate-100'}`} onClick={() => setActiveTab('infor')}>
-                  <p className={`pl-2 text-[#495057] ${activeTab === 'infor' && 'font-bold text-black'}`}>Infor</p>
+                  <p className={`pl-2 text-[#495057] ${activeTab === 'infor' && 'font-bold text-black'}`}>Địa chỉ</p>
                </div>
             </div>
             <div className='flex flex-col'>
@@ -218,11 +222,11 @@ function ProfilePage() {
                      </div>
                      <div className='flex flex-col gap-4 mt-5'>
                         <div>
-                           <label>First name: </label>
+                           <label>Họ và tên đệm: </label>
                            <Input defaultValue={auth.user?.firstName} name='firstName' onChange={handleChange} />
                         </div>
                         <div>
-                           <label>Last name: </label>
+                           <label>Tên: </label>
                            <Input defaultValue={auth.user?.lastName} name='lastName' onChange={handleChange} />
                         </div>
                         <div>
@@ -230,7 +234,7 @@ function ProfilePage() {
                            <Input defaultValue={auth.user?.email} name='email' onChange={handleChange} />
                         </div>
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[20%]" onClick={handleUpdateUser}>
-                           Save
+                           Lưu
                         </button>
                      </div>
                   </>
@@ -238,19 +242,19 @@ function ProfilePage() {
                {activeTab === 'password' && (
                   <div className='flex flex-col gap-4 mt-5'>
                      <div>
-                        <label>Current password: </label>
+                        <label>Mật khẩu hiện tại: </label>
                         <Input type='password' name='currentPassword' onChange={handleChange} />
                      </div>
                      <div>
-                        <label>New password: </label>
+                        <label>Mật khẩu mới: </label>
                         <Input type='password' name='password' onChange={handleChange} />
                      </div>
                      <div>
-                        <label>Repeat new password: </label>
+                        <label>Nhập lại mật khẩu: </label>
                         <Input type='password' name='repeatPassword' onChange={handleChange} />
                      </div>
                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[30%]" onClick={handleChangePassword}>
-                        Save password
+                        Đổi mật khẩu
                      </button>
                   </div>
                )}
@@ -259,10 +263,11 @@ function ProfilePage() {
                      <Grid item xs={12} sm={6}>
                         <TextField
                            select
-                           label="Select Province"
+                           label="Chọn thành phố"
                            value={selectedProvince}
                            onChange={handleProvinceChange}
                            fullWidth
+
                         >
                            {provinces.map((province) => (
                               <MenuItem key={province.province_id} value={province.province_id}>
@@ -274,7 +279,7 @@ function ProfilePage() {
                      <Grid item xs={12} sm={6}>
                         <TextField
                            select
-                           label="Select District"
+                           label="Chọn huyện"
                            value={selectedDistrict}
                            onChange={handleDistrictChange}
                            fullWidth
@@ -289,7 +294,7 @@ function ProfilePage() {
                      <Grid item xs={12} sm={6}>
                         <TextField
                            select
-                           label="Select Ward"
+                           label="Chọn xã"
                            value={selectedWard}
                            onChange={handleWarChange}
                            fullWidth
@@ -302,15 +307,15 @@ function ProfilePage() {
                         </TextField>
                      </Grid>
                      <div>
-                        <label>Address: </label>
-                        <TextArea defaultValue={auth.user.addressList[0].streetAddress} rows={4} />
+                        <label>Dịa chỉ chi tiết: </label>
+                        <TextArea defaultValue={auth?.user?.addressList[0]?.streetAddress} rows={4} />
                      </div>
                      <div>
-                        <label>Phone: </label>
+                        <label>Số điện thoại: </label>
                         <Input defaultValue={auth.user?.mobile} />
                      </div>
                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-[40%]">
-                        Add new info
+                        Thêm địa chỉ mới
                      </button>
                   </div>
                )}

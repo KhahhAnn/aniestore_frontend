@@ -30,18 +30,18 @@ const AuthForm = () => {
                         id="signIn"
                         onClick={() => handleOnClick("signIn")}
                      >
-                        Sign In
+                        Đăng nhập
                      </button>
                   </div>
                   <div className="overlay-panel overlay-right">
-                     <h1 className='font-bold text-xl'>Hello, Friend!</h1>
-                     <p className='text-base font-light'>Enter your personal details and start journey with us</p>
+                     <h1 className='font-bold text-xl'>Chào mừng quay trở lại!</h1>
+                     <p className='text-base font-light'>Nhập thông tin cá nhân của bạn và bắt đầu hành trình cùng chúng tôi</p>
                      <button
                         className="ghost"
                         id="signUp"
                         onClick={() => handleOnClick("signUp")}
                      >
-                        Sign Up
+                        Đăng ký
                      </button>
                   </div>
                </div>

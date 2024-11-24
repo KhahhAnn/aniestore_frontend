@@ -11,3 +11,10 @@
 // Tên đăng nhập: khanhanbui2003@gmail.com
 
 // Mật khẩu: (Là mật khẩu nhập tại giao diện đăng ký Merchant môi trường TEST)
+
+
+export const calculateDiscountedPrice = (totalPrice, discountPercent) => {
+   const discountAmount = (totalPrice * discountPercent) / 100;
+   const totalDiscountedPrice = totalPrice - discountAmount;
+   return { discountAmount, totalDiscountedPrice };
+};

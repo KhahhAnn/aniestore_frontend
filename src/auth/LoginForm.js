@@ -30,14 +30,14 @@ const LoginForm = () => {
                   <TextField  required id='password' name='password' label="Password" fullWidth autoComplete='password' type='password' />
                </Grid>
                <Grid item xs={12}>
-                  <Button  className='bg-[#9155FD] w-full' type='submit' variant='contained' size='large' sx={{padding:"0.8rem 0", bgcolor: "#9155FD"}}>Login</Button>
+                  <Button  className='bg-[#9155FD] w-full' type='submit' variant='contained' size='large' sx={{padding:"0.8rem 0", bgcolor: "#9155FD"}}>Đăng nhập</Button>
                </Grid>
             </Grid>
          </form>
          <div className='flex justify-center flex-col items-center'>
             <div className='py-3 flex items-center'>
                <p>If you have already account ?</p>
-               <Button onClick={() => navigate("/register")} className='ml-5' size='small' sx={{marginTop: "4px"}}>Register</Button>
+               <Button onClick={() => navigate("/register")} className='ml-5' size='small' sx={{marginTop: "4px"}}>Đăng kí</Button>
             </div>
          </div>
       </div>

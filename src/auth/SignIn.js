@@ -39,7 +39,7 @@ function SignIn() {
    return (
       <div className="form-container sign-in-container">
          <form onSubmit={handleSubmit}>
-            <h1>Sign in</h1>
+            <h1>Đăng nhập</h1>
             <div className="social-container">
                <a href="#" className="social">
                   <FacebookIcon />
@@ -51,7 +51,7 @@ function SignIn() {
                   <LinkedInIcon />
                </a>
             </div>
-            <span>or use your account</span>
+            <span>Hoặc sử dụng tài khoản đã đăng kí</span>
             <input
                type="email"
                placeholder="Email"
@@ -66,8 +66,8 @@ function SignIn() {
                value={state.password}
                onChange={handleChange}
             />
-            <a href="#">Forgot your password?</a>
-            <button>Sign In</button>
+            <a href="#">Quên mật khẩu</a>
+            <button>Đăng nhập</button>
          </form>
       </div>
    );

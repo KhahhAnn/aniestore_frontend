@@ -4,8 +4,8 @@ export const mens_kurta = [
       "brand": "Majestic Man",
       "title": "Men Printed Pure Cotton Straight Kurta",
       "color": "Green",
-      "discountedPrice": 499,
-      "price": 1499,
+      "discountedPrice": 499000,
+      "price": 1499000,
       "discountPersent": 66,
       "size": [
          {
@@ -29,11 +29,11 @@ export const mens_kurta = [
    },
    {
       "imageUrl": "https://zunezx.com/upload/image/data/SU-KIEN/photo1714237464-f56.jpeg",
-      "brand": "SG LEMAN",
+      "brand": "Quần dài Nhật Bản",
       "title": "Men Embroidered Jacquard Straight Kurta",
       "color": "Yellow",
-      "discountedPrice": 799,
-      "price": 2499,
+      "discountedPrice": 799000,
+      "price": 249900,
       "discountPersent": 68,
       "size": [
          {
@@ -57,11 +57,11 @@ export const mens_kurta = [
    },
    {
       "imageUrl": "https://zunezx.com/upload/image/data/SU-KIEN/Thiet-ke-chua-co-ten-6-ca7.png",
-      "brand": "FUBAR",
+      "brand": "Áo phông",
       "title": "Men Printed Cotton Blend Straight Kurta",
       "color": "Blue",
-      "discountedPrice": 399,
-      "price": 1499,
+      "discountedPrice": 399000,
+      "price": 149900,
       "discountPersent": 73,
       "size": [
          {
@@ -85,11 +85,11 @@ export const mens_kurta = [
    },
    {
       "imageUrl": "https://zunezx.com/upload/image/data/san-pham/bottoms/pants/redline-pant/E38A9D8A-487F-46A8-B5D2-E2E912F0C0A8-5aa.jpeg",
-      "brand": "ALY JOHN",
+      "brand": "Áo phông đen hình",
       "title": "Men Solid Pure Cotton Straight Kurta",
       "color": "White",
       "discountedPrice": 474,
-      "price": 1999,
+      "price": 199900,
       "discountPersent": 76,
       "size": [
          {
@@ -112,12 +112,12 @@ export const mens_kurta = [
       "description": "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
    },
    {
-      "imageUrl": "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/j/a/r/l-poch521835-peter-england-original-imag7jg47g7cxhg3-bb.jpeg?q=70",
-      "brand": "PETER ENGLAND",
+      "imageUrl": "https://zunezx.com/upload/image/cache/data/SU-KIEN/6256047650117895183-cbf-crop-550-550.jpg",
+      "brand": "Áo kimono",
       "title": "Men Woven Design Pure Cotton Straight Kurta",
       "color": "Grey",
       "discountedPrice": 524,
-      "price": 1049,
+      "price": 1199000,
       "discountPersent": 50,
       "size": [
          {

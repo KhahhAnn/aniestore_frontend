@@ -73,7 +73,7 @@ function SignUp() {
             </div>
          )}
          <form onSubmit={handleSubmit}>
-            <h1>Create Account</h1>
+            <h1>Tạo tài khoản mới</h1>
             <div className="social-container">
                <a href="#" className="social">
                   <FacebookIcon />
@@ -85,7 +85,7 @@ function SignUp() {
                   <LinkedInIcon />
                </a>
             </div>
-            <span>or use your email for registration</span>
+            <span>Hoặc đăng ký bằng email của bạn</span>
             <input
                type="text"
                name="firstName"
@@ -114,7 +114,7 @@ function SignUp() {
                onChange={handleChange}
                placeholder="Mật khẩu"
             />
-            <button>Sign Up</button>
+            <button>Đăng ký</button>
          </form>
       </div>
    );

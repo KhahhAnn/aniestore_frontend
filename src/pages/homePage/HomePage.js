@@ -13,6 +13,15 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdOutlineLabelImportant } from "react-icons/md";
 import { BsSuitHeartFill } from "react-icons/bs";
 import Badge from './Badge'
+import img1 from "../../assets/10.jpg"
+import img3 from "../../assets/11.jpg"
+import img4 from "../../assets/12.jpg"
+import img5 from "../../assets/13.jpg"
+import img6 from "../../assets/14.jpg"
+import img2 from "../../assets/10.1.jpg"
+import sp1 from "../../assets/sp1.png"
+import sp2 from "../../assets/sp2.png"
+import sp3 from "../../assets/sp3.png"
 
 
 const HomePage = () => {
@@ -22,20 +31,19 @@ const HomePage = () => {
    return (
       <div className='mt-10'>
          <div>
-            <div className='flex justify-center items-center gap-10 mx-20'>
-               <img style={{ height: "817.55px", width: "720px", borderRadius: "10px" }} src='https://i.pinimg.com/564x/0f/7c/2e/0f7c2e65b25d2390323bb74b2fbb76de.jpg' alt='' />
-               <div>
+            <section id="banner">
+               <div className='mt-36'>
                   <div>
                      <div className='flex flex-col flex-nowrap gap-10'>
                         <div className='flex flex-row gap-4'>
-                           <h3 style={{ fontSize: "18px", backgroundColor: "rgb(180, 121, 217, 40%)", borderRadius: "20px", padding: "5px", color: "#B479D9", fontWeight: "bold", paddingLeft: "20px", paddingRight: "20px" }}> Rated 4.9 of 5.0</h3>
-                           <Rating style={{ marginTop: "12px", width: "30px" }} value={4.5} name="size-large" size="large" readOnly precision={0.5} />
+                           <h3 style={{ fontSize: "18px", backgroundColor: "rgb(180, 121, 217, 40%)", borderRadius: "20px", padding: "5px", color: "#B479D9", fontWeight: "bold", paddingLeft: "20px", paddingRight: "20px" }}> Đánh giá 4.5 trên 5.0</h3>
+                           <Rating style={{ marginTop: "12px", width: "30px", fontSize: "30px" }} value={4.5} name="size-large" size="large" readOnly precision={0.5} />
                         </div>
                         <div>
-                           <h1 className='font-bold text-5xl justify-center content-center mb-4' style={{padding: "10px", marginTop: "10px"}}>
+                           <h1 className='font-bold text-5xl justify-center content-center mb-4' style={{ padding: "10px", marginTop: "10px" }}>
                               Cùng AnieStore trải qua một mùa hè tràn đầy màu sắc
                            </h1>
-                           <p className='text-slate-400 font-medium'>Hãy ghé qua cửa hàng của chúng tôi! AnieStore sẽ có đầy đủ các mẫu thời trang mới nhất hiện tại.</p>
+                           <p className='text-black font-medium'>Hãy ghé qua cửa hàng của chúng tôi! AnieStore sẽ có đầy đủ các mẫu thời trang mới nhất hiện tại.</p>
                         </div>
                         <div>
                            <div>
@@ -51,7 +59,17 @@ const HomePage = () => {
                      </div>
                   </div>
                </div>
-            </div>
+               <div class="box-right">
+                  <img src={sp1} alt="" />
+                  <img src={sp2} alt="" />
+                  <img src={sp3} alt="" />
+               </div>
+               <div class="to-bottom">
+                  <a href="#about">
+                     <i class="icofont-circled-down"></i>
+                  </a>
+               </div>
+            </section>
          </div>
          <div className='align-middle text-center mt-20'>
             <h1 className='font-bold text-4xl'>T-shirt cho mọi nhà</h1>
@@ -107,7 +125,7 @@ const HomePage = () => {
          </div>
          <div className='align-middle text-center mt-20'>
             <h1 className='font-medium text-7xl mb-10 text-main'>Các mẫu mới nhất</h1>
-            <h1 className='font-bold text-4xl' style = {{paddingBottom: "40px"}}>Sản phẩm nổi bật</h1>
+            <h1 className='font-bold text-4xl' style={{ paddingBottom: "40px" }}>Sản phẩm nổi bật</h1>
          </div>
          <div className='grid grid-cols-4 gap-20'>
             {
@@ -121,7 +139,7 @@ const HomePage = () => {
                            <div className="absolute top-6 left-2">
                               {<Badge text="New" />}
                            </div>
-                           <div className="w-full h-28 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
+                           <div className="w-full h-18 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700 py-3">
                               <ul className="w-full h-full flex flex-col items-end justify-center gap-2 font-titleFont px-2 border-l border-r">
                                  <li
                                     className="text-[#767676] hover:text-black text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-black flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
@@ -139,14 +157,6 @@ const HomePage = () => {
                                        <MdOutlineLabelImportant />
                                     </span>
                                  </li>
-                                 <li
-                                    className="text-[#767676] hover:text-black text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-black flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
-                                 >
-                                    Thêm vào danh sách yêu thích
-                                    <span>
-                                       <BsSuitHeartFill />
-                                    </span>
-                                 </li>
                               </ul>
                            </div>
                         </div>
@@ -155,10 +165,7 @@ const HomePage = () => {
                               <h2 className="text-lg text-black font-bold">
                                  {mens_kurta[i].brand}
                               </h2>
-                              <p className="text-[#767676] text-[14px]">{formatCurrency(mens_kurta[i].discountedPrice)}</p>
-                           </div>
-                           <div>
-                              <p className="text-[#767676] text-[14px]">{mens_kurta[i].discountPersent}</p>
+                              <p className="text-black font-bold text-[14px]">{formatCurrency(mens_kurta[i].price)}</p>
                            </div>
                         </div>
                      </div>
@@ -172,7 +179,7 @@ const HomePage = () => {
                <h3 className='uppercase text-[#B479D9] font-bold text-sm'>Chương trình khuyến mại</h3>
                <h1 className='font-bold text-[40px]'>Giảm giá tới 30%</h1>
                <p className='text-[#7E7E7E] font-medium text-lg max-w-96 leading-8 mt-8'>Đồ bộ ngắn tay phù hợp cho những chuyến đi biển của bạn vào mùa hè này</p>
-               <TimerCountdown targetDate="2024-07-01T00:00:00" />
+               <TimerCountdown targetDate="2024-12-20T00:00:00" />
                <button className='text-white font-bold text-base mt-10' style={{ backgroundColor: "#2EBB77", padding: "10px", borderRadius: "10px" }}>Mua ngay với 199.000đ<ArrowForwardIcon /> </button>
             </div>
             <div>
@@ -188,9 +195,81 @@ const HomePage = () => {
          </div>
 
          <div className='mt-40'>
+            <h3 className='text-[#B479D9] py-3 bg-[#dfc3ee] text-center font-bold text-xl rounded-3xl max-w-lg ml-[480px]'>Bạn có ý tưởng, chúng tôi có công cụ</h3>
+            <h1 className='font-bold text-4xl text-center mt-10'>ƯU ĐÃI ĐẾN TỪ ANIESTORE</h1>
+         </div>
+         <div className='flex flex-wrap justify-center gap-10 mt-20'>
+            <div className='pb-3 bg-slate-200 rounded-xl custom-product mb-10'>
+               <img className='w-[437px] h-[437px] rounded-t-xl' src={img1} alt='' data-hover={img2} />
+               <div className='flex justify-between mx-8 mt-4'>
+                  <p className='font-bold text-xl mt-2'>Các mẫu đang hot</p>
+                  <div className='p-2 rounded-full bg-[#f5f5f5] icon-hover h-[42px]'>
+                     <ArrowForwardIcon />
+                  </div>
+               </div>
+            </div>
+            <div className='pb-3 bg-slate-200 rounded-xl custom-product mb-10'>
+               <img className='w-[437px] h-[437px] rounded-t-xl' src={img2} alt='' />
+               <div className='flex justify-between mx-8 mt-4'>
+                  <p className='font-bold text-xl mt-2'>Các mẫu đang hot</p>
+                  <div className='p-2 rounded-full bg-[#f5f5f5] icon-hover h-[42px]'>
+                     <ArrowForwardIcon />
+                  </div>
+               </div>
+            </div>
+            <div className='pb-3 bg-slate-200 rounded-xl custom-product mb-10'>
+               <img className='w-[437px] h-[437px] rounded-t-xl' src={img3} alt='' />
+               <div className='flex justify-between mx-8 mt-4'>
+                  <p className='font-bold text-xl mt-2'>Các mẫu đang hot</p>
+                  <div className='p-2 rounded-full bg-[#f5f5f5] icon-hover h-[42px]'>
+                     <ArrowForwardIcon />
+                  </div>
+               </div>
+            </div>
+            <div className='pb-3 bg-slate-200 rounded-xl custom-product'>
+               <img className='w-[437px] h-[437px] rounded-t-xl' src={img4} alt='' />
+               <div className='flex justify-between mx-8 mt-4'>
+                  <p className='font-bold text-xl mt-2'>Các mẫu đang hot</p>
+                  <div className='p-2 rounded-full bg-[#f5f5f5] icon-hover h-[42px]'>
+                     <ArrowForwardIcon />
+                  </div>
+               </div>
+            </div>
+            <div className='pb-3 bg-slate-200 rounded-xl custom-product'>
+               <img className='w-[437px] h-[437px] rounded-t-xl' src={img5} alt='' />
+               <div className='flex justify-between mx-8 mt-4'>
+                  <p className='font-bold text-xl mt-2'>Các mẫu đang hot</p>
+                  <div className='p-2 rounded-full bg-[#f5f5f5] icon-hover h-[42px]'>
+                     <ArrowForwardIcon />
+                  </div>
+               </div>
+            </div>
+            <div className='pb-3 bg-slate-200 rounded-xl custom-product'>
+               <img className='w-[437px] h-[437px] rounded-t-xl' src={img6} alt='' />
+               <div className='flex justify-between mx-8 mt-4'>
+                  <p className='font-bold text-xl mt-2'>Các mẫu đang hot</p>
+                  <div className='p-2 rounded-full bg-[#f5f5f5] icon-hover h-[42px]'>
+                     <ArrowForwardIcon />
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div className='mt-40'>
             <h2 className='font-bold text-center text-5xl'>Gửi phản hồi cho chúng tôi những phản hồi tốt nhất</h2>
             <div className='mx-10'>
                <div className='grid gap-4 mt-10'>
+                  <div className='grid grid-cols-4 gap-4'>
+                     <div className='col-span-2 feed-back-container-img'>
+                        <img className='rounded-xl h-[400px] w-full object-cover feed-back-img' src={img1} alt='' />
+                     </div>
+                     <div className='feed-back-container-img'>
+                        <img className='rounded-xl h-[400px] w-full feed-back-img' src={img2} alt='' />
+                     </div>
+                     <div className='feed-back-container-img'>
+                        <img className='rounded-xl h-[400px] w-full feed-back-img' src={img3} alt='' />
+                     </div>
+                  </div>
                   <div className='grid grid-cols-3 gap-4'>
                      <div className='row-span-2 feed-back-container-img'>
                         <img className='rounded-xl w-full h-[720px] object-cover feed-back-img' src='https://i.pinimg.com/564x/27/65/7d/27657dde2d20381b23e6a2b29b0c6f7f.jpg' alt='' />
@@ -202,18 +281,18 @@ const HomePage = () => {
                         <img className='rounded-xl h-[350px] w-full object-cover feed-back-img' src='https://i.pinimg.com/564x/14/5e/83/145e8370c48535184594cfd4521ec5b3.jpg' alt='' />
                      </div>
                   </div>
+                  <div className='grid grid-cols-4 gap-4'>
+                     <div className='feed-back-container-img'>
+                        <img className='rounded-xl h-[400px] w-full object-cover feed-back-img' src={img4} alt='' />
+                     </div>
+                     <div className='col-span-2 feed-back-container-img'>
+                        <img className='rounded-xl h-[400px] w-full object-cover feed-back-img' src={img5} alt='' />
+                     </div>
+                     <div className='feed-back-container-img'>
+                        <img className='rounded-xl h-[400px] w-full feed-back-img' src={img6} alt='' />
+                     </div>
+                  </div>
                </div>
-            </div>
-         </div>
-
-         <div className='flex justify-items-center justify-between bg-[#64CB9A] mt-20'>
-            <div className='my-auto max-w-xl ml-20'>
-               <h2 className='text-white text-5xl font-bold mb-6'>Bạn có thắc mắc gì về chúng tôi không? Hãy liên hệ ở dưới nhé!!!</h2>
-               <button className='px-5 py-3 bg-white rounded-2xl font-bold mr-10 text-black hover:bg-[#2ebb77] hover:text-white'>Shop Now<ArrowForwardIcon /></button>
-               <button className='px-5 py-3 bg-white rounded-2xl font-bold text-black hover:bg-[#2ebb77] hover:text-white'>Contact Us<ArrowForwardIcon /></button>
-            </div>
-            <div className='mr-20'>
-               <img src="https://teespace.store/wp-content/uploads/2023/08/banner-111.png" alt='' />
             </div>
          </div>
 
@@ -239,6 +318,21 @@ const HomePage = () => {
                <p className='text-[#7e7e7e] text-[15px]'>Thanh toán bằng thẻ tín dụng hoặc khi nhận hàng</p>
             </div>
          </div>
+
+         <div className='flex justify-items-center justify-between bg-[#64CB9A] mt-20 py-6'>
+            <div className='my-auto max-w-xl ml-20'>
+               <h2 className='text-white text-5xl font-bold mb-6'>Bạn có thắc mắc gì về chúng tôi không? Hãy liên hệ ở dưới nhé!!!</h2>
+            </div>
+            <div className='mr-20'>
+               <img src="https://teespace.store/wp-content/uploads/2023/08/banner-111.png" alt='' />
+            </div>
+            <div className="my-auto mx-5 gap-4">
+               <button className='px-5 py-3 bg-white rounded-2xl font-bold mr-10 text-black hover:bg-[#2ebb77] hover:text-white'>Mua ngay<ArrowForwardIcon /></button>
+               <button className='px-5 py-3 bg-white rounded-2xl font-bold text-black hover:bg-[#2ebb77] hover:text-white'>Liên hệ với chúng tôi<ArrowForwardIcon /></button>
+            </div>
+         </div>
+
+
       </div>
    )
 }

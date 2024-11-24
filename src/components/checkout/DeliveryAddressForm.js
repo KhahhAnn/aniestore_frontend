@@ -96,14 +96,13 @@ function DeliveryAddressForm() {
    return (
       <div className=''>
          <Grid container spacing={4}>
-            <Grid xs={12} lg={5} className='border rounded-e-md shadow-md h-[30.5rem] overflow-y-scroll'>
+            <Grid xs={12} lg={5} className='border rounded-e-md shadow-md h-[30.5rem] overflow-y-scroll mt-[32px]'>
                <div className='p-5 py-7 border-b cursor-pointer'>
                   {
                      addressList.map((item) => (
-                        <>
-                           <AdressCard address={item} />
-                           <Button onClick={() => navigateWithAddress(item)} size='large' variant='contained'>Delivery Here</Button>
-                        </>
+                        <div className='mb-4'>
+                           <AdressCard address={item} handleAddress={navigateWithAddress} />
+                        </div>
                      ))
                   }
                </div>
@@ -113,18 +112,18 @@ function DeliveryAddressForm() {
                   <form onSubmit={handleSubmit}>
                      <Grid container spacing={3}>
                         <Grid item xs={12} sm={6}>
-                           <TextField required id='firstName' name='firstName' label='First Name' fullWidth autoComplete='given-name' />
+                           <TextField required id='firstName' name='Tên' label='First Name' fullWidth autoComplete='given-name' />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                           <TextField required id='lastName' name='lastName' label='Last Name' fullWidth autoComplete='given-name' />
+                           <TextField required id='lastName' name='Họ và tên đệm' label='Last Name' fullWidth autoComplete='given-name' />
                         </Grid>
                         <Grid item xs={12}>
-                           <TextField required id='address' name='address' label='Address' fullWidth autoComplete='given-name' multiline rows={6} />
+                           <TextField required id='address' name='Địa chỉ' label='Address' fullWidth autoComplete='given-name' multiline rows={6} />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                            <TextField
                               select
-                              label="Select Province"
+                              label="Tỉnh/Thành phố"
                               value={selectedProvince}
                               onChange={handleProvinceChange}
                               fullWidth
@@ -139,7 +138,7 @@ function DeliveryAddressForm() {
                         <Grid item xs={12} sm={6}>
                            <TextField
                               select
-                              label="Select District"
+                              label="Quận/huyện"
                               value={selectedDistrict}
                               onChange={handleDistrictChange}
                               fullWidth
@@ -152,13 +151,13 @@ function DeliveryAddressForm() {
                            </TextField>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                           <TextField id='zipCode' name='zipCode' label='Zip/Postal Code' fullWidth autoComplete='given-name' />
+                           <TextField id='zipCode' name='zipCode' label='Mã bưu điện' fullWidth autoComplete='given-name' />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                           <TextField required id='mobile' name='mobile' label='Phone Number' fullWidth autoComplete='' />
+                           <TextField required id='mobile' name='mobile' label='Số điện thoại' fullWidth autoComplete='' />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                           <Button className='w-full' sx={{ mt: 2, bgcolor: "#9155fd", py: 2 }} size='large' variant='contained' type='submit'>Delevery Here</Button>
+                           <Button className='w-full' sx={{ mt: 2, bgcolor: "#2ebb77", py: 2, borderRadius:"12px" }} size='large' variant='contained' type='submit'>Giao hàng tại địa chỉ này</Button>
                         </Grid>
                      </Grid>
                   </form>

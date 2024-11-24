@@ -1,6 +1,8 @@
 
 import { Button, Grid, Link, Typography } from '@mui/material'
 import React from 'react'
+import logo from "../../logoAnie.png"
+
 
 const Fotter = () => {
    return (
@@ -8,7 +10,7 @@ const Fotter = () => {
          <Grid className='bg-white text-black text-start mt-20 ml-6 ' container>
             <Grid item xs={14} sm={10} md={3} className='text-start'>
                <div className='flex flex-col justify-start max-w-[300px] gap-6'>
-                  <img className='w-[200px] h-[50px] object-cover -ml-3' src='https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2018/12/06090514/logo-shop-qu%E1%BA%A7n-%C3%A1o-7.jpg' alt='' />
+                  <img className='w-[100px] h-[100px] object-cover -ml-3 rounded-full' src={logo} alt='' />
                   <h1 className='text-[26px] font-bold'> Liên hệ </h1>
                   <p className='text-[#7E7E7E] font-medium text-base'> contact@khahhann.admin</p>
                   <p className='text-[#7E7E7E] font-medium text-base'>90 Văn Trí, quận Bắc Từ Liêm, thành phố Hà Nội </p>

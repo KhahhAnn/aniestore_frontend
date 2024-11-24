@@ -1,0 +1,92 @@
+.dashboard-container {
+   display: flex;
+   flex-direction: column;
+   padding: 20px;
+}
+
+.chart-row {
+   display: grid;
+   grid-template-columns: 33% 33% 32%;
+   gap: 1%;
+   margin-bottom: 20px;
+}
+
+.chart-row:last-child {
+   grid-template-columns: repeat(4, 1fr);
+}
+
+.chart {
+   background: #f9f9f9;
+   padding: 15px;
+   border: 1px solid #eaeaea;
+   border-radius: 8px;
+}
+
+/* Ensure the table container doesn't overflow */
+.table-container {
+   overflow-x: auto;
+   background-color: #fff;
+   padding: 15px;
+   border: 1px solid #eaeaea;
+   border-radius: 8px;
+   max-width: 100%;
+}
+
+table {
+   width: 100%;
+   border-collapse: collapse;
+   overflow-x: auto;
+}
+
+th,
+td {
+   padding: 10px;
+   text-align: left;
+   border-bottom: 1px solid #ddd;
+}
+
+th {
+   background-color: #f2f2f2;
+   white-space: nowrap;
+   /* Prevents headers from breaking onto new lines */
+}
+
+td {
+   white-space: nowrap;
+   /* Prevents table cells from breaking onto new lines */
+}
+
+table {
+   table-layout: auto;
+   /* Ensures columns adjust based on content */
+}
+
+@media screen and (max-width: 1200px) {
+   .chart-row {
+      grid-template-columns: repeat(2, 1fr);
+      /* 2 charts per row on smaller screens */
+   }
+
+   .chart-row:last-child {
+      grid-template-columns: repeat(2, 1fr);
+   }
+}
+
+@media screen and (max-width: 800px) {
+   .chart-row {
+      grid-template-columns: 1fr;
+      /* 1 chart per row on smaller screens */
+   }
+}
+
+.chart-4, .chart-5, .chart-6 {
+   padding: 10px;  /* Reduce padding */
+   background-color: #f9f9f9;
+   border: 1px solid #eaeaea;
+   border-radius: 8px;
+}
+
+.chart-row .chart-4, .chart-row .chart-5, .chart-row .chart-6 {
+   max-width: 100%;  /* Ensures that the charts fit within the row */
+   box-sizing: border-box; /* Prevents overflow */
+}

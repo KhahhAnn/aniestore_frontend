@@ -33,13 +33,13 @@ const CartItem = ({ productItem }) => {
             <div className='w-[5rem] h-[5rem] lg:w-[9rem] lg:h-[9rem]'>
                <img className='w-full h-full object-cover object-top' src={productItem.product.imageUrl} alt='' />
             </div>
-            <div className='ml-5 space-y-1'>
-               <p className='font-semibold'>{productItem.product.title}</p>
-               <p className='opacity-70'>Size: {productItem.size}, {productItem.product.color}</p>
-               <p className='opacity-70 mt-2'>Seller: {productItem.product.brand}</p>
+            <div className='ml-8 space-y-1'>
+               <p className='font-semibold italic'>{productItem.product.title}</p>
+               <p className='opacity-70'>Size: {productItem.size}</p>
+               <p className='opacity-70 mt-2'>Màu sắc: {productItem.product.color}</p>
+               <p className='opacity-70 mt-2'>Mặt hàng: {productItem.product.title}</p>
                <div className=" flex space-x-5 items-center text-lg lg:text-xl text-gray-900 pt-6">
-                  <p className="font-semibold">{formatCurrency(productItem.product.discountedPrice)}</p>
-                  <p className='opacity-50 line-through'>{formatCurrency(productItem.product.price)}</p>
+                  <p className="font-semibold">{formatCurrency(productItem.product.price)}</p>
                   <p className='text-green-600 font-semibold'>{productItem.product.discountPrecent = '0' ? '0' : formatCurrency(productItem.product.discountPrecent)}% Off</p>
                </div>
             </div>
@@ -50,12 +50,12 @@ const CartItem = ({ productItem }) => {
                   <RemoveCircleOutlineIcon />
                </IconButton>
                <span className='py-1 px-7 border rounded-sm'>{productItem.quantity}</span>
-               <IconButton sx={{ color: "#9155fd" }} onClick={() => handleUpdateCartItem(1)}>
+               <IconButton sx={{ color: "#2ebb77" }} onClick={() => handleUpdateCartItem(1)}>
                   <AddCircleOutlineIcon />
                </IconButton>
             </div>
             <div>
-               <Button onClick={handleRemoveCartItem} sx={{ color: "#9155fd" }}>remove</Button>
+               <Button onClick={handleRemoveCartItem} sx={{ color: "#2ebb77" }}>Xóa khỏi giỏ hàng</Button>
             </div>
          </div>
       </div>

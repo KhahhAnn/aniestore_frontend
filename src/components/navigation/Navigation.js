@@ -11,6 +11,7 @@ import { getUser, logout } from '../../state/authorization/Action';
 import './Navigation.css';
 import { navigation } from './NavigationData';
 import { message } from 'antd';
+import logo from "../../logoAnie.png"
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
@@ -59,6 +60,7 @@ export default function Navigation() {
     dispatch(logout());
     setCountItems(0);
     handleCloseUserMenu();
+    navigate("/");
   };
 
   const moveToCart = () => {
@@ -179,8 +181,8 @@ export default function Navigation() {
               <Link to="/">
                 <div className="ml-4 flex lg:ml-0">
                   <img
-                    className="h-14 w-40 mr-2"
-                    src="https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2018/12/06090514/logo-shop-qu%E1%BA%A7n-%C3%A1o-7.jpg"
+                    className="h-14 w-14 mr-2 rounded-full"
+                    src={logo}
                     alt="Logo"
                   />
                 </div>
@@ -200,10 +202,10 @@ export default function Navigation() {
                       </a>
                     ) : (
                       <div className='shop-dropdown' key={page.key}>
-                        <span className="mt-[22px] flex items-center text-sm font-medium text-gray-700 hover:text-gray-800 cursor-pointer ">
+                        <a className="mt-[22px] flex items-center text-sm font-medium text-gray-700 hover:text-gray-800 cursor-pointer " href={page.href}>
                           {page.key}
-                        </span>
-                        <div className='absolute flex-col bg-white text-start top-16 left-72 m-0 rounded-md shop-list'>
+                        </a>
+                        <div className='absolute flex-col bg-white text-start top-16 left-[13rem] m-0 rounded-md shop-list'>
                           {page.childrens.map((children) => (
                             <a className='hover:bg-[#64CB9A] hover:text-white block px-10 py-[15px] h-full m-0 hover:rounded-md border-b-2 border-[#64CB9A]' href={children.href} key={children.href}>{children.label}</a>
                           ))}
@@ -242,13 +244,13 @@ export default function Navigation() {
                         }}
                       >
                         <MenuItem onClick={() => navigate("/profile")}>
-                          Profile
+                          Trang cá nhân
                         </MenuItem>
                         <MenuItem onClick={() => navigate("/account/order")}>
-                          My Order
+                          Đơn hàng
                         </MenuItem>
                         <MenuItem onClick={handleLogout}>
-                          Logout
+                          Đang xuất
                         </MenuItem>
                       </Menu>
                     </div>
