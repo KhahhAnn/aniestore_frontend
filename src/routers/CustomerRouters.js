@@ -16,6 +16,7 @@ import FAQSPage from '../pages/faqsPage/FAQSPage'
 import ProfilePage from '../pages/profilePage/ProfilePage'
 import ChatComponent from '../components/test.js'
 import BannerPage from '../pages/bannerPage/banner.js'
+import AuthRedirect from '../components/AuthRedirect.js'
 
 const CustomerRouters = () => {
    const location = useLocation();
@@ -46,6 +47,7 @@ const CustomerRouters = () => {
             <Route path='/account/order' element={<Order />}></Route>
             <Route path='/profile' element={<ProfilePage />}></Route>
             <Route path='/account/order/:orderId' element={<OrderDetail />}></Route>
+            <Route path="/auth-redirect" element={<AuthRedirect />}></Route>
          </Routes>
          {!isRootPath && (
             <div>

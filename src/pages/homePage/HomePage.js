@@ -59,14 +59,14 @@ const HomePage = () => {
                      </div>
                   </div>
                </div>
-               <div class="box-right">
+               <div className="box-right">
                   <img src={sp1} alt="" />
                   <img src={sp2} alt="" />
                   <img src={sp3} alt="" />
                </div>
-               <div class="to-bottom">
+               <div className="to-bottom">
                   <a href="#about">
-                     <i class="icofont-circled-down"></i>
+                     <i className="icofont-circled-down"></i>
                   </a>
                </div>
             </section>
@@ -131,7 +131,7 @@ const HomePage = () => {
             {
                [1, 2, 3, 4].map(
                   (i) => (
-                     <div className="w-full relative group p-3 rounded-xl bg-slate-200 hover:scale-110 duration-500 ">
+                     <div key={i} className="w-full relative group p-3 rounded-xl bg-slate-200 hover:scale-110 duration-500 ">
                         <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
                            <div>
                               <img className="w-full h-full rounded-lg" src={mens_kurta[i].imageUrl} alt='' />

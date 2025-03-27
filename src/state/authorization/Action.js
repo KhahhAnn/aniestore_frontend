@@ -1,7 +1,6 @@
 import axios from "axios"
 import { API_BASE_URL, api } from "../../config/ApiConfig"
-import { CHANGE_PASSWORD_REQUEST, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, UPDATE_USER_FAILURE, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS } from "./ActionType"
-import { message } from "antd";
+import { CHANGE_PASSWORD_REQUEST, GET_TOKEN_FAILURE, GET_TOKEN_REQUEST, GET_TOKEN_SUCCESS, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, UPDATE_USER_FAILURE, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS } from "./ActionType"
 
 const registerRequest = () => ({ type: REGISTER_REQUEST });
 const registerSuccess = (user) => ({ type: REGISTER_SUCCESS, payload: user });
@@ -63,6 +62,23 @@ export const getUser = (jwt) => async (dispatch) => {
    }
 }
 
+const getTokenRequest = () => ({ type: GET_TOKEN_REQUEST });
+const getTokenSuccess = (token) => ({ type: GET_TOKEN_SUCCESS, payload: token });
+const getTokenFailure = (error) => ({ type: GET_TOKEN_FAILURE, payload: error });
+export const getMyToken = (jwtgg) => async (dispatch) => {
+   dispatch(getTokenRequest());
+   try {
+      const response = await axios.post(`${API_BASE_URL}/auth/oauth-login`, {
+         token: jwtgg
+      })
+      const token = response.data;
+      dispatch(getTokenSuccess(token));
+
+   } catch (error) {
+      dispatch(getTokenFailure(error.message));
+   }
+}
+
 const updateRequest = () => ({ type: UPDATE_USER_REQUEST });
 const updateSuccess = (user) => ({ type: UPDATE_USER_SUCCESS, payload: user });
 const updateFailure = (error) => ({ type: UPDATE_USER_FAILURE, payload: error });
@@ -121,3 +137,31 @@ export const logout = () => (dispatch) => {
    dispatch({ type: LOGOUT, payload: null });
    localStorage.clear();
 }
+
+
+const loginOAuthRequest = () => ({ type: LOGIN_REQUEST });
+const loginOAuthSuccess = (user) => ({ type: LOGIN_SUCCESS, payload: user });
+const loginOAuthFailure = (error) => ({ type: LOGIN_FAILURE, payload: error });
+export const loginWithOAuth = (googleToken) => async (dispatch) => {
+   dispatch(loginOAuthRequest());
+   try {
+      const response = await axios.post(`${API_BASE_URL}/auth/oauth-login`, {
+         token: googleToken,
+      });
+
+      const user = response.data;
+      if (!user.jwt) {
+         dispatch(loginOAuthFailure("Đăng nhập thất bại"));
+         return { success: false, message: "Đăng nhập thất bại" };
+      }
+
+      // Lưu token vào localStorage
+      localStorage.setItem("jwt", user.jwt);
+      dispatch(loginOAuthSuccess(user));
+
+      return { success: true };
+   } catch (error) {
+      dispatch(loginOAuthFailure(error.message));
+      return { success: false, message: "Đăng nhập thất bại" };
+   }
+};

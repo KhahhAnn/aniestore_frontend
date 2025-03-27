@@ -263,7 +263,7 @@ export default function ProductDeatil() {
             </section>
             <section>
                <h1 className='font-semibold text-lg pb-4'>Review và đánh giá sản phẩm</h1>
-               <div className='border p-5'>
+               <div className='border p-5 max-h-[500px]'>
                   <Grid container spacing={7}>
                      <Grid item xs={7}>
                         <div className='space-y-5'>

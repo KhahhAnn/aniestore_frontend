@@ -12,14 +12,14 @@ const BlogPage = () => {
          <div className='mx-auto text-center bg-[#F5F5F5] py-20'>
             <h2 className='font-bold text-[40px] mb-4'>Blog</h2>
             <a href='/' className='text-[#7e7e7e] text-[15px] ml-2 hover:text-[#2ebb77]'>Home</a>
-            <span class="delimiter"></span>
+            <span className="delimiter"></span>
             <span className='mr-2'>Blog</span>
          </div>
 
          <div className='text-center'>
             <h3 className='font-bold text-4xl mb-4'>LOOKBOOK 2024| KAIZEN – HÀNH TRÌNH THAY ĐỔI 3 CHƯƠNG</h3>
             <a href='/' className='text-[#7e7e7e] text-[15px] ml-2 hover:text-[#2ebb77]'> 14 tháng 4, 2024</a>
-            <span class="delimiter"></span>
+            <span className="delimiter"></span>
             <span className='mr-2'>được viết bởi <span className='font-bold'>admin</span></span>
             <img className='mx-auto mt-6 rounded-xl' src='https://i.pinimg.com/736x/31/80/5e/31805e8127bd07c37b5b3a8ea51a548c.jpg' alt='' />
          </div>

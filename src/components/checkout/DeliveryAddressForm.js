@@ -90,7 +90,7 @@ function DeliveryAddressForm() {
    }, []);
 
    if (isLoading) {
-      return <Skeleton active />;
+      return <Skeleton active={true} />;
    }
 
    return (

@@ -7,7 +7,7 @@ function ContactPage() {
          <div className='mx-auto text-center bg-[#F5F5F5] py-20'>
             <h2 className='font-bold text-[40px] mb-4'>Contact Us</h2>
             <a href='/' className='text-[#7e7e7e] text-[15px] ml-2 hover:text-[#2ebb77]'>Home</a>
-            <span class="delimiter"></span>
+            <span className="delimiter"></span>
             <span className='mr-2'>Contact Us</span>
          </div>
          <div className='mt-20'>

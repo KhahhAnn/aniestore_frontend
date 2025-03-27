@@ -67,7 +67,7 @@ const Cart = () => {
    }, [dispatch, currentPage]);
 
    if (isLoading || !cartStore.cart) {
-      return <Skeleton active />;
+      return <Skeleton active={'true'} />;
    }
 
    const formatCurrency = (value) => {

@@ -173,11 +173,11 @@ function ProfilePage() {
    }, []);
 
    if (!auth.user || !auth.user.imageSrc) {
-      return <Skeleton active />;
+      return <Skeleton active={'true'} />;
    }
 
    if (isLoading) {
-      return <Skeleton active />;
+      return <Skeleton active={'true'} />;
    }
    return (
       <div>

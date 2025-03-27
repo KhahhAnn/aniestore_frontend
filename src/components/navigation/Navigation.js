@@ -7,7 +7,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthModal from '../../auth/AuthModal';
-import { getUser, logout } from '../../state/authorization/Action';
+import { getUser, logout, getMyToken } from '../../state/authorization/Action';
 import './Navigation.css';
 import { navigation } from './NavigationData';
 import { message } from 'antd';
@@ -21,6 +21,8 @@ export default function Navigation() {
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
+  const jwtgg = localStorage.getItem("jwtgg");
+
   const { auth } = useSelector(store => store);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
@@ -47,6 +49,13 @@ export default function Navigation() {
     }
     setIsLoading(false);
   }, [jwt, dispatch]);
+
+  // useEffect(() => {
+  //   if (jwtgg) {
+  //     dispatch(getMyToken(jwtgg));
+  //   }
+  //   setIsLoading(false);
+  // }, [jwtgg, dispatch]);
 
   useEffect(() => {
     if (auth.user) {
@@ -90,7 +99,7 @@ export default function Navigation() {
   };
 
   if (isLoading) {
-    return <Skeleton active />;
+    return <Skeleton active={'true'} />;
   }
 
   return (
