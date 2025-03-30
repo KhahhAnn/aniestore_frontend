@@ -1,22 +1,11 @@
-import React, { useEffect, useState } from "react";
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { message } from 'antd';
+import Keycloak from "keycloak-js";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../state/authorization/Action";
-import { message } from 'antd';
-import axios from "axios";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import Keycloak from "keycloak-js";
-
-
-const GOOGLE_CLIENT_ID = "395259230290-3a2i490sv6gmcdu99tlhdbacgpe6r5ba.apps.googleusercontent.com";
-
-const keycloakConfig = new Keycloak({
-   url: 'http://localhost:9000',
-   realm: 'spring-boot-code',
-   clientId: 'authenticationClientId',
-});
 
 function SignIn() {
    const [state, setState] = React.useState({
@@ -47,34 +36,7 @@ function SignIn() {
          message.error(result.message || 'Đăng nhập thất bại');
       }
    }
-
-   const initKeycloak = async () => {
-      try {
-         const keycloak = new Keycloak({
-            url: 'http://localhost:9000',
-            realm: 'spring-boot-code',
-            clientId: 'authenticationClientId'
-         });
-
-         const authenticated = await keycloak.init({
-            onLoad: 'check-sso',
-            pkceMethod: 'S256', // Thêm PKCE để bảo mật
-            checkLoginIframe: false // Tắt check iframe nếu không cần
-         });
-
-         console.log("Keycloak initialized:", authenticated);
-         return keycloak;
-      } catch (error) {
-         console.error("Keycloak init error details:", {
-            message: error.message,
-            stack: error.stack,
-            response: error.response
-         });
-         message.error(`Keycloak error: ${error.message}`);
-         return null;
-      }
-   };
-
+   
    const handleGoogleLogin = async (e) => {
 
       e.preventDefault();
@@ -83,69 +45,30 @@ function SignIn() {
          const keycloak = new Keycloak({
             url: 'http://localhost:9000',
             realm: 'spring-boot-code',
-            clientId: 'authenticationClientId'
+            clientId: 'authenticationClientId',
+            redirectUri: 'http://localhost:3000/auth-redirect',
+            pkceMethod: 'S256'
          });
-
-         // await keycloak.clearToken();
-         // console.log("success");
 
          await keycloak.init({
             onLoad: 'login-required',
-            pkceMethod: 'S256',
-            responseType: 'code',
+            responseType: 'code', 
             checkLoginIframe: false,
-            flow: 'standard',
-            responseMode: 'fragment' // Quan trọng
+            redirectUri: 'http://localhost:3000/auth-redirect',
+            pkceMethod: 'S256'
          });
 
          await keycloak.login({
             idpHint: 'google',
-            redirectUri: 'http://localhost:3000/',
+            redirectUri: 'http://localhost:3000/auth-redirect',
             scope: 'openid profile email',
          });
+
       } catch (error) {
          console.error('Login error:');
          message.error('Đăng nhập thất bại');
       }
    };
-
-
-   const handleLogout = async (e) => {
-      e.preventDefault(); // Ngăn hành vi mặc định nếu là thẻ <a>
-
-      try {
-         const keycloak = new Keycloak({
-            url: 'http://localhost:9000',
-            realm: 'spring-boot-code',
-            clientId: 'authenticationClientId'
-         });
-
-         await keycloak.init({
-            onLoad: 'login-required', // Sửa thành login-required để đảm bảo logout triệt để
-            pkceMethod: 'S256'
-         });
-
-         // Thêm các bước xóa dữ liệu cục bộ trước
-         localStorage.removeItem('kc-callback');
-         localStorage.removeItem('kc-idp');
-         sessionStorage.clear();
-
-         // Gọi logout với tham số đầy đủ
-         await keycloak.logout({
-            redirectUri: window.location.origin + '/login', // Dùng URL tuyệt đối
-            idTokenHint: keycloak.idToken // Truyền idToken nếu có
-         });
-
-         // Force reload trình duyệt
-         window.location.href = '/login';
-
-      } catch (error) {
-         console.error('Full logout error:');
-         // Fallback: vẫn chuyển hướng dù có lỗi
-         window.location.href = '/login';
-      }
-   };
-
 
    return (
       <div className="form-container sign-in-container">

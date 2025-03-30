@@ -2,16 +2,17 @@ import { Dialog, Popover, Transition } from '@headlessui/react';
 import { Bars3Icon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Avatar, Button, Menu, MenuItem, Skeleton } from '@mui/material';
 import { deepPurple } from '@mui/material/colors';
+import { message } from 'antd';
 import axios from 'axios';
 import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthModal from '../../auth/AuthModal';
-import { getUser, logout, getMyToken } from '../../state/authorization/Action';
+import logo from "../../logoAnie.png";
+import { getMyToken, getUser, logout } from '../../state/authorization/Action';
 import './Navigation.css';
 import { navigation } from './NavigationData';
-import { message } from 'antd';
-import logo from "../../logoAnie.png"
+
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
@@ -21,9 +22,11 @@ export default function Navigation() {
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
-  const jwtgg = localStorage.getItem("jwtgg");
+  const accessToken = localStorage.getItem("accessToken");
 
   const { auth } = useSelector(store => store);
+  console.log("auth", auth);
+  
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -50,12 +53,12 @@ export default function Navigation() {
     setIsLoading(false);
   }, [jwt, dispatch]);
 
-  // useEffect(() => {
-  //   if (jwtgg) {
-  //     dispatch(getMyToken(jwtgg));
-  //   }
-  //   setIsLoading(false);
-  // }, [jwtgg, dispatch]);
+  useEffect(() => {
+    if (accessToken) {
+      dispatch(getMyToken(accessToken));
+    }
+    setIsLoading(false);
+  }, [accessToken, dispatch]);
 
   useEffect(() => {
     if (auth.user) {
@@ -227,7 +230,7 @@ export default function Navigation() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  {auth.user?.firstName ? (
+                  {auth.user?.firstName || auth?.jwt?.family_name ? (
                     <div>
                       <Avatar
                         className='text-white'
@@ -241,7 +244,7 @@ export default function Navigation() {
                           cursor: "pointer"
                         }}
                       >
-                        <img src={auth.user?.imageSrc} alt='User' />
+                        {auth.user?.imageSrc ? <img src={auth.user?.imageSrc} alt='User' /> : <Avatar />}
                       </Avatar>
                       <Menu
                         id='basic-menu'

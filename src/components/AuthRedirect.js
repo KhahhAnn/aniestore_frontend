@@ -1,59 +1,95 @@
-import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { message } from 'antd';
 import axios from 'axios';
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function AuthRedirect() {
    const navigate = useNavigate();
-   const location = useLocation();
+   const isProcessing = useRef(false); // Thêm biến ref để track trạng thái
 
    useEffect(() => {
-      const handleAuthentication = async () => {
-         debugger
-         // 1. Lấy hash từ URL hoàn chỉnh (bao gồm cả phần sau #)
-         const params = new URLSearchParams(location.search);
-         const code = params.get('code');
-         const error = params.get('error');
-
-         console.log('Hash parameters:', { code, error, params: Object.fromEntries(params.entries()) });
-
-         // 2. Xử lý lỗi nếu có
-         if (error) {
-            message.error(`Login failed: ${params.get('error_description') || error}`);
-            navigate('/login', { replace: true });
-            return;
-         }
-
-         // 3. Xử lý code
-         if (code) {
-            try {
-               const response = await axios.post('http://localhost:8080/auth/token', {
-                  code,
-                  redirectUri: window.location.origin + '/auth-redirect'
-               });
-
-               if (response.data.access_token) {
-                  localStorage.setItem('authToken', response.data.access_token);
-
-                  // 4. Xóa hash khỏi URL sau khi xử lý
-                  window.history.replaceState({}, document.title, window.location.pathname);
-
-                  navigate('/home', { replace: true });
+      const getLastCodeVerifier = () => {
+         for (let i = localStorage.length - 1; i >= 0; i--) {
+            const key = localStorage.key(i);
+            if (key?.startsWith('kc-callback-')) {
+               try {
+                  const data = JSON.parse(localStorage.getItem(key));
+                  if (data?.pkceCodeVerifier) {
+                     return data.pkceCodeVerifier;
+                  }
+               } catch (e) {
+                  console.error('Error parsing localStorage item:', e);
                }
-            } catch (err) {
-               console.error('Token exchange failed:', {
-                  error: err.response?.data,
-                  status: err.response?.status
-               });
-               navigate('/login', { state: { error: err.message }, replace: true });
             }
-         } else {
-            navigate('/login', { replace: true });
+         }
+         return null;
+      };
+
+      const parseFragment = (hash) => {
+         return hash.substring(1).split('&').reduce((result, item) => {
+            const [key, value] = item.split('=');
+            result[key] = decodeURIComponent(value);
+            return result;
+         }, {});
+      };
+
+      const handleAuthentication = async () => {
+         if (isProcessing.current) return;
+         isProcessing.current = true;
+
+         try {
+            const fragment = parseFragment(window.location.hash);
+            const code = fragment.code;
+            const error = fragment.error;
+
+            if (error) {
+               navigate('/login', { replace: true });
+               return;
+            }
+
+            if (!code) {
+               navigate('/login', { replace: true });
+               return;
+            }
+
+            const codeVerifier = getLastCodeVerifier();
+            if (!codeVerifier) {
+               throw new Error('Missing PKCE code verifier');
+            }
+
+            const response = await axios.post('http://localhost:8080/auth/token', {
+               code,
+               codeVerifier,
+               redirectUri: window.location.origin + '/auth-redirect'
+            });
+
+            if (response?.data) {
+               localStorage.setItem('accessToken', response?.data?.access_token);
+               localStorage.setItem('refreshToken', response?.data?.refresh_token);
+               localStorage.setItem('expiresIn', response?.data?.expires_in);
+               window.history.replaceState({}, document.title, window.location.pathname);
+               navigate('/home', { replace: true });
+            }
+         } catch (err) {
+            console.error('Token exchange failed:', {
+               error: err.response?.data,
+               status: err.response?.status
+            });
+            navigate('/login', { 
+               state: { error: err.response?.data?.error || err.message }, 
+               replace: true 
+            });
+         } finally {
+            isProcessing.current = false;
          }
       };
 
       handleAuthentication();
-   }, [navigate]);
+
+      // Cleanup function để tránh memory leak
+      return () => {
+         isProcessing.current = false;
+      };
+   }, [navigate]); // Thêm navigate vào dependencies
 
    return <div>Processing authentication...</div>;
 }

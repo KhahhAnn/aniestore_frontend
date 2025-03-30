@@ -1,5 +1,5 @@
-import React from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import HomePage from '../pages/homePage/HomePage'
 import Cart from '../components/cart/Cart'
 import Navigation from '../components/navigation/Navigation'

@@ -1,6 +1,7 @@
 import axios from "axios"
 import { API_BASE_URL, api } from "../../config/ApiConfig"
 import { CHANGE_PASSWORD_REQUEST, GET_TOKEN_FAILURE, GET_TOKEN_REQUEST, GET_TOKEN_SUCCESS, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, UPDATE_USER_FAILURE, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS } from "./ActionType"
+import { jwtDecode } from "jwt-decode";
 
 const registerRequest = () => ({ type: REGISTER_REQUEST });
 const registerSuccess = (user) => ({ type: REGISTER_SUCCESS, payload: user });
@@ -68,11 +69,10 @@ const getTokenFailure = (error) => ({ type: GET_TOKEN_FAILURE, payload: error })
 export const getMyToken = (jwtgg) => async (dispatch) => {
    dispatch(getTokenRequest());
    try {
-      const response = await axios.post(`${API_BASE_URL}/auth/oauth-login`, {
-         token: jwtgg
-      })
-      const token = response.data;
-      dispatch(getTokenSuccess(token));
+      const decodedUser = jwtDecode(jwtgg);
+      const oauth = decodedUser;
+      console.log("oauth", oauth);
+      dispatch(getTokenSuccess(oauth));
 
    } catch (error) {
       dispatch(getTokenFailure(error.message));
