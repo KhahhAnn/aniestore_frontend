@@ -179,7 +179,7 @@ const HomePage = () => {
                <h3 className='uppercase text-[#B479D9] font-bold text-sm'>Chương trình khuyến mại</h3>
                <h1 className='font-bold text-[40px]'>Giảm giá tới 30%</h1>
                <p className='text-[#7E7E7E] font-medium text-lg max-w-96 leading-8 mt-8'>Đồ bộ ngắn tay phù hợp cho những chuyến đi biển của bạn vào mùa hè này</p>
-               <TimerCountdown targetDate="2024-12-20T00:00:00" />
+               <TimerCountdown targetDate="2025-04-16T00:00:00" />
                <button className='text-white font-bold text-base mt-10' style={{ backgroundColor: "#2EBB77", padding: "10px", borderRadius: "10px" }}>Mua ngay với 199.000đ<ArrowForwardIcon /> </button>
             </div>
             <div>

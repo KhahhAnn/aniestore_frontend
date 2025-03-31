@@ -9,7 +9,6 @@ const initialState = {
 }
 
 export const authReducer = (state = initialState, action) => {
-   debugger
    switch (action.type) {
       case REGISTER_REQUEST:
       case LOGIN_REQUEST:
@@ -26,7 +25,7 @@ export const authReducer = (state = initialState, action) => {
       case UPDATE_USER_SUCCESS:
          return { ...state, isLoading: false, error: null, user: action.payload }
       case GET_TOKEN_SUCCESS:
-         return { ...state, isLoading: false, error: null, jwt: action.payload }
+         return { ...state, isLoading: false, error: null, user: action.payload }
 
       case REGISTER_FAILURE:
       case LOGIN_FAILURE:

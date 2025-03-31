@@ -69,10 +69,21 @@ const getTokenFailure = (error) => ({ type: GET_TOKEN_FAILURE, payload: error })
 export const getMyToken = (jwtgg) => async (dispatch) => {
    dispatch(getTokenRequest());
    try {
+      
       const decodedUser = jwtDecode(jwtgg);
       const oauth = decodedUser;
-      console.log("oauth", oauth);
-      dispatch(getTokenSuccess(oauth));
+   
+      const response = await axios.get(`${API_BASE_URL}/api/users/profile-oauth`, {
+         params: { email: oauth.email }
+      });
+      const user = response.data;
+      dispatch(getTokenSuccess(user));
+      const res = await axios.get(`${API_BASE_URL}/api/users/oauth-get-token`, {
+         params: { email: oauth.email }
+      });
+      if(res?.data) {
+         localStorage.setItem("jwt", res?.data?.jwt);
+      }
 
    } catch (error) {
       dispatch(getTokenFailure(error.message));
@@ -111,7 +122,6 @@ const changePasswordRequest = () => ({ type: CHANGE_PASSWORD_REQUEST });
 const changePasswordSuccess = (user) => ({ type: UPDATE_USER_SUCCESS, payload: user });
 const changePasswordFailure = (error) => ({ type: UPDATE_USER_FAILURE, payload: error });
 export const changePassword = (jwt, password) => async (dispatch) => {
-   console.log(password);
    dispatch(changePasswordRequest());
    try {
       const response = await api.put(`/api/users/change-password`, password, {
@@ -133,8 +143,16 @@ export const changePassword = (jwt, password) => async (dispatch) => {
 }
 
 
-export const logout = () => (dispatch) => {
+export const logout = () => async (dispatch) => {
    dispatch({ type: LOGOUT, payload: null });
+   // try {
+   //    const response = await axios.post(`${API_BASE_URL}/auth/oauth-login`, {
+   //       token: googleToken,
+   //    });
+   //    return { success: true };
+   // } catch (error) {
+   //    return { success: false, message: "Đăng xuất thất bại" };
+   // }
    localStorage.clear();
 }
 

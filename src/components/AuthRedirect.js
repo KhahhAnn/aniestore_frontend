@@ -66,6 +66,7 @@ export default function AuthRedirect() {
                localStorage.setItem('accessToken', response?.data?.access_token);
                localStorage.setItem('refreshToken', response?.data?.refresh_token);
                localStorage.setItem('expiresIn', response?.data?.expires_in);
+               localStorage.setItem('idToken', response?.data?.id_token);
                window.history.replaceState({}, document.title, window.location.pathname);
                navigate('/home', { replace: true });
             }

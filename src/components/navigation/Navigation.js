@@ -12,6 +12,7 @@ import logo from "../../logoAnie.png";
 import { getMyToken, getUser, logout } from '../../state/authorization/Action';
 import './Navigation.css';
 import { navigation } from './NavigationData';
+import { API_BASE_URL } from '../../config/ApiConfig';
 
 
 export default function Navigation() {
@@ -25,7 +26,6 @@ export default function Navigation() {
   const accessToken = localStorage.getItem("accessToken");
 
   const { auth } = useSelector(store => store);
-  console.log("auth", auth);
   
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
@@ -68,7 +68,15 @@ export default function Navigation() {
     setIsLoading(false);
   }, [auth.user, countItems]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const refreshToken = localStorage.getItem("refreshToken");
+    if (refreshToken) {
+      try {
+        await axios.post(`${API_BASE_URL}/auth/logout`, { refresh_token: refreshToken });
+      } catch (error) {
+        console.error("Logout failed", error);
+      }
+    }
     dispatch(logout());
     setCountItems(0);
     handleCloseUserMenu();

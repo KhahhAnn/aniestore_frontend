@@ -56,7 +56,7 @@ function DeliveryAddressForm() {
    };
    const fetchProvinces = async () => {
       try {
-         const response = await axios.get('https://vapi.vnappmob.com/api/province/');
+         const response = await axios.get('https://vapi.vnappmob.com/api/v2/province/');
          setProvinces(response.data.results);
       } catch (error) {
          console.error('Error fetching provinces:', error);
@@ -65,7 +65,7 @@ function DeliveryAddressForm() {
 
    const fetchDistricts = async (provinceId) => {
       try {
-         const response = await axios.get(`https://vapi.vnappmob.com/api/province/district/${provinceId}`);
+         const response = await axios.get(`https://vapi.vnappmob.com/api/v2/province/district/${provinceId}`);
          setDistricts(response.data.results);
       } catch (error) {
          console.error('Error fetching districts:', error);
