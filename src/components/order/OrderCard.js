@@ -1,19 +1,17 @@
-import { Grid, Button, Pagination } from '@mui/material';
 import AdjustIcon from '@mui/icons-material/Adjust';
-import React, { useEffect, useState, useCallback } from 'react';
-import { message } from 'antd';
-import axios from 'axios';
+import { Button, message, Pagination } from "antd";
+import { Grid } from '@mui/material';
+import axios from "axios";
+import React, { useCallback, useEffect, useState } from 'react';
 
-const OrderCard = () => {
+const OrderCard = ({ selectedStatus, setCurrentPage, currentPage }) => {
    const [orders, setOrders] = useState([]);
-   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
-   const itemsPerPage = 5; // Số đơn hàng hiển thị mỗi trang
+   const itemsPerPage = 5;
    const token = localStorage.getItem('jwt');
 
-   // Hàm lấy dữ liệu đơn hàng
    const fetchData = useCallback(async () => {
       try {
-         const response = await axios.get('http://localhost:8080/api/orders/user', {
+         const response = await axios.get(`http://localhost:8080/api/orders/user`, {
             headers: {
                Authorization: `Bearer ${token}`
             }
@@ -40,21 +38,22 @@ const OrderCard = () => {
       }
    };
 
-   const formatCurrency = (value) => {
-      return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
-   };
-
    useEffect(() => {
       fetchData();
    }, [fetchData]);
 
-   // Xác định các đơn hàng sẽ hiển thị trên trang hiện tại
-   const currentOrders = orders.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+   const filteredOrders = selectedStatus.length > 0
+      ? orders.filter(order => selectedStatus.includes(order.orderStatus))
+      : orders;
 
-
-   console.log(currentOrders);
+   const currentOrders = filteredOrders.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
    
 
+   const formatCurrency = (value) => {
+      return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+   };
+
+   
    return (
       <div>
          {currentOrders.map((order) =>
@@ -101,14 +100,13 @@ const OrderCard = () => {
          )}
          <div className='mx-auto'>
             <Pagination
-               count={Math.ceil(orders.length / itemsPerPage)} // Số trang
-               page={currentPage}
-               onChange={(event, value) => setCurrentPage(value)}
+               current={currentPage}
+               total={filteredOrders?.length}
+               pageSize={itemsPerPage}
+               onChange={(event) => setCurrentPage(event)}
                color="primary"
             />
          </div>
-
-
       </div>
    );
 };

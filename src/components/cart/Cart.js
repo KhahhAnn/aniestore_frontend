@@ -117,7 +117,7 @@ const Cart = () => {
                      <div className='flex justify-between pt-3 font-bold'>
                         <span>Tổng tiền</span>
                         <span className='text-green-600'>
-                           {formatCurrency(cartStore.cart.cart.totalDiscountedPrice == null ? 0 : cartStore.cart.cart.totalDiscountedPrice)}
+                           {formatCurrency(cartStore.cart.cart.totalDiscountedPrice == null ? 0 : cartStore.cart.cart.totalDiscountedPrice - discountValue)}
                         </span>
                      </div>
                   </div>

@@ -54,7 +54,7 @@ function ProfilePage() {
    };
    const fetchProvinces = async () => {
       try {
-         const response = await axios.get('https://vapi.vnappmob.com/api/province/');
+         const response = await axios.get('https://vapi.vnappmob.com/api/v2/province/');
          setProvinces(response.data.results);
       } catch (error) {
          console.error('Error fetching provinces:', error);
@@ -63,7 +63,7 @@ function ProfilePage() {
 
    const fetchDistricts = async (provinceId) => {
       try {
-         const response = await axios.get(`https://vapi.vnappmob.com/api/province/district/${provinceId}`);
+         const response = await axios.get(`https://vapi.vnappmob.com/api/v2/province/district/${provinceId}`);
          setDistricts(response.data.results);
       } catch (error) {
          console.error('Error fetching districts:', error);
@@ -72,7 +72,7 @@ function ProfilePage() {
 
    const fetchWard = async (districtId) => {
       try {
-         const response = await axios.get(`https://vapi.vnappmob.com/api/province/ward/${districtId}`);
+         const response = await axios.get(`https://vapi.vnappmob.com/api/v2/province/ward/${districtId}`);
          setWards(response.data.results);
          console.log(response);
       } catch (error) {
